@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
-#kill the dock
+# kill dock on Mac
+
 defaults delete com.apple.dock;
+
 killall Dock
