@@ -3,8 +3,10 @@
 # add printer function on Mac
 
 # declare variables
-PRINTERNAME= # Example: "IT"
-PRINTERIPADDRESS= # Example: "10.10.6.144"
+echo "What is the name of the printer you wish to add?"
+read PRINTERNAME # Example: "IT"
+echo "What is the IP address of the printer?"
+read PRINTERIPADDRESS # Example: "10.10.6.144"
 
 # define function 
 addPrinter() {
