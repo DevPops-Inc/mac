@@ -4,9 +4,12 @@ set -e
 # create local admin on Mac
 
 #declare variables
-LOCALADMIN= # Example: 'Admin'
-UNIQUEID= # Example: '1001'
-PASSWORD= # Example: 'Password123'
+echo "What is the nanme of the admin? (Example: 'Admin')"
+read LOCALADMIN
+echo "What is the unique ID number? (Example: '1001')"
+read UNIQUEID
+echo "What is the password? (Example: 'Password123')"
+read PASSWORD
 
 #create username
 dscl . -create /Users/$LOCALADMIN UserShell /bin/bash
