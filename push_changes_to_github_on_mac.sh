@@ -10,12 +10,12 @@ printf "\nFiles in repo:\n"
 ls
 
 # stage changes
-printf "\nWhat file do you wish to commit?"
+printf "\nWhat file do you wish to commit?\n"
 read CHANGE
 git add $CHANGE
 
 # commit message 
-printf "\nWhat is the commit message?"
+printf "\nWhat is the commit message?\n"
 read MESSAGE
 git commit -m "$MESSAGE"
 
