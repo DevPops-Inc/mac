@@ -2,9 +2,12 @@
 set -e 
 
 #declare variables
-STANDARDUSER= # Example: 'Student'
-UNIQUEID= # Example: '1002'
-PASSWORD= # Example: 'student'
+echo "What is the name of the user? (Example: 'Student')"
+read STANDARDUSER
+echo "What is the unique ID number? (Example: '1002')"
+read UNIQUEID
+echo "What is the password? (Example: 'student')"
+read PASSWORD
 
 #create username
 dscl . -create /Users/$STANDARDUSER UserShell /bin/bash
