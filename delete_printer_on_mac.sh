@@ -3,7 +3,8 @@
 # delete printer
 
 # declare variables
-PRINTERNAME= # Example: "Printer1"
+echo "What is name of printer you wish to delete (Example: Printer1)?"
+rad PRINTERNAME
 
 # delete printer
 /usr/sbin/lpadmin -x $PRINTERNAME
