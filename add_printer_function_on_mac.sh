@@ -2,11 +2,14 @@
 
 # add printer function on Mac
 
+# prompt user input 
+printf "Add printer on Mac.\n"
+read -p "Press any key to continue or press control and C keys to quit."
+printf "\n"
+
 # declare variables
-echo "What is the name of the printer you wish to add?"
-read PRINTERNAME # Example: "IT"
-echo "What is the IP address of the printer?"
-read PRINTERIPADDRESS # Example: "10.10.6.144"
+PRINTERNAME= read -p 'Please type the printer name: (Example: IT)'
+PRINTERIPADDRESS= read -p 'Please type the IP address of the printer: (Example: 10.10.6.144)'
 
 # define function 
 addPrinter() {
