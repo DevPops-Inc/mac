@@ -7,15 +7,18 @@ printf "Add printer on Mac.\n"
 read -p "Press any key to continue or press control and C keys to quit."
 printf "\n"
 
-# declare variables
-PRINTERNAME= read -p 'Please type the printer name: (Example: IT)'
-PRINTERIPADDRESS= read -p 'Please type the IP address of the printer: (Example: 10.10.6.144)'
+# declare printerName and printerIp variable
+printerName = read -p 'Please type the printer name: (Example: IT)'
+printerIp = read -p 'Please type the IP address of the printer: (Example: 10.10.6.144)'
 
-# define function 
+# define addPrinter function 
 addPrinter() {
-    /usr/sbin/lpadmin -p $PRINTERNAME -E -v lpd://$PRINTERIPADDRESS/$PRINTERNAME -D $PRINTERNAME -P /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/PrintCore.framework/Versions/A/Resources/Generic.ppd    
+    # add printer
+    /usr/sbin/lpadmin -p $printerName -E -v lpd://$printerIp/$printerName -D $printerName -P /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/PrintCore.framework/Versions/A/Resources/Generic.ppd 
+
+    # list printers   
     lpstat -p
 }
 
-# call function
+# call addPrinter function
 addPrinter
