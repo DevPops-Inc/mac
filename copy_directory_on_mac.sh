@@ -13,6 +13,14 @@ read source
 printf "\nWhat is the destination directory you wish to copy to? (Example: /Desktop)"
 read destination
 
-# copy directory
-cp -R $source /$destination
-ls $destination
+# define copyDirectory function 
+copyDirectory() {
+    # copy directory
+    cp -R $source /$destination
+
+    # list contents of destination directory
+    ls $destination
+}
+
+# call copyDirectory function
+copyDirectory
