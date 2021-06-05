@@ -4,15 +4,14 @@ set -e
 # connect to Wi-Fi on Mac
 
 # prompt user input
-printf "Connect to Wi-Fi on Mac.\n"
+printf "\nConnect to Wi-Fi on Mac.\n"
 read -p "Press any key to continue press control and C keys to quit."
-printf "\n"
 
 # declare SSID and PASSWORD variables
-printf "What is SSID you want to connect to? (Example: YourWiFi)\n"
-read SSID
-printf "What is the password for the SSID? (Example: YourPassword)\n"
-read PASSWORD
+printf "\nWhat is SSID you want to connect to? (Example: YourWiFi)"
+read ssid
+printf "\nWhat is the password for the SSID? (Example: YourPassword)"
+read password
 
 # connect to Wi-Fi
-networksetup -setairportnetwork en0 $SSID $PASSWORD
+networksetup -setairportnetwork en0 $ssid $password
