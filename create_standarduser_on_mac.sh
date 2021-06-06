@@ -1,29 +1,43 @@
 #!/bin/bash
 set -e 
 
-#declare variables
-echo "What is the name of the user? (Example: 'Student')"
-read STANDARDUSER
-echo "What is the unique ID number? (Example: '1002')"
-read UNIQUEID
-echo "What is the password? (Example: 'student')"
-read PASSWORD
+# create standard user on Mac
 
-#create username
-dscl . -create /Users/$STANDARDUSER UserShell /bin/bash
-dscl . -create /Users/$STANDARDUSER RealName $STANDARDUSER
+# prompt user input
+printf "\nCreate standard user on Mac.\n"
+read -p "Press any key to contiue or press control and C keys to quit."
 
-#create unique ID
-dscl . -create /Users/$STANDARDUSER UniqueID $UNIQUEID
+# declare standardUser, uniqueId, and password  variables
+printf "\nWhat is the name of the user? (Example: Student)\n"
+read standardUser
 
-#create primary groun
-dscl . -create /Users/$STANDARDUSER PrimaryGroupID 1000
+printf "\nWhat is the unique ID number? (Example: 1002)\n"
+read uniqueId
 
-#create home folder
-dscl . -create /Users/$STANDARDUSER NFSHomeDirectory /Local/Users/$STANDARDUSER
+printf "\nWhat is the password? (Example: student)\n"
+read password
 
-#create password
-dscl . -passwd /Users/$STANDARDUSER $PASSWORD
+# define createStandardUser function
+createStandardUser() {
+    # create username
+    dscl . -create /Users/$standardUser UserShell /bin/bash
+    dscl . -create /Users/$standardUser RealName $standardUser
 
-#check if standard user has been created
-dscl . list /Users | grep -v '_'
+    # create unique ID
+    dscl . -create /Users/$standardUser uniqueId $uniqueId
+
+    # create primary groun
+    dscl . -create /Users/$standardUser PrimaryGroupID 1000
+
+    # create home folder
+    dscl . -create /Users/$standardUser NFSHomeDirectory /Local/Users/$standardUser
+
+    # create password
+    dscl . -passwd /Users/$standardUser $password
+
+    # check if standard user has been created
+    dscl . list /Users | grep -v '_'
+}
+
+# call createStandardUser function
+createStandardUser
