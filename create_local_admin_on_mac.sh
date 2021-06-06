@@ -3,32 +3,42 @@ set -e
 
 # create local admin on Mac
 
-#declare variables
-echo "What is the nanme of the admin? (Example: 'Admin')"
-read LOCALADMIN
-echo "What is the unique ID number? (Example: '1001')"
-read UNIQUEID
-echo "What is the password? (Example: 'Password123')"
-read PASSWORD
+# prompt user input
+printf "\nCreate local admin on Mac.\n"
+read -p "Press any key to continue or press control and C keys to quit."
 
-#create username
-dscl . -create /Users/$LOCALADMIN UserShell /bin/bash
-dscl . -create /Users/$LOCALADMIN RealName $LOCALADMIN
+# declare localAdmin, uniqueId, and password variables
+printf "\nWhat is the nanme of the admin? (Example: Admin)\n"
+read localAdmin
+printf "\nWhat is the unique ID number? (Example: 1001)\n"
+read uniqueId
+printf "\nWhat is the password? (Example: password123)\n"
+read password
 
-#create unique ID
-dscl . -create /Users/$LOCALADMIN UniqueID $UNIQUEID
+# define createLocalAdmin function 
+createLocalAdmin() {
+    # create username
+    dscl . -create /Users/$localAdmin UserShell /bin/bash
+    dscl . -create /Users/$localAdmin RealName $localAdmin
 
-#create primary group
-dscl . -create /Users/$LOCALADMIN PrimaryGroupID 1000
+    # create unique ID
+    dscl . -create /Users/$localAdmin uniqueId $uniqueId
 
-#create home folder
-dscl . -create /Users/$LOCALADMIN NFSHomeDirectory /Local/Users/$LOCALADMIN
+    # create primary group
+    dscl . -create /Users/$localAdmin PrimaryGroupID 1000
 
-#create password
-dscl . -passwd /Users/$LOCALADMIN $PASSWORD
+    # create home folder
+    dscl . -create /Users/$localAdmin NFSHomeDirectory /Local/Users/$localAdmin
 
-#grant admin rights
-dscl . -append /Groups/admin GroupMembership $LOCALADMIN
+    # create password
+    dscl . -passwd /Users/$localAdmin $password
 
-#check if local admin has been created
-dscl . list /Users | grep -v '_'
+    # grant admin rights
+    dscl . -append /Groups/admin GroupMembership $localAdmin
+
+    # check if local admin has been created
+    dscl . list /Users | grep -v '_'
+}
+
+# call createLocalAdmin function
+createLocalAdmin
