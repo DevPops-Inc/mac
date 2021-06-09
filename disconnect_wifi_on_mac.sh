@@ -3,9 +3,20 @@ set -e
 
 # disconnect from Wi-Fi on Mac
 
-#declare variables
-echo "Which SSID do you want to disconnect from?"
-read SSID
+# prompt user input 
+printf "\nDisconnect from Wi-Fi on Mac."
+read -p "Press any key to continue or press control and C keys to quit."
 
-#remove Wi-Fi network
-networksetup -removepreferredwirelessnetwork en0 $SSID
+# declare ssid variable
+printf "\nwPlease type ssid you wish to disconnect from (Example: IT-Network): "
+read ssid
+
+# define removeWiFiNetwork function
+removeWiFiNetwork() {
+    # remove Wi-Fi network
+    networksetup -removepreferredwirelessnetwork en0 $ssid
+    printf "\nYou are now disconnected from $ssid network.\n"
+}
+
+# call removeWiFiNetwork function
+removeWiFiNetwork
