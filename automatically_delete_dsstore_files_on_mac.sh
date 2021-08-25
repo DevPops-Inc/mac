@@ -7,6 +7,20 @@ set -e
 
 hours=$1
 
+check_os_for_mac() {
+    
+    printf "\nChecking operating system...\n"
+
+    if [[ $OSTYPE == 'darwin'* ]]; then
+        tput setaf 2; echo -e "Operating System: \n$(sw_vers)"; tput sgr0
+        printf "Finished checking operating system.\n"
+    else
+        tput setaf 1; echo "Sorry but this script only works on Mac."; tput sgr0
+        printf "Finished checking operating system.\n"
+        exit 1
+    fi
+}
+
 get_hours() { 
     if [ -z $hours ]; then 
         printf "\nPlease type how many hours intervals you would like between deleting .DS_Store files (Example: 24): "
@@ -47,7 +61,8 @@ check_parameters() {
 # define main fucntion
 delete_ds_store_files() {
     printf "\nAutomatically delete DS_Store files on Mac.\n"
-    
+    check_os_for_mac
+
     get_hours
     check_parameters
 
