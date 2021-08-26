@@ -79,7 +79,7 @@ delete_ds_store_files() {
     end=$(date +%s)
 
     duration=$(( $end - $start ))
-    printf "\nTotal time of execution: $duration second(s)\n"
+    printf "\nTotal execution time: $duration second(s)\n"
 }
 
 # call main function 
