@@ -9,7 +9,7 @@ ssid=$1
 password=$2
 
 check_os_for_mac() { 
-    printf "\nChecking operating system at $(date)\n"
+    printf "\nStarted checking operating system at $(date)\n"
 
     if [[ $OSTYPE == 'darwin'* ]]; then 
         tput setaf 2; echo -e "Operating System: \n$(sw_vers)"; tput sgr0
@@ -21,7 +21,7 @@ check_os_for_mac() {
     fi
 }
 
-getSsid() { 
+get_ssid() { 
     if [ -z $ssid ]; then 
         printf "\nAvailable Wi-Fi networks: \n"
         
@@ -57,8 +57,18 @@ check_parameters() {
 
     echo "Finished checking parameters at $(date)"
 
+    if [ -z $ssid ]; then 
+        tput setaf 1; echo "ssid is not set."; tput sgr0
+        valid="false"
+    fi
+
+    if [ -z $password ]; then 
+        tput setaf 1; echo "password is not set."; tput sgr0
+        valid="false"
+    fi
+    
     if [ $valid == "true" ]; then 
-        tput setaf 2; echo "All parameters check passed."; tput sgr0
+        tput setaf 2; echo "All parameter checks passed."; tput sgr0
         echo ""
     else 
         tput setaf 1; echo "One or more parameters are incorrect, exiting script."; tput sgr0
@@ -73,7 +83,7 @@ connect_to_wifi() {
     printf "\nConnect to Wi-Fi on Mac.\n"
     check_os_for_mac
 
-    getSsid
+    get_ssid
     getPassword
     check_parameters
 
