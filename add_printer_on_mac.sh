@@ -25,9 +25,8 @@ check_os_for_mac() {
 
 get_printer_name() {
     if [ -z $printerName ]; then 
-        echo "Please type the printer name and press \"return\" key (Example: IT): "
+        read -p "Please type the printer name and press \"return\" key (Example: IT): " printerName
         
-        read printerName
         echo ""
     else 
         echo $printerName
@@ -36,9 +35,8 @@ get_printer_name() {
 
 get_printer_ip() {
     if  [ -z $printerIp]; then 
-        echo "Please type the IP address of the printer and press \"return\" key (Example: 10.10.6.144): "
+        read -p "Please type the IP address of the printer and press \"return\" key (Example: 10.10.6.144): " printerIp
         
-        read printerIp
         echo ""
     else
         echo $printerIp
