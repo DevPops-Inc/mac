@@ -65,11 +65,8 @@ check_parameters() {
 
     if [ $valid == "true" ]; then
         tput setaf 2; echo "All parameter checks passed."; tput sgr0
-        echo ""
     else
         tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
-
-        echo ""
         exit 1
     fi
 
@@ -95,7 +92,7 @@ add_printer() {
 
     /usr/sbin/lpadmin -p $printerName -E -v lpd://$printerIp/$printerName -D $printerName -P /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/PrintCore.framework/Versions/A/Resources/Generic.ppd 
 
-    tput setaf 2; echo "Finished adding printer at $(date)"; tput sgr0
+    tput setaf 2; echo "Successfully added printer."; tput sgr0
     echo ""
     
     echo "The printer(s) on this Mac are: "
@@ -103,6 +100,8 @@ add_printer() {
     echo ""
 
     end=$(date +%s)
+    echo "Finished adding printer at $(date)"
+
     duration=$(( $end - $start))
     echo "Total execution time: $duration second(s)"
 }
