@@ -16,7 +16,7 @@ check_os_for_mac() {
         echo "Finished checking operating system at $(date)"
         echo ""
     else
-        tput setaf 1; echo "Sorry but this script runs works on Mac."; tput sgr0
+        tput setaf 1; echo "Sorry but this script only runs on Mac."; tput sgr0
         echo "Finished checking operating system at $(date)"
         echo ""
         exit 1

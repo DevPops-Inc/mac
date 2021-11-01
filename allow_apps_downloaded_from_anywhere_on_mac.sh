@@ -4,34 +4,38 @@
 
 check_os_for_mac() {
     
-    printf "\nChecking operating system...\n"
+    echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then
         tput setaf 2; echo -e "Operating System: \n$(sw_vers)"; tput sgr0
-        printf "Finished checking operating system.\n\n"
+        echo "Finished checking operating system at $(date)"
+        echo ""
     else
-        tput setaf 1; echo "Sorry but this script only works on Mac."; tput sgr0
-        printf "Finished checking operating system.\n\n"
+        tput setaf 1; echo "Sorry but this script only runs on Mac."; tput sgr0
+        echo "Finished checking operating system at $(date)"
+        echo ""
         exit 1
     fi
 }
 
 allow_apps_downloaded_from_anywhere() { 
-    printf "\nAllow apps to be downloded from anywhere on Mac.\n"
+    printf "\nAllow apps to be downloaded from anywhere on Mac.\n"
     check_os_for_mac
 
     start=$(date +%s)
-    printf "Started allowing apps to be downloaded from anywhere...\n"
+    echo "Started allowing apps to be downloaded from anywhere at $(date)"
     
     sudo spctl --master-disable 
 
-    printf "\nExpand Apple menu and select \"System Preferences...\"\nSelect \"Security & Privacy\"\nSelect \"General\" tab and you will see \"Anywhere\" option under \"Allow apps downloaded from:\" list now.\nSelect the lock icon and log in with your credentials.\nSelect \"Anywhere\" to allow apps to be downloaded from anywhere on your Mac.\n"
+    printf "\nExpand Apple menu and select \"System Preferences...\"\nSelect \"Security & Privacy.\"\nSelect \"General\" tab and you will see \"Anywhere\" option under \"Allow apps downloaded from:\" list now.\nSelect the lock icon and log in with your credentials.\nSelect \"Anywhere\" to allow apps to be downloaded from anywhere on your Mac.\n"
 
-    tput setaf 2; echo -e "\nFinished allowing apps to be downloaded from anywhere."; tput sgr0
+    tput setaf 2; echo "Successfully allowed apps to be downloaded from anywhere."; tput sgr0
 
     end=$(date +%s)
+    echo "Finished allowing apps to be downloaded from anywhere at $(date)"
+
     duration=$(( $end - $start ))
-    printf "\nTotal execution time: $duration second(s)"
+    echo "Total execution time: $duration second(s)"
 }
 
 allow_apps_downloaded_from_anywhere
