@@ -5,62 +5,62 @@ set -e
 
 # you can run this script with: ./automatically_delete_dsstore_files_on_mac.sh < hourss interval > 
 
-hours=$1
+hours=$1 # you can set the hours here (Example: 24)
 
 check_os_for_mac() {
     
-    printf "\nChecking operating system...\n"
+    echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then
         tput setaf 2; echo -e "Operating System: \n$(sw_vers)"; tput sgr0
-        printf "Finished checking operating system.\n"
+        echo "Finished checking operating system at $(date)"
+        echo ""
     else
-        tput setaf 1; echo "Sorry but this script only works on Mac."; tput sgr0
-        printf "Finished checking operating system.\n"
+        tput setaf 1; echo "Sorry but this script only runs on Mac."; tput sgr0
+        echo "Finished checking operating system at $(date)"
+        echo ""
         exit 1
     fi
 }
 
 get_hours() { 
     if [ -z $hours ]; then 
-        printf "\nPlease type how many hours intervals you would like between deleting .DS_Store files (Example: 24): "
+        read -p "Please type how many hours intervals you would like between deleting .DS_Store files and press \"return\" key (Example: 24): " hours
 
-        read hours
+        echo ""
     else 
         echo $hours
     fi
 }
 
 check_parameters() {
-    printf "\nStarted checking parameters at $(date)\n"
+    echo "Started checking parameters at $(date)"
     valid="true"
 
     echo "Parameters:"
-    echo "----------------------------------------"
+    echo "-------------"
     echo "hours: $hours" 
-    echo "----------------------------------------"
+    echo "-------------"
 
     if [ -z $hours ]; then 
         tput setaf 1; echo "hours is not set."; tput sgr0
         valid="false"
     fi
 
-    echo "Finished checking parameters at $(date)"
-    
     if [ $valid == "true" ]; then 
         tput setaf 2; echo "All parameter checks passed."; tput sgr0
-        echo ""
     else
-        tput setaf 1; echo "One or more parameters are incorrect, exiting script."; tput sgr0
-
-        echo ""
+        tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
         exit 1
     fi
+
+    echo "Finished checking parameters at $(date)"
+    echo ""
 }
 
 # define main fucntion
 delete_ds_store_files() {
-    printf "\nAutomatically delete DS_Store files on Mac.\n"
+    printf "\nAutomatically delete DS_Store files on Mac.\n\n"
     check_os_for_mac
 
     get_hours
@@ -75,11 +75,13 @@ delete_ds_store_files() {
     # configure time interval for automatic deletion of .DS_Store files
     * $hours * * * root find / -name ".DS_Store" -depth -exec rm {} \;
 
-    tput setaf 2; echo -e "Finished automatically deleting DS_Store at $(date)"; tput sgr0
+    tput setaf 2; echo "Successfully set automatica deletion of DS_Store files."; tput sgr0
+
     end=$(date +%s)
+    echo "Finished automatically deleting DS_Store files at $(date)"
 
     duration=$(( $end - $start ))
-    printf "\nTotal execution time: $duration second(s)\n"
+    echo "Total execution time: $duration second(s)"
 }
 
 # call main function 
