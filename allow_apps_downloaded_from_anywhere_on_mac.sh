@@ -24,10 +24,29 @@ allow_apps_downloaded_from_anywhere() {
 
     start=$(date +%s)
     echo "Started allowing apps to be downloaded from anywhere at $(date)"
-    
+
     sudo spctl --master-disable 
 
-    printf "\nExpand Apple menu and select \"System Preferences...\"\nSelect \"Security & Privacy.\"\nSelect \"General\" tab and you will see \"Anywhere\" option under \"Allow apps downloaded from:\" list now.\nSelect the lock icon and log in with your credentials.\nSelect \"Anywhere\" to allow apps to be downloaded from anywhere on your Mac.\n"
+    echo "------------------------------------------------------------------"
+    echo "Expand Apple menu and select \"System Preferences...\""
+    read -p "Press any key to continue:"
+    echo ""
+    
+    echo "Select \"Security & Privacy.\""
+    read -p "Press any key to continue:"
+    echo ""
+
+    echo "Select \"General\" tab and you will see \"Anywhere\" option under \"Allow apps downloaded from:\" list now."
+    read -p "Press any key to continue:"
+    echo ""
+
+    echo "Select the lock icon and log in with your credentials."
+    read -p "Press any key to continue:"
+    echo ""
+    
+    echo "Select \"Anywhere\" to allow apps to be downloaded from anywhere on your Mac."
+    read -p "Press any key to continue:"
+    echo "------------------------------------------------------------------"
 
     tput setaf 2; echo "Successfully allowed apps to be downloaded from anywhere."; tput sgr0
 
