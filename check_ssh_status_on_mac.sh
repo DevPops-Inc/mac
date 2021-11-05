@@ -31,11 +31,11 @@ check_ssh_status() {
 
     sudo systemsetup -getremotelogin
 
-    tput setaf 2; echo -e "Finished checking SSH status at $(date)"; tput sgr0
     end=$(date +%s)
+    tput setaf 2; echo -e "Finished checking SSH status at $(date)"; tput sgr0
 
     duration=$(( $end - $start ))
-    printf "\nTotal execution time: $duration second(s)\n"
+    echo "Total execution time: $duration second(s)"
 }
 
 check_ssh_status
