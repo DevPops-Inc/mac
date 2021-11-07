@@ -5,41 +5,45 @@ set -e
 
 # run this script with: ./convert_cdr_to_iso_on_mac.sh
 
-filename=$1
+filename=$1 # you can set the filename here
 
 check_os_for_mac() {
-    printf "\nStarted checking operating system at $(date)\n"
+
+    echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then 
         tput setaf 2; echo -e "Operating System: \n$(sw_vers)"; tput sgr0
+        
         echo "Finished checking operating system at $(date)"
+        echo ""
     else 
-        tput setaf 1; echo "Sorry but this script only works on Mac."; tput sgr0
+        tput setaf 1; echo "Sorry but this script only runs on Mac."; tput sgr0
+        
         echo "Finished checking operating system at $(date)"
+        echo ""
+
         exit 1
     fi
 }
 
 get_filename() {
     if [ -z $filename ]; then 
-        printf "\Please type the filename of the .cdr file you wish to convert to .iso (Example: test): "
+        read -p "Please type the filename of the .cdr file you wish to convert to .iso (Example: test): " filename
 
-        read filename
+        echo ""
     else
         echo $filename
     fi
 }
 
 check_parameters() {
-    printf "\n\nStarted checking parameters at $(date)\n"
+    echo "Started checking parameters at $(date)"
     valid="true"
 
     echo "Parameters:"
-    echo "----------------------------------------"
+    echo "-------------------"
     echo "filename: $filename"
-    echo "----------------------------------------"
-
-    echo "Finished checking parameters at $(date)"
+    echo "-------------------"
 
     if [ -z $filename ]; then 
         tput setaf 1; echo "filename is not set."; tput sgr0
@@ -47,13 +51,13 @@ check_parameters() {
 
     if [ $valid == "true" ]; then 
         tput setaf 2; echo "All parameter checks passed."; tput sgr0
-        echo ""
     else 
-        tput setaf 1; echo "One or more parameters are incorrect, exiting script."; tput sgr0
-
-        echo ""
+        tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
         exit 1
     fi 
+
+    echo "Finished checking parameters at $(date)"
+    echo ""
 }
 
 # define main function 
@@ -64,17 +68,19 @@ convert_cdr_to_iso() {
     get_filename
     check_parameters
 
-    echo "Started converting $filename.cdr to $filename.iso at $(date)"
     start=$(date +%s)
+    echo "Started converting $filename.cdr to $filename.iso at $(date)"
     
     hdiutil makehybrid -iso -joliet -o $filename.iso $filename.cdr
     ls $filename.iso
 
-    tput setaf 2; echo -e "\nFinished converting $filename.cdr to $filename.iso at $(date)"
+    tput setaf 2; echo "Successfully converted $filename.cdr to $filename.iso"; tput sgr0
+
     end=$(date +%s)
+    echo "Finished converting $filename.cdr to $filename.iso at $(date)"
 
     duration=$(( $end - $start ))
-    printf "\nTotal execution time: $duration second(s)\n"
+    echo "Total execution time: $duration second(s)"
 }
 
 # call main function 
