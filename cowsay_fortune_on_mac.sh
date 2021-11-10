@@ -73,6 +73,7 @@ cowsay_fortune() {
 
     duration=$(( $end - $start ))
     echo "Total execution time: $duration second(s)"
+    echo ""
 }
 
 # call main function 
