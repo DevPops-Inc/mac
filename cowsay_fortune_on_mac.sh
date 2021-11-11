@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# cowsay fourtune on Mac
+
 check_os_for_mac() {
 
     echo "Started checking operating system at $(date)"
@@ -20,7 +22,7 @@ check_os_for_mac() {
 check_fortune() {
     echo "Started checking fortune at $(date)"
 
-    if [ -d $(which fortune) ]; echo $? == 0 $>/dev/null
+    if [ -d $(which fortune) ]; echo $? == 0 &>/dev/null
     then 
         tput setaf 2; echo "fortune is installed."; tput sgr0
 
@@ -31,6 +33,8 @@ check_fortune() {
 
         echo "Finished checking fortune at $(date)"
         echo ""
+
+	    exit 1
     fi
 }
 
