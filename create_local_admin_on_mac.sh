@@ -65,8 +65,8 @@ check_parameters() {
     echo "Parameters:"
     echo "-----------------------"
     echo "localAdmin: $localAdmin"
-    echo "uniqueId: $uniqueId"
-    echo "password: ***"
+    echo "uniqueId  : $uniqueId"
+    echo "password  : ***"
     echo "-----------------------"
 
     if [ -z $localAdmin ]; then
@@ -130,8 +130,10 @@ create_local_admin() {
     # check if local admin has been created
     dscl . list /Users | grep -v '_'
 
+    tput setaf 2; echo "Successfully created local admin account."; tput sgr0
+
     end=$(date +%s)
-    echo "Finished checking local admin at $(date)"
+    echo "Finished creating local admin at $(date)"
 
     duration=$(( $end - $start ))
     echo "Total execution time: $duration second(s)"
