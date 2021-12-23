@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-# check Python 3 on Mac
+# check Python 2 on Mac
 
 check_os_for_mac() {
 
@@ -21,28 +21,28 @@ check_os_for_mac() {
     fi
 }
 
-check_python3() {
-    printf "\nCheck Python 3 on Mac.\n\n"
+check_python2() {
+    printf "\nCheck Python 2 on Mac.\n\n"
     check_os_for_mac
 
     start=$(date +%s)
-    echo "Started checking Python 3 at $(date)"
+    echo "Started checking Python 2 at $(date)"
 
-    if [ -d $(which python3) ]; echo $? == 0 &>/dev/null
+    if [ -d $(which python2) ]; echo $? == 0 &>/dev/null
     then
-        tput setaf 2; echo "Python 3 is installed."; tput sgr0
+        tput setaf 2; echo "Python 2 is installed."; tput sgr0
 
         end=$(date +%s)
-        echo "Finished checking Python 3 at $(date)"
+        echo "Finished checking Python 2 at $(date)"
 
         duration=$(( $end-$start ))
         echo "Total execution time: $duration second(s)"
         echo ""
     else
-        tput setaf 1; echo "Python 3 is not installed."; tput sgr0
+        tput setaf 1; echo "Python 2 is not installed."; tput sgr0
 
         end=$(date +%s)
-        echo "Finished checking Python 3 at $(date)"
+        echo "Finished checking Python 2 at $(date)"
 
         duration=$(( $end-$start ))
         echo "Total execution time: $duration second(s)"
@@ -52,4 +52,4 @@ check_python3() {
     fi
 }
 
-check_python3
+check_python2
