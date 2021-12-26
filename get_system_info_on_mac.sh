@@ -16,6 +16,8 @@ check_os_for_mac() {
 
         echo "Finished checking operating system at $(date)"
         echo ""
+
+        exit 1
     fi
 }
 
