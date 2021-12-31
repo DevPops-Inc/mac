@@ -37,6 +37,7 @@ check_pip() {
 
         duration=$(( $end - $start ))
         echo "Total execution time: $duration second(s)"
+        echo ""
     else
         tput setaf 1; echo "PIP is not installed"; tput sgr0
 
@@ -45,6 +46,7 @@ check_pip() {
 
         duration=$(( $end - $start ))
         echo "Total execution time: $duration second(s)"
+        echo ""
 
         exit 1
     fi
