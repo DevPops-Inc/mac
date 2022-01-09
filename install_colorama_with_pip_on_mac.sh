@@ -68,7 +68,7 @@ install_colorama() {
     echo "Started installing colorama at $(date)"
 
     pip install colorama
-    tput setaf 2; echo "Successfully installed colorama."; tput sgr0-
+    tput setaf 2; echo "Successfully installed colorama."; tput sgr0
 
     end=$(date +%s)
     echo "Finished installing colorama at $(date)"
