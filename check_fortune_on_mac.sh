@@ -29,6 +29,7 @@ check_fortune() {
     if [ -d $(which fortune) ]; echo $? == 0 &>/dev/null
     then 
         tput setaf 2; echo "fortune is installed."; tput sgr0
+        fortune
 
         end=$(date +%s)
         echo "Finished checking fortune at $(date)"
