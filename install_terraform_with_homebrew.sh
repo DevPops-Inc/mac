@@ -72,6 +72,7 @@ install_terraform() {
     start=$(date +%s)
     echo "Started installing Terraform at $(date)"
 
+    brew tap hashicorp/tap
     brew install terraform
     tput setaf 2; "Successfully installed Terraform."; tput sgr0
     terraform --version
