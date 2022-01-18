@@ -11,7 +11,7 @@ check_os_for_mac() {
 		echo "Finished checking operating system at $(date)"
 		echo ""
 	else
-		tput setaf 1; echo "Sorry but this script only works on Mac."; tput sgr0
+		tput setaf 1; echo "Sorry but this script only runs on Mac."; tput sgr0
 		echo "Finished checking operating system at $(date)"
 		echo ""
 		exit 1
@@ -27,13 +27,15 @@ check_java8() {
 
 	if [ -d "/Library/Java/JavaVirtualMachines/*8*jdk" ]; echo $? == 0 &>/dev/null
 	then
-		tput setaf 2; echo "Java 8 is installed"; tput sgr0
+		tput setaf 2; echo "Java 8 is installed."; tput sgr0
+		java -version
 
 		end=$(date +%s)
 		echo "Finished checking Java 8 at $(date)"
 
 		duration=$(( $end - $start ))
 		echo "Total execution time: $duration second(s)"
+		echo ""
 	else
 		tput setaf 1; echo "Java 8 needs to be installed."; tput sgr0
 
@@ -42,6 +44,7 @@ check_java8() {
 
 		duration=$(( $end - $start ))
 		echo "Total execution time: $duration second(s)"
+		echo ""
 	fi
 }
 
