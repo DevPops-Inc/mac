@@ -8,7 +8,6 @@ printerName=$1 # you can set printer name here
 printerIp=$2 # you can set printer IP address here
 
 check_os_for_mac() {
-    
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then
@@ -107,6 +106,7 @@ add_printer() {
 
     duration=$(( $end - $start))
     echo "Total execution time: $duration second(s)"
+    echo ""
 }
 
 # call main function
