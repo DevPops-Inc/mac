@@ -26,17 +26,8 @@ check_ansible() {
     start=$(date +%s)
     echo "Started checking Ansible at $(date)"
 
-    if [ -d $(which ansible) ]; echo $? == 0 &>/dev/null
-    then 
-        tput setaf 2; echo "Ansible is installed."; tput sgr0
-
-        end=$(date +%s)
-        echo "Finished checking Ansible at $(date)"
-
-        duration=$(( $end - $start ))
-        echo "Total execution time: $duration second(s)"
-        echo ""
-    else
+    which -s ansible
+    if [[ $? != 0 ]]; then  
         tput setat 1; echo "Ansible is not installed."; tput sgr0
 
         end=$(date +%s)
@@ -47,6 +38,15 @@ check_ansible() {
         echo ""
 
         exit 1
+    else
+        tput setaf 2; echo "Ansible is installed."; tput sgr0
+
+        end=$(date +%s)
+        echo "Finished checking Ansible at $(date)"
+
+        duration=$(( $end - $start ))
+        echo "Total execution time: $duration second(s)"
+        echo ""
     fi
 }
 
