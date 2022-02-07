@@ -1,9 +1,8 @@
 #!/bin/bash 
 
-# check AWS on Mac
+# check AWS CLI on Mac
 
 check_os_for_mac() {
-
     echo "Started checking operating system at $(date)"
     
     if [[ $OSTYPE == 'darwin'* ]]; then 
@@ -21,34 +20,35 @@ check_os_for_mac() {
     fi
 }
 
-check_aws() {
-    printf "\nCheck AWS on Mac.\n\n"
+check_aws_cli() {
+    printf "\nCheck AWS CLI on Mac.\n\n"
     check_os_for_mac
 
     start=$(date +%s)
-    echo "Started checking AWS at $(date)"
+    echo "Started checking AWS CLI at $(date)"
 
-    if [ -d $(which aws) ]; echo $? == 0 &>/dev/null
-    then 
-        tput setaf 2; echo "AWS is installed."; tput sgr0
+    which -s aws
+    if [[ $? != 0 ]]; then 
+        tput setaf 1; echo "AWS CLI is not installed."; tput sgr0
 
         end=$(date +%s)
-        echo "Finished checking AWS at $(date)"
+        echo "Finished checking AWS CLI at $(date)"
+
+        duration=$(( $end - $start ))
+        echo "Total execution time: $duration second(s)"
+        echo ""
+
+    else 
+        tput setaf 2; echo "AWS CLI is installed."; tput sgr0
+
+        end=$(date +%s)
+        echo "Finished checking AWS CLI at $(date)"
 
         duration=$(( $end - $start ))
         echo "Total execution time: $duration second(s)"
         echo ""
 
         exit 0
-    else 
-        tput setaf 1; echo "AWS is not installed."; tput sgr0
-
-        end=$(date +%s)
-        echo "Finished checking AWS at $(date)"
-
-        duration=$(( $end - $start ))
-        echo "Total execution time: $duration second(s)"
-        echo ""
     fi
 }
 
