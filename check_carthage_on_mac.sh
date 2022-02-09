@@ -3,7 +3,6 @@
 # check carthage on Mac
 
 check_os_for_mac() {
-
 	echo "Started checking operating system at $(date)"
 
 	if [[ $OSTYPE == 'darwin'* ]]; then 
@@ -26,20 +25,20 @@ check_carthage() {
     start=$(date +%s)
 	echo "Started checking carthage at $(date)"
 
-	if [ -d $(which carthage) ]; echo $? == 0 &>/dev/null
-	then 
-		tput setaf 2; echo "carthage is installed."; tput sgr0
+	which -s carthage
+	if [[ $? != 0 ]]; then 
+		tput setaf 1; echo "carthage is not installed."; tput sgr0
 
         end=$(date +%s)
 		echo "Finished checking carthage at $(date)"
 
         duration=$(( $end - $start ))
-        echo "Total execution time: $duration second(s)"
+		echo "Total execution time: $duration second(s)"
 		echo ""
 
-		exit 0
+		exit 1
 	else 
-		tput setaf 1; echo "carthage is not installed."; tput sgr0
+		tput setaf 2; echo "carthage is installed."; tput sgr0
 
         end=$(date +%s)
 		echo "Finished checking carthage at $(date)"
