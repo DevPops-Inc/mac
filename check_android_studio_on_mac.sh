@@ -29,7 +29,8 @@ check_android_studio() {
 
 	if open -Ra "Android Studio"; then
 		tput setaf 2; echo "Android Studio is installed"; tput sgr0
-		
+		open -a "Android Studio.app"
+
 		end=$(date +%s)
 		echo "Finished checking Android Studio at $(date)"
 		
