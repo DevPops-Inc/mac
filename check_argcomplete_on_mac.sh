@@ -39,6 +39,7 @@ check_argcomplete() {
         echo ""
     else 
         tput setaf 2; echo "argcomplete is installed."; tput sgr0
+        argcomplete --version
 
         end=$(date +%s)
         echo "Finished checking argcomplete at $(date)"

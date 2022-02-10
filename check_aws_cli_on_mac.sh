@@ -40,6 +40,7 @@ check_aws_cli() {
 
     else 
         tput setaf 2; echo "AWS CLI is installed."; tput sgr0
+        aws --version
 
         end=$(date +%s)
         echo "Finished checking AWS CLI at $(date)"
@@ -52,4 +53,4 @@ check_aws_cli() {
     fi
 }
 
-check_aws
+check_aws_cli

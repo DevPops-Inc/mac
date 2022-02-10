@@ -41,6 +41,7 @@ check_azure_cli() {
         exit 1
 	else 
 		tput setaf 2; echo "Azure CLI is installed."; tput sgr0
+		az --version
 
         end=$(date +%s)
 		echo "Finished checking Azure at $(date)"

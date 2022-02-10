@@ -39,6 +39,7 @@ check_carthage() {
 		exit 1
 	else 
 		tput setaf 2; echo "carthage is installed."; tput sgr0
+		carthage --version
 
         end=$(date +%s)
 		echo "Finished checking carthage at $(date)"

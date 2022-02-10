@@ -3,7 +3,6 @@
 # check Ansible on Mac
 
 check_os_for_mac() {
-
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then
@@ -40,6 +39,7 @@ check_ansible() {
         exit 1
     else
         tput setaf 2; echo "Ansible is installed."; tput sgr0
+        ansible --version
 
         end=$(date +%s)
         echo "Finished checking Ansible at $(date)"
