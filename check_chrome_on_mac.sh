@@ -3,7 +3,6 @@
 # check Chrome on Mac
 
 check_os_for_mac() {
-
 	echo "Started checking operating system at $(date)"
 
 	if [[ $OSTYPE == 'darwin'* ]]; then 
@@ -16,6 +15,8 @@ check_os_for_mac() {
 
 		echo "Finished checking operating system at $(date)"
 		echo ""
+
+		exit 1
 	fi 
 }
 
@@ -27,7 +28,6 @@ check_chrome() {
 
 	if open -Ra "Google Chrome"; then
 		tput setaf 2; echo "Google Chrome is installed."; tput sgr0
-
 		open -a "Google Chrome.app"
 
         end=$(date +%s)
@@ -36,8 +36,6 @@ check_chrome() {
         duration=$(( $end - $start ))
         echo "Total execution time: $duration second(s)"
 		echo ""
-
-		exit 0
 	else
 		tput setaf 2; echo "Google Chrome is not installed."; tput sgr0
 
@@ -47,6 +45,8 @@ check_chrome() {
         duration=$(( $end - $start ))
         echo "Total execution time: $duration second(s)"
 		echo ""
+
+		exit 1
 	fi
 }
 
