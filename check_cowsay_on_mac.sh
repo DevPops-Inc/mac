@@ -3,7 +3,6 @@
 # check cowsay on Mac
 
 check_os_for_mac() {
-
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then 
@@ -16,6 +15,8 @@ check_os_for_mac() {
 
         echo "Finished checking operating system at $(date)"
         echo ""
+
+        exit 1
     fi
 }
 
@@ -26,17 +27,8 @@ check_cowsay() {
     start=$(date +%s)
     echo "Started checking cowsay at $(date)"
 
-    if [ -d $(which cowsay) ]; echo $? == 0 &>/dev/null
-    then 
-        tput setaf 2; echo "cowsay is installed."; tput sgr0
-
-        end=$(date +%s)
-        echo "Finished checking cowsay at $(date)"
-
-        duration=$(( $end - $start ))
-        echo "Total execution time: $duration second(s)"
-        echo ""
-    else 
+    which -s cowsay
+    if [[ $? != 0 ]]; then  
         tput setaf 1; echo "cowsay is not installed."; tput sgr0
 
         end=$(date +%s)
@@ -47,6 +39,16 @@ check_cowsay() {
         echo ""
 
         exit 1
+    else 
+        tput setaf 2; echo "cowsay is installed."; tput sgr0
+        cowsay "cowsay is installed."
+
+        end=$(date +%s)
+        echo "Finished checking cowsay at $(date)"
+
+        duration=$(( $end - $start ))
+        echo "Total execution time: $duration second(s)"
+        echo ""
     fi
 }
 
