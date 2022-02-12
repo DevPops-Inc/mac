@@ -3,7 +3,6 @@
 # check colorama on Mac
 
 check_os_for_mac() {
-
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then 
@@ -16,6 +15,8 @@ check_os_for_mac() {
 
         echo "Finished checking operating system at $(date)"
         echo ""
+
+        exit 1
     fi
 }
 
@@ -26,24 +27,25 @@ check_colorama() {
     start=$(date +%s)
     echo "Started checking colorama at $(date)"
 
-    if [ -d $(which colorama) ]; echo $? == 0 &>/dev/null
-    then
-        tput setaf 2; echo "colorama is installed."; tput sgr0
-
-        end=$(date +%s)
-        echo "Finished checking colorama at $(date)"
-        
-        duration=$(( $end - $start ))
-        echo "Total execution time: $duration second(s)"
-        echo ""
-
-        exit 0
-    else 
+    which -s colorama
+    if [[ $? != 0 ]]; then
         tput setaf 1; echo "colorama is not installed."; tput sgr0
 
         end=$(date +%s)
         echo "Finished checking colorama at $(date)"
 
+        duration=$(( $end - $start ))
+        echo "Total execution time: $duration second(s)"
+        echo ""
+
+        exit 1
+    else 
+        tput setaf 2; echo "colorama is installed."; tput sgr0
+        colorama 
+
+        end=$(date +%s)
+        echo "Finished checking colorama at $(date)"
+        
         duration=$(( $end - $start ))
         echo "Total execution time: $duration second(s)"
         echo ""
