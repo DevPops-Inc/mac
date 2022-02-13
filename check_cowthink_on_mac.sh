@@ -3,7 +3,6 @@
 # check cowthink on Mac
 
 check_os_for_mac() {
-
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then 
@@ -28,9 +27,10 @@ check_cowthink() {
     start=$(date +%s)
     echo "Started checking cowthink at $(date)"
 
-    if [ -d $(which cowthink) ]; echo $? == 0 &>/dev/null
-    then 
+    which -s cowthink
+    if [[ $? == 0 ]]; then 
         tput setaf 2; echo "cowthink is installed."; tput sgr0
+        cowthink "cowthink is installed."        
 
         end=$(date +%s)
         echo "Finished checking cowthink at $(date)"
