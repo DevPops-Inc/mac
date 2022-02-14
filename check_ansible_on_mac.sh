@@ -2,6 +2,8 @@
 
 # check Ansible on Mac
 
+terminalApp="ansible"
+
 check_os_for_mac() {
     echo "Started checking operating system at $(date)"
 
@@ -15,39 +17,76 @@ check_os_for_mac() {
 
         echo "Finished checking operating system at $(date)"
         echo ""
+
+        exit 1
     fi 
 }
 
-check_ansible() {
-    printf "\nCheck Ansible on Mac.\n\n"
+get_terminal_app() {
+    if [ -z $terminalApp ]; then 
+        read -p "Please type the name of the terminal app you want to check and press \"return\" key (Example: ansible): " terminalApp
+
+        echo ""
+    else 
+        echo $terminalApp
+    fi
+}
+
+check_parameters() {
+    echo "Started checking parameters at $(date)"
+    valid="true"
+
+    echo "Parameters:"
+    echo "-------------------------"
+    echo "terminalApp: $terminalApp"
+    echo "-------------------------"
+
+    if [ -z $terminalApp ]; then 
+        tput setaf 1; echo "terminalApp is not set."; tput sgr0
+        valid="false"
+    fi
+
+    if [ $valid == "true" ]; then
+        tput setaf 2; echo "All parameter checks passed."; tput sgr0
+    else 
+        tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
+        exit 1
+    fi
+
+    echo "Finished checking parameters at $(date)"
+    echo ""
+}
+
+check_terminal_app() {
+    printf "\nCheck $terminalApp on Mac.\n\n"
     check_os_for_mac
 
     start=$(date +%s)
-    echo "Started checking Ansible at $(date)"
+    echo "Started checking $terminalApp at $(date)"
 
     which -s ansible
-    if [[ $? != 0 ]]; then  
-        tput setat 1; echo "Ansible is not installed."; tput sgr0
+    if [[ $? == 0 ]]; then 
+        tput setaf 2; echo "$terminalApp is installed."; tput sgr0
+        $terminalApp --version
 
         end=$(date +%s)
-        echo "Finished checking Ansible at $(date)"
+        echo "Finished checking $terminalApp at $(date)"
+
+        duration=$(( $end - $start ))
+        echo "Total execution time: $duration second(s)"
+        echo ""
+    else
+        tput setat 1; echo "$terminalApp is not installed."; tput sgr0
+
+        end=$(date +%s)
+        echo "Finished checking $terminalApp at $(date)"
 
         duration=$(( $end - $start ))
         echo "Total execution time: $duration second(s)"
         echo ""
 
         exit 1
-    else
-        tput setaf 2; echo "Ansible is installed."; tput sgr0
-        ansible --version
-
-        end=$(date +%s)
-        echo "Finished checking Ansible at $(date)"
-
-        duration=$(( $end - $start ))
-        echo "Total execution time: $duration second(s)"
-        echo ""
     fi
 }
 
-check_ansible
+check_terminal_app
