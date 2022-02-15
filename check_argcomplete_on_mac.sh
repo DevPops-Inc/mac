@@ -2,6 +2,8 @@
 
 # check argcomplete on Mac
 
+terminalApp="argcomplete"
+
 check_os_for_mac() {
     echo "Started checking operating system at $(date)"
 
@@ -20,36 +22,71 @@ check_os_for_mac() {
     fi
 }
 
-check_argcomplete() {
-    printf "\nCheck argcomplete on Mac.\n\n"
+get_terminal_app() {
+    if [ -z $terminalApp ]; then 
+        read -p "Please type the terminal app you wish to check and press \"return\" key (Example: argcomplete): " terminalApp
+
+        echo ""
+    else 
+        echo $terminalApp
+    fi
+}
+
+check_parameters() {
+    echo "Started checking parameters at $(date)"
+    valid="true"
+
+    echo "Parameters:"
+    echo "-------------------------"
+    echo "terminalApp: $terminalApp"
+    echo "-------------------------"
+
+    if [ -z $terminalApp ]; then 
+        tput setaf 1; echo "terminalApp is not set."; tput sgr0
+        valid="false"
+    fi
+
+    if [ $valid == "true" ]; then 
+        tput setaf 2; echo "All parameter checks passed."; tput sgr0
+    else 
+        tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
+        exit 1
+    fi
+
+    echo "Finished checking parameters at $(date)"
+    echo ""
+}
+
+check_terminal_app() {
+    printf "\nCheck $terminalApp on Mac.\n\n"
     check_os_for_mac
 
     start=$(date +%s)
-    echo "Started checking argcomplete at $(date)"
+    echo "Started checking $terminalApp at $(date)"
 
-    which -s argcomplete
-    if [[ $? != 0 ]]; then 
-        tput setaf 1; echo "argcomplete is not installed."; tput sgr0
-        
+    which -s $terminalApp
+    if [[ $? == 0 ]]; then 
+        tput setaf 2; echo "$terminalApp is installed."; tput sgr0
+        $terminalApp --version
+
         end=$(date +%s)
-        echo "Finished checking argcomplete at $(date)"
+        echo "Finished checking $terminalApp at $(date)"
 
         duration=$(( $end - $start ))
         echo "Total execution time: $duration second(s)"
         echo ""
     else 
-        tput setaf 2; echo "argcomplete is installed."; tput sgr0
-        argcomplete --version
-
+        tput setaf 1; echo "$terminalApp is not installed."; tput sgr0
+        
         end=$(date +%s)
-        echo "Finished checking argcomplete at $(date)"
+        echo "Finished checking $terminalApp at $(date)"
 
         duration=$(( $end - $start ))
         echo "Total execution time: $duration second(s)"
         echo ""
 
-        exit 0
+        exit 1
     fi
 }
 
-check_argcomplete
+check_terminal_app
