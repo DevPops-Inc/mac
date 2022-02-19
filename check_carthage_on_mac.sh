@@ -2,6 +2,8 @@
 
 # check carthage on Mac
 
+terminalApp="carthage"
+
 check_os_for_mac() {
 	echo "Started checking operating system at $(date)"
 
@@ -15,39 +17,79 @@ check_os_for_mac() {
 
 		echo "Finished checking operating system at $(date)"
 		echo ""
+
+		exit 1
 	fi
 }
 
-check_carthage() {
-    printf "\nCheck carthage on Mac.\n\n"
+get_terminal_app() {
+	if [ -z $terminalApp ]; then 
+		read -p "Please type the terminal app and press \"return\" key (Example: carthage): "  terminalApp
+
+		echo ""
+	else 
+		echo $terminalApp
+	fi
+}
+
+check_parameters() {
+	echo "Started checking parameters at $(date)"
+	valid="true"
+
+	echo "Parameters:"
+	echo "-------------------------"
+	echo "terminalApp: $terminalApp"
+	echo "-------------------------"
+
+	if [ -z $terminalApp ]; then 
+		tput setaf 1; echo "terminalApp is not set."; tput sgr0
+		valid="false"
+	fi
+
+	if [ $valid == "true" ]; then 
+		tput setaf 2; echo "All parameter checks passed."; tput sgr0
+	else 
+		tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
+		exit 1
+	fi
+
+	echo "Finished checking parameters at $(date)"
+	echo ""
+}
+
+check_terminal_app() {
+    printf "\nCheck $terminalApp on Mac.\n\n"
     check_os_for_mac
 
-    start=$(date +%s)
-	echo "Started checking carthage at $(date)"
+	get_terminal_app
+	check_parameters
 
-	which -s carthage
-	if [[ $? != 0 ]]; then 
-		tput setaf 1; echo "carthage is not installed."; tput sgr0
+    start=$(date +%s)
+	echo "Started checking $terminalApp at $(date)"
+
+	which -s $terminalApp
+	if [[ $? == 0 ]]; then 
+		tput setaf 2; echo "$terminalApp is installed."; tput sgr0
+		$terminalApp --version
 
         end=$(date +%s)
-		echo "Finished checking carthage at $(date)"
+		echo "Finished checking $terminalApp at $(date)"
+
+        duration=$(( $end - $start ))
+        echo "Total execution time: $duration second(s)"
+		echo ""
+	else 
+		tput setaf 1; echo "$terminalApp is not installed."; tput sgr0
+
+        end=$(date +%s)
+		echo "Finished checking $terminalApp at $(date)"
 
         duration=$(( $end - $start ))
 		echo "Total execution time: $duration second(s)"
 		echo ""
 
 		exit 1
-	else 
-		tput setaf 2; echo "carthage is installed."; tput sgr0
-		carthage --version
-
-        end=$(date +%s)
-		echo "Finished checking carthage at $(date)"
-
-        duration=$(( $end - $start ))
-        echo "Total execution time: $duration second(s)"
-		echo ""
 	fi
 }
 
-check_carthage
+check_terminal_app
