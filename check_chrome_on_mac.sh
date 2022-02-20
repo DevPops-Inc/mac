@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# check Chrome on Mac
+# check $desktopApp on Mac
+
+desktopApp="Google Chrome.app"
 
 check_os_for_mac() {
 	echo "Started checking operating system at $(date)"
@@ -20,27 +22,66 @@ check_os_for_mac() {
 	fi 
 }
 
-check_chrome() {
-	printf "\nCheck Chrome on Mac.\n\n"
+get_desktop_app() {
+	if [ -z "$desktopApp" ]; then 
+		read -p "Please type the desktop application you would like to check and press \"return\" key (Example: Google Chrome.app): " desktopApp
+
+		echo ""
+	else 
+		echo $desktopApp
+	fi
+}
+
+check_parameters() {
+	echo "Started checking parameters at $(date)"
+	valid="true"
+
+	echo "Parameters:"
+	echo "-----------------------"
+	echo "desktopApp: $desktopApp"
+	echo "-----------------------"
+
+	if [ -z "$desktopApp" ]; then 
+		tput setaf 1; echo "desktopApp is not set."; tput sgr0
+		valid="false"
+	fi
+
+	if [ $valid == "true" ]; then 
+		tput setaf 2; echo "All parameter checks passed."; tput sgr0
+	else
+		tput setaf 1; echo "One or more parameters are incorrect"; tput sgr0
+		exit 1
+	fi
+	
+	echo "Finished checking parameters at $(date)"
+	echo ""
+}
+
+check_desktop_app() {
+	printf "\nCheck $desktopApp on Mac.\n\n"
+	check_os_for_mac
+
+	get_desktop_app
+	check_parameters	
 
     start=$(date +%s)
-    echo "Started checking Chrome at $(date)"
+    echo "Started checking $desktopApp at $(date)"
 
-	if open -Ra "Google Chrome"; then
-		tput setaf 2; echo "Google Chrome is installed."; tput sgr0
-		open -a "Google Chrome.app"
+	if open -Ra "$desktopApp"; then
+		tput setaf 2; echo "$desktopApp is installed."; tput sgr0
+		open -a "$desktopApp"
 
         end=$(date +%s)
-		echo "Finished checking Chrome at $(date)"
+		echo "Finished checking $desktopApp at $(date)"
 
         duration=$(( $end - $start ))
         echo "Total execution time: $duration second(s)"
 		echo ""
 	else
-		tput setaf 2; echo "Google Chrome is not installed."; tput sgr0
+		tput setaf 2; echo "$desktopApp is not installed."; tput sgr0
 
         end=$(date +%s)
-		echo "Finished checking Chrome at $(date)"
+		echo "Finished checking $desktopApp at $(date)"
 
         duration=$(( $end - $start ))
         echo "Total execution time: $duration second(s)"
@@ -50,4 +91,4 @@ check_chrome() {
 	fi
 }
 
-check_chrome
+check_desktop_app
