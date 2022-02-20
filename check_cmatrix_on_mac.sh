@@ -2,6 +2,8 @@
 
 # check cmatrix on Mac
 
+terminalApp="cmatrix"
+
 check_os_for_mac() {
     echo "Started checking operating system at $(date)"
 
@@ -20,42 +22,79 @@ check_os_for_mac() {
     fi
 }
 
-check_cmatrix() {
-    printf "\nCheck cmatrix on Mac.\n\n"
+get_terminal_app() {
+    if [ -z $terminalApp ]; then 
+        read -p "Please type the terminal application you would like to check and press \"return\" key (Example: cmatrix): " terminalApp
+
+        echo ""
+    else 
+        echo $terminalApp
+    fi
+}
+
+check_parameters() {
+    echo "Started checking parameters at $(date)"
+    valid="true"
+
+    echo "Parameters:"
+    echo "-------------------------"
+    echo "terminalApp: $terminalApp"
+    echo "-------------------------"
+
+    if [ -z $terminalApp ]; then 
+        tput setaf 1; echo "terminalApp is not set."; tput sgr0
+        valid="false"
+    fi
+
+    if [ $valid == "true" ]; then 
+        tput setaf 2; echo "All parameters checks passed."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+        echo ""
+    else 
+        tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+        echo ""
+    fi
+}
+
+check_terminal_app() {
+    printf "\nCheck $terminalApp on Mac.\n\n"
     check_os_for_mac
 
     start=$(date +%s)
-    echo "Started checking cmatrix at $(date)"
+    echo "Started checking $terminalApp at $(date)"
 
-    which -s cmatrix
-    if [[ $? != 0 ]]; then 
-        tput setaf 1; echo "cmatrix is not installed."; echo tput sgr0
+    which -s $terminalApp
+    if [[ $? == 0 ]]; then 
+        tput setaf 2; echo "$terminalApp is installed."; tput sgr0
+        
+        echo "Do you want to run $terminalApp now?"
+        read -p "Please type \"Y\" or \"N\" and press \"return\" key: " answer
+
+        if [[ $answer == 'Y' || 'y' ]]; then 
+            $terminalApp -s
+        fi
+        
+        end=$(date +%s)
+        echo "Finished checking $terminalApp at $(date)"
+
+        duration=$(( $end - $start ))
+        echo "Total execution time: $duration second(s)"
+        echo ""
+    else 
+        tput setaf 1; echo "$terminalApp is not installed."; echo tput sgr0
 
         end=$(date +%s)
-        echo "Finished checking cmatrix at $(date)"
+        echo "Finished checking $terminalApp at $(date)"
 
         duration=$(( $end - $start ))
         echo "Total execution time: $duration second(s)"
         echo ""
 
         exit 1
-    else 
-        tput setaf 2; echo "cmatrix is installed."; tput sgr0
-        
-        echo "Do you want to run cmatrix now?"
-        read -p "Please type \"Y\" or \"N\" and press \"return\" key: " answer
-
-        if [[ $answer == 'Y' ]]; then 
-            cmatrix -s
-        fi
-        
-        end=$(date +%s)
-        echo "Finished checking cmatrix at $(date)"
-
-        duration=$(( $end - $start ))
-        echo "Total execution time: $duration second(s)"
-        echo ""
     fi
 }
 
-check_cmatrix
+check_terminal_app
