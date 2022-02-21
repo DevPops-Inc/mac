@@ -3,7 +3,7 @@ set -e
 
 # automatically delete DS_Store files on Mac
 
-# you can run this script with: ./automatically_delete_dsstore_files_on_mac.sh < hourss interval > 
+# you can run this script with: ./automatically_delete_dsstore_files_on_mac.sh < hours interval > 
 
 hours=$1 # you can set the hours here (Example: 24)
 
@@ -51,13 +51,17 @@ check_parameters() {
 
     if [ $valid == "true" ]; then 
         tput setaf 2; echo "All parameter checks passed."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+        echo ""
     else
         tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
+        
+        echo "Finished checking parameters at $(date)"
+        echo ""
+        
         exit 1
     fi
-
-    echo "Finished checking parameters at $(date)"
-    echo ""
 }
 
 # define main fucntion
@@ -71,10 +75,8 @@ delete_ds_store_files() {
     echo "Started automatically deleting DS_Stores files at $(date)"
     start=$(date +%s)
 
-    # configure cronjob
+    # configure cron job interval for automatic deletion of .DS_Store files
     crontab -e
-
-    # configure time interval for automatic deletion of .DS_Store files
     * $hours * * * root find / -name ".DS_Store" -depth -exec rm {} \;
 
     tput setaf 2; echo "Successfully set automatica deletion of DS_Store files."; tput sgr0
