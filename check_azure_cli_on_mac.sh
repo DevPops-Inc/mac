@@ -48,13 +48,17 @@ check_parameters() {
 
 	if [ $valid == "true" ]; then 
 		tput setaf 2; echo "All parameters checks passed."; tput sgr0
+
+		echo "Finished checking parameters at $(date)"
+		echo ""
 	else
 		tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
+		
+		echo "Finished checking parameters at $(date)"
+		echo ""
+		
 		exit 1
 	fi
-
-	echo "Finished checking parameters at $(date)"
-	echo ""
 }
 
 check_terminal_app() {
