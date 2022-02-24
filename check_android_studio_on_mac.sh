@@ -28,7 +28,7 @@ get_desktop_app() {
 
 		echo ""
 	else 
-		echo $desktopApp
+		echo $desktopApp &>/dev/null
 	fi
 }
 

@@ -28,7 +28,7 @@ get_terminal_app() {
 
         echo ""
     else 
-        echo $terminalApp
+        echo $terminalApp $>/dev/null
     fi
 }
 

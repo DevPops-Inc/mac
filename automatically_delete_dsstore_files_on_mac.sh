@@ -31,7 +31,7 @@ get_hours() {
 
         echo ""
     else 
-        echo $hours
+        echo $hours &>/dev/null
     fi
 }
 

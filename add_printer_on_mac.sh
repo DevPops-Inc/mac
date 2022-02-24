@@ -31,7 +31,7 @@ get_printer_name() {
         
         echo ""
     else 
-        echo $printerName
+        echo $printerName &>/dev/null
     fi
 }
 
@@ -41,7 +41,7 @@ get_printer_ip() {
         
         echo ""
     else
-        echo $printerIp
+        echo $printerIp &>/dev/null
     fi
 }
 
