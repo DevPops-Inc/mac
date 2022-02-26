@@ -2,6 +2,8 @@
 
 # check cowthink on Mac
 
+terminalApp="cowthink"
+
 check_os_for_mac() {
     echo "Started checking operating system at $(date)"
 
@@ -20,34 +22,72 @@ check_os_for_mac() {
     fi
 }
 
-check_cowthink() {
-    printf "\nCheck cowthink on Mac.\n\n"
+get_terminal_app() {
+    if [ -z $terminalApp ]; then 
+        read -p "Please type the terminal application you would like to check and press \"return\" key (Example: cowthink): " terminalApp
+
+        echo ""
+    else 
+        echo $terminalApp &>/dev/null
+    fi
+}
+
+check_parameters() {
+    echo "Started checking parameters at $(date)"
+    valid="true"
+
+    echo "Parameters:"
+    echo "-------------------------"
+    echo "terminalApp: $terminalApp"
+    echo "-------------------------"
+
+    if [ -z $terminalApp ]; then 
+        tput setaf 1; echo "terminalApp is not set."; tput sgr0
+    fi
+
+    if [ $valid == "true" ]; then 
+        tput setaf 2; echo "All parameter checks passed."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+        echo ""
+    else 
+        tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+        echo ""
+    fi
+}
+
+check_terminal_app() {
+    printf "\nCheck $terminalApp on Mac.\n\n"
     check_os_for_mac
 
     start=$(date +%s)
-    echo "Started checking cowthink at $(date)"
+    echo "Started checking $terminalApp at $(date)"
 
-    which -s cowthink
+    which -s $terminalApp
     if [[ $? == 0 ]]; then 
-        tput setaf 2; echo "cowthink is installed."; tput sgr0
-        cowthink "cowthink is installed."        
+        tput setaf 2; echo "$terminalApp is installed."; tput sgr0
+        $terminalApp "cowthink is installed."        
 
         end=$(date +%s)
-        echo "Finished checking cowthink at $(date)"
+        echo "Finished checking $terminalApp at $(date)"
 
         duration=$(( $end - $start ))
         echo "Total execution time: $duration second(s)"
+        echo ""
     else 
-        tput setaf 1; echo "cowthink is not installed."; tput sgr0
+        tput setaf 1; echo "$terminalApp is not installed."; tput sgr0
 
         end=$(date +%s)
-        echo "Finished checking cowthink at $(date)"
+        echo "Finished checking $terminalApp at $(date)"
 
         duration=$(( $end - $start ))
         echo "Total execution time: $duration second(s)"
+        echo ""
 
         exit 1
     fi
 }
 
-check_cowthink
+check_terminal_app
