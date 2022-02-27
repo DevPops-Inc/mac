@@ -77,6 +77,8 @@ check_terminal_app() {
             $terminalApp -s
         fi
         
+        tput setaf 2; echo "Successfully checked $terminalApp."; tput sgr0
+
         end=$(date +%s)
         echo "Finished checking $terminalApp at $(date)"
 
@@ -85,6 +87,7 @@ check_terminal_app() {
         echo ""
     else 
         tput setaf 1; echo "$terminalApp is not installed."; echo tput sgr0
+        tput setaf 2; echo "Successfully checked $terminalApp."; tput sgr0
 
         end=$(date +%s)
         echo "Finished checking $terminalApp at $(date)"

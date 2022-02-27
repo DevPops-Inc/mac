@@ -74,6 +74,7 @@ check_desktop_app() {
 	if open -Ra "$desktopApp"; then
 		tput setaf 2; echo "$desktopApp is installed"; tput sgr0
 		open -a "$desktopApp.app"
+		tput setaf 2; echo "Successfully checked $desktopApp."; tput sgr0
 
 		end=$(date +%s)
 		echo "Finished checking $desktopApp at $(date)"
@@ -83,6 +84,7 @@ check_desktop_app() {
 		echo ""
 	else
 		tput setaf 1; echo "$desktopApp is not installed"; tput sgr0
+		tput setaf 2; echo "Successfully checked $desktopApp."; tput sgr0
 		
 		end=$(date +%s)
 		echo "Finished checking $desktopApp at $(date)"
