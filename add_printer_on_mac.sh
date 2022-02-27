@@ -4,8 +4,8 @@
 
 # you can run this script with: ./add_printer_on_mac.sh < printer name > < printer IP > 
 
-printerName=$1 # you can set printer name here
-printerIp=$2 # you can set printer IP address here
+printerName = $1 # you can set printer name here
+printerIp   = $2 # you can set printer IP address here
 
 check_os_for_mac() {
     echo "Started checking operating system at $(date)"
