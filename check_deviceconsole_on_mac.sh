@@ -2,8 +2,9 @@
 
 # check deviceconsole on Mac
 
-check_os_for_mac() {
+terminalApp="deviceconsole"
 
+check_os_for_mac() {
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then 
@@ -21,35 +22,74 @@ check_os_for_mac() {
     fi
 }
 
-check_deviceonsole() {
-    printf "\nCheck deviceconsole on Mac.\n\n"
-    check_os_for_mac
+get_terminal_app() {
+    if [ -z $terminalApp ]; then 
+        read -p "Please type the terminal application you wish to check and press \"return\" key (Example: deviceconsole): "
 
-    start=$(date +%s)
-    echo "Started checking deviceconsole at $(date)"
-
-    if [ -d $(which deviceconsole) ]; echo $? == 0 &>/dev/null
-    then 
-        tput setaf 2; echo "deviceconsole is installed."; tput sgr0
-
-        end=$(date +%s)
-        echo "Finished checking deviceconsole at $(date)"
-
-        duration=$(( $end - $start ))
-        echo "Total execution time: $duration second(s)"
         echo ""
-
-        exit 0
     else 
-        tput setaf 1; echo "deviceconsole is not installed."; tput sgr0
-
-        end=$(date +%s)
-        echo "Finished checking deviceconsole at $(date)"
-
-        duration=$(( $end - $start ))
-        echo "Total execution time: $duration second(s)"
-        echo ""
+        echo $terminalApp &>/dev/null
     fi
 }
 
-check_deviceonsole
+check_parameters() {
+    echo "Started checking parameters at $(date)"
+    valid="true"
+
+    echo "Parameters:"
+    echo "-------------------------"
+    echo "terminalApp: $terminalApp"
+    echo "-------------------------"
+
+    if [ -z $terminalApp ]; then 
+        tput setaf 1; echo "terminalApp is not set."; tput sgr0
+        valid="false"
+    fi
+
+    if [ $valid == "true" ]; then 
+        tput setaf 2; echo "All parameter checks passed."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+        echo ""
+    else 
+        tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+        echo ""
+
+        exit 1
+    fi
+}
+
+check_terminal_app() {
+    printf "\nCheck $terminalApp on Mac.\n\n"
+    check_os_for_mac
+
+    start=$(date +%s)
+    echo "Started checking $terminalApp at $(date)"
+
+    which -s $terminalApp
+    if [[ $? == 0 ]]; then 
+        tput setaf 2; echo "$terminalApp is installed."; tput sgr0
+
+        end=$(date +%s)
+        echo "Finished checking $terminalApp at $(date)"
+
+        duration=$(( $end - $start ))
+        echo "Total execution time: $duration second(s)"
+        echo ""
+    else 
+        tput setaf 1; echo "$terminalApp is not installed."; tput sgr0
+
+        end=$(date +%s)
+        echo "Finished checking $terminalApp at $(date)"
+
+        duration=$(( $end - $start ))
+        echo "Total execution time: $duration second(s)"
+        echo ""
+
+        exit 1
+    fi
+}
+
+check_terminal_app
