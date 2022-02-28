@@ -2,6 +2,8 @@
 
 # check ideviceinstaller on Mac
 
+terminalApp="ideviceinstaller"
+
 check_os_for_mac() {
 	echo "Started checking operating system at $(date)"
 
@@ -15,34 +17,78 @@ check_os_for_mac() {
 
 		echo "Finished checking operating system at $(date)"
 		echo ""
+
+		exit 1
 	fi
 }
 
-check_ideviceinstaller() {
-    printf "\nCheck ideviceinstaller on Mac.\n\n"
-    check_os_for_mac
+get_terminal_app() {
+	if [ -z $terminalApp ]; then
+		read -p "Please type the terminal application you wish to check and press \"return\" key (Example: ideviceinstaller): "
 
-    start=$(date +%s)
-	echo "Started checking ideviceinstaller at $(date)"
+		echo ""
+	else 
+		echo $terminalApp &>/dev/null
+	fi
+}
 
-	if [ -d $(which ideviceinstaller) ]; echo $? == 0 &>/dev/null
-	then 
-		tput setaf 2; echo "ideviceinstaller is installed."; tput sgr0
-        ideviceinstaller --version
-        
-        end=$(date +%s)
-		echo "Finished checking ideviceinstaller at $(date)"
+check_parameters() {
+	echo "Started checking parameters at $(date)"
+	valid="true"
 
-        duration=$(date +%s)
-        echo "Total execution time: $duration second(s)"
+	echo "Parameters:"
+	echo "-------------------------"
+	echo "terminalApp: $terminalApp"
+	echo "-------------------------"
+
+	if [ -z $terminalApp ]; then 
+		tput setaf 1; echo "terminalApp is not set."; tput sgr0
+		valid="false"
+	fi
+
+	if [ $valid == "true" ]; then 
+		tput setaf 2; echo "All parameter checks passed."; tput sgr0
+		
+		echo "Finished checking parameters at $(date)"
+		echo ""
+	else 
+		tput setaf 1; echo "One or more parameters are incorrect at $(date)"; tput sgr0
+
+		echo "Finished checking parameters at $(date)"
 		echo ""
 
-		exit 0
+		exit 1
+	fi
+}
+
+check_terminal_app() {
+    printf "\nCheck $terminalApp on Mac.\n\n"
+    check_os_for_mac
+
+	get_terminal_app
+	check_parameters
+
+    start=$(date +%s)
+	echo "Started checking $terminalApp at $(date)"
+
+	which -s $terminalApp
+	if [[ $? == 0 ]]; then 
+		tput setaf 2; echo "$terminalApp is installed."; tput sgr0
+        $terminalApp --version
+		tput setaf 2; echo "Successefully checked $terminalApp"; tput sgr0
+        
+        end=$(date +%s)
+		echo "Finished checking $terminalApp at $(date)"
+
+        duration=$(( $end - $start ))
+        echo "Total execution time: $duration second(s)"
+		echo ""
 	else 
-		tput setaf 1; echo "ideviceinstaller is not installed."; tput sgr0
+		tput setaf 1; echo "$terminalApp is not installed."; tput sgr0
+		tput setaf 2; echo "Successefully checked $terminalApp"; tput sgr0
 
         end=$(date +%s)
-		echo "Finished checking ideviceinstaller at $(date)"
+		echo "Finished checking $terminalApp at $(date)"
 
         duration=$(( $end - $start ))
         echo "Total execution time: $duration second(s)"
@@ -50,4 +96,4 @@ check_ideviceinstaller() {
 	fi
 }
 
-check_ideviceinstaller
+check_terminal_app
