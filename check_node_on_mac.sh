@@ -1,49 +1,85 @@
 #!/bin/bash
 
-# check Node on Mac
+# check node on Mac
+
+terminalApp="node"
 
 check_os_for_mac() {
-
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then
         tput setaf 2; echo -e "Operating System: \n$(sw_vers)"; tput sgr0
+
         echo "Finished checking operating system at $(date)"
         echo ""
     else
         tput setaf 1; echo "Sorry but this script only runs on Mac."; tput sgr0
+
+        echo "Finished checking operating system at $(date)"
         echo ""
+
         exit 1
     fi
 }
 
-check_node() {
-    printf "\nCheck Node on Mac.\n\n"
+check_parameters() {
+    echo "Started checking parameters at $(date)"
+    valid="true"
+
+    echo "Parameters:"
+    echo "-------------------------"
+    echo "terminalApp: $terminalApp"
+    echo "-------------------------"
+
+    if [ -z $terminalApp ]; then 
+        tput setaf 1; echo "terminalApp is not set."; tput sgr0
+    fi
+
+    if [ $valid == "true" ]; then 
+        tput setaf 2; echo "All parameter checks passed."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+        echo ""
+    else 
+        tput setaf a; echo "One or more parameters are incorrect."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+        echo ""
+    fi
+}
+
+check_terminal_app() {
+    printf "\nCheck $terminalApp on Mac.\n\n"
     check_os_for_mac
 
     start=$(date +%s)
-    echo "Started checking Node at $(date)"
+    echo "Started checking $terminalApp at $(date)"
 
-    if [ -d $(which node) ]; echo $? == 0 &>/dev/null
-    then
-        tput setaf 2; echo "Node is installed."; tput sgr0
+    which -s $terminalApp
+    if [[ $? == 0 ]]; then
+        tput setaf 2; echo "$terminalApp is installed."; tput sgr0
+        $terminalApp --version
+        tput setaf 2; echo "Successfully checked $terminalApp."; tput sgr0
 
         end=$(date +%s)
-        echo "Finished checking Node at $(date)"
+        echo "Finished checking $terminalApp at $(date)"
         
         duration=$(( $end - $start ))
         echo "Total execution time: $duration second(s)"
+        echo ""
     else
-        tput setaf 1; echo "Node is not installed."; tput sgr0
+        tput setaf 1; echo "$terminalApp is not installed."; tput sgr0
+        tput setaf 2; echo "Successfully checked $terminalApp."; tput sgr0
 
         end=$(date +%s)
-        echo "Finished checking Node at $(date)"
+        echo "Finished checking $terminalApp at $(date)"
 
         duration=$(( $end - $start ))
         echo "Total execution time: $duration second(s)"
+        exit ""
 
         exit 1
     fi
 }
 
-check_node
+check_terminal_app
