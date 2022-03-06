@@ -3,7 +3,6 @@
 # check OS for Mac
 
 check_os_for_mac() {
-    
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then
