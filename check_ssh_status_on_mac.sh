@@ -3,8 +3,7 @@ set -e
 
 # check SSH status on Mac
 
-check_os_for_mac() {
-    
+check_os_for_mac() {    
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then
@@ -30,12 +29,14 @@ check_ssh_status() {
     start=$(date +%s)
 
     sudo systemsetup -getremotelogin
+    tput setaf 2; echo "Successfully checked SSH."; tput sgr0
 
     end=$(date +%s)
-    tput setaf 2; echo -e "Finished checking SSH status at $(date)"; tput sgr0
-
+    echo "Finished checking SSH status at $(date)"
+    
     duration=$(( $end - $start ))
     echo "Total execution time: $duration second(s)"
+    echo ""
 }
 
 check_ssh_status
