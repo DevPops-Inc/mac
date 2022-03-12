@@ -3,8 +3,9 @@ set -e
 
 # check Terraform on Mac
 
-check_os_for_mac() {
+terminalApp="terraform"
 
+check_os_for_mac() {
     echo "Started checking operating system at $(date)"
     
     if [[ $OSTYPE == 'darwin'* ]]; then 
@@ -22,36 +23,77 @@ check_os_for_mac() {
     fi
 }
 
-check_terraform() {
-    printf "\nCheck Terraform on Mac.\n\n"
-    check_os_for_mac
+get_terminal_app() {
+    if [ -z $terminalApp ]; then 
+        read -p "Please type the terminal application you would like to check and press \"return\" key (Example: terraform): " terminalApp
 
-    start=$(date +%s)
-    echo "Started checking Terraform at $(date)"
-
-    if [ -d $(which terraform) ]; echo $? == 0 &>/dev/null
-    then
-        tput setaf 2; echo "Terraform is installed."; tput sgr0
-        terraform --version
-
-        end=$(date +%s)
-        echo "Finished checking Terraform at $(date)"
-
-        duration=$(( $end - $start ))
-        echo "Total execution time: $duration second(s)"
         echo ""
-
-        exit 0
     else 
-        tput setaf 1; echo "Terraform is not installed."; tput sgr0
+        echo $terminalApp &>/dev/null
+    fi
+}
 
-        end=$(date +%s)
-        echo "Finished checking Terraform at $(date)"
+check_parameters() {
+    echo "Started checking parameters at $(date)"
+    valid="true"
 
-        duration=$(( $end - $start ))
-        echo "Total execution time: $duration second(s)"
+    echo "Parameters:"
+    echo "-------------------------"
+    echo "terminalApp: $terminalApp"
+    echo "-------------------------"
+
+    if [ -z $terminalApp ]; then 
+        tput setaf 1; echo "terminalApp is not set."; tput sgr0
+        valid="false"
+    fi
+
+    if [ $valid == "true" ]; then 
+        tput setaf 2; echo "All parameter checks passed."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+    else 
+        tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
+
+        echo "Finished checking parameteres at $(date)"
         echo ""
     fi
 }
 
-check_terraform
+check_terminal_app() {
+    printf "\nCheck $terminalApp on Mac.\n\n"
+    check_os_for_mac
+
+    get_terminal_app
+    check_parameters
+
+    start=$(date +%s)
+    echo "Started checking $terminalApp at $(date)"
+
+    which -s $terminalApp
+    if [[ $? == 0 ]]; then
+        tput setaf 2; echo "$terminalApp is installed."; tput sgr0
+        $terminalApp --version
+        tput setaf 2: echo "Successfully checked $terminalApp."; tput sgr0
+
+        end=$(date +%s)
+        echo "Finished checking $terminalApp at $(date)"
+
+        duration=$(( $end - $start ))
+        echo "Total execution time: $duration second(s)"
+        echo ""
+    else 
+        tput setaf 1; echo "$terminalApp is not installed."; tput sgr0
+        tput setaf 2: echo "Successfully checked $terminalApp."; tput sgr0
+
+        end=$(date +%s)
+        echo "Finished checking $terminalApp at $(date)"
+
+        duration=$(( $end - $start ))
+        echo "Total execution time: $duration second(s)"
+        echo ""
+
+        exit 1
+    fi
+}
+
+check_terminal_app
