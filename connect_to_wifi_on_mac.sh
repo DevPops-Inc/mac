@@ -5,11 +5,10 @@ set -e
 
 # run this script with: ./connect_to_wifi_on_mac.sh < network SSID > < network password > 
 
-ssid=$1 # you can set the SSID here 
-password=$2 # you can set the Wi-Fi password here
+ssid     = $1 # you can set the SSID here 
+password = $2 # you can set the Wi-Fi password here
 
 check_os_for_mac() { 
-    
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then 
@@ -56,10 +55,10 @@ check_parameters() {
     valid="true"
 
     echo "Parameters:"
-    echo "-------------"
-    echo "ssid: $ssid"
+    echo "---------------"
+    echo "ssid    : $ssid"
     echo "password: ***"
-    echo "-------------"
+    echo "---------------"
 
     if [ -z $ssid ]; then 
         tput setaf 1; echo "ssid is not set."; tput sgr0
@@ -73,14 +72,17 @@ check_parameters() {
     
     if [ $valid == "true" ]; then 
         tput setaf 2; echo "All parameter checks passed."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+        echo ""
     else 
         tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
 
+        echo "Finished checking parameters at $(date)"
+        echo ""
+
         exit 1
     fi
-
-    echo "Finished checking parameters at $(date)"
-    echo ""
 }
 
 # define main function 
@@ -102,10 +104,11 @@ connect_to_wifi() {
     tput setaf 2; echo "Successfully connected to Wi-Fi."; tput sgr0
     
     end=$(date +%s)
-    echo "Finished connecting to WiFi at $(date)"
+    echo "Finished connecting to Wi-Fi at $(date)"
 
     duration=$(( $end - $start ))
     echo "Total execution time: $duration second(s)"
+    echo ""
 }
 
 # call main function 
