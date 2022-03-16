@@ -8,7 +8,6 @@ set -e
 filename=$1 # you can set the filename here
 
 check_os_for_mac() {
-
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then 
@@ -28,7 +27,7 @@ check_os_for_mac() {
 
 get_filename() {
     if [ -z $filename ]; then 
-        read -p "Please type the filename of the .cdr file you wish to convert to .iso (Example: test): " filename
+        read -p "Please type the filename of the .cdr file you wish to convert to .iso and press \"return\" key (Example: test): " filename
 
         echo ""
     else
@@ -51,13 +50,17 @@ check_parameters() {
 
     if [ $valid == "true" ]; then 
         tput setaf 2; echo "All parameter checks passed."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+        echo ""
     else 
         tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+        echo ""
+
         exit 1
     fi 
-
-    echo "Finished checking parameters at $(date)"
-    echo ""
 }
 
 # define main function 
@@ -81,6 +84,7 @@ convert_cdr_to_iso() {
 
     duration=$(( $end - $start ))
     echo "Total execution time: $duration second(s)"
+    echo ""
 }
 
 # call main function 
