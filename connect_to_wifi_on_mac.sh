@@ -5,8 +5,8 @@ set -e
 
 # run this script with: ./connect_to_wifi_on_mac.sh < network SSID > < network password > 
 
-ssid     = $1 # you can set the SSID here 
-password = $2 # you can set the Wi-Fi password here
+ssid=$1 # you can set the SSID here 
+password=$2 # you can set the Wi-Fi password here
 
 check_os_for_mac() { 
     echo "Started checking operating system at $(date)"

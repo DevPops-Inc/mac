@@ -9,7 +9,6 @@ source=$1 # you can set the source here
 destination=$2 # you can set the destination here
 
 check_os_for_mac() {
-    
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then 
@@ -39,7 +38,7 @@ get_source() {
 
 get_destination() {
     if [ -z $destination ]; then 
-        read -p "\nPlease type the destination directory you wish to copy to and press \"return\" key (Example: /Desktop): " destination
+        read -p "Please type the destination directory you wish to copy to and press \"return\" key (Example: /Desktop): " destination
 
         echo ""
     else 
@@ -59,19 +58,27 @@ check_parameters() {
 
     if [ $valid == "true" ]; then 
         tput setaf 2; echo "All parameter checks passed."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+        echo ""
     else 
         tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
+        
+        echo "Finished checking parameters at $(date)"
+        echo ""
+        
         exit 1
     fi 
-
-    echo "Finished checking parameters at $(date)"
-    echo ""
 }
 
 # define main function 
 copy_directory() {
     printf "\nCopy Directory on Mac.\n\n"
     check_os_for_mac
+
+    get_source
+    get_destination
+    check_parameters
 
     start=$(date +%s)
     echo "Started copying directory at $(date)"
@@ -86,6 +93,7 @@ copy_directory() {
 
     duration=$(( $end - $start ))
     echo "Total execution time: $duration second(s)"
+    echo ""
 }
 
 # call main function
