@@ -3,7 +3,6 @@
 # cowsay fourtune on Mac
 
 check_os_for_mac() {
-
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then 
@@ -16,14 +15,16 @@ check_os_for_mac() {
 
         echo "Finished checking operating system at $(date)"
         echo ""
+
+        exit 1
     fi
 }
 
 check_fortune() {
     echo "Started checking fortune at $(date)"
 
-    if [ -d $(which fortune) ]; echo $? == 0 &>/dev/null
-    then 
+    which -s fortune
+    if [[ $? == 0 ]]; then 
         tput setaf 2; echo "fortune is installed."; tput sgr0
 
         echo "Finished checking fortune at $(date)"
@@ -41,8 +42,8 @@ check_fortune() {
 check_cowsay() {
     echo "Started checking cowsay at $(date)"
 
-    if [ -d $(which cowsay) ]; echo $? == 0 &>/dev/null
-    then 
+    which -s cowsay
+    if [[ $? == 0 ]]; then 
         tput setaf 2; echo "cowsay is installed."; tput sgr0
 
         echo "Finished checking cowsay at $(date)"
