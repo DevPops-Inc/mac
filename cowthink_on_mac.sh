@@ -7,7 +7,6 @@
 thought=$1 # you can set the thought here
 
 check_os_for_mac() {
-
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then 
@@ -21,6 +20,25 @@ check_os_for_mac() {
         echo "Finished checking operating system at $(date)"
         echo ""
 
+        exit 1
+    fi
+}
+
+check_cowthink() {
+which -s cowthink
+    echo "Started checking cowthink at $(date)"
+
+    if [[ $? == 0 ]]; then 
+        tput setaf 2; echo "cowthink is installed."; tput sgr0
+
+        echo "Finished checking cowthink at $(date)"
+        echo ""
+    else 
+        tput setaf 1; echo "cowthink is not installed."; tput sgr0
+
+        echo "Finished checking cowthink at $(date)"
+        echo ""
+        
         exit 1
     fi
 }
@@ -51,42 +69,39 @@ check_parameters() {
 
     if [ $valid == "true" ]; then
         tput setaf 2; echo "All parameter checks passed."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+        echo ""
     else
         tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+        echo ""
+
         exit 1
     fi
-
-    echo "Finished checking parameters at $(date)"
-    echo ""
 }
 
 cowthink_thought() {
     printf "\nCowthink on Mac.\n\n"
     check_os_for_mac
+    check_cowthink
 
     get_thought
     check_parameters
 
-    if [ -d $(which cowthink) ]; echo $? == 0 &>/dev/null
-    then 
-        tput setaf 2; echo "cowthink is installed."; tput sgr0
-        
-        start=$(date +%s)
-        echo "Started cowthink at $(date)"
+    start=$(date +%s)
+    echo "Started cowthink at $(date)"
 
-        cowthink "$thought"
+    cowthink "$thought"
+    tput setaf 2; echo "Successfully performed cowthink."; tput sgr0
 
-        tput setaf 2; echo "Successfully performed cowthink."; tput sgr0
+    end=$(date +%s)
+    echo "Finished cowthink at $(date)"
 
-        end=$(date +%s)
-        echo "Finished cowthink at $(date)"
-
-        duration=$(( $end - $start ))
-        echo "Total execution time: $duration second(s)"
-    else 
-        tput setaf 1; echo "cowthink is not installed."; tput sgr0
-        exit 1
-    fi
+    duration=$(( $end - $start ))
+    echo "Total execution time: $duration second(s)"
+    echo ""
 }
 
 cowthink_thought
