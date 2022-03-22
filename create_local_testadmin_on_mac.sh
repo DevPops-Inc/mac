@@ -10,7 +10,6 @@ uniqueId="1002"
 password="TEST"
 
 check_os_for_mac() {
-
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then 
@@ -130,6 +129,7 @@ createLocalTestAdmin() {
 
     duration=$(( $end - $start ))
     echo "Total execution time: $duration second(s)"
+    echo ""
 }
 
 # call main function
