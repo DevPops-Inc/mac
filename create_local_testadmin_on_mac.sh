@@ -83,8 +83,19 @@ check_parameters() {
         valid="false"
     fi
 
-    echo "Finished checking parameters at $(date)"
-    echo ""
+    if [ $valid == "true" ]; then 
+        tput setaf 2; echo "All parameter checks passed."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+        echo ""
+    else 
+        tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+        echo ""
+
+        exit 1
+    fi
 }
 
 # define main function

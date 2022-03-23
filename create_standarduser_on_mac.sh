@@ -10,7 +10,6 @@ uniqueI=$2 # you can set unique ID here
 password=$3 # you can set password here
 
 check_os_for_mac() {
-
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then 
@@ -84,8 +83,19 @@ check_parameters() {
         valid="false"
     fi
 
-    echo "Finished checking parameters at $(date)"
-    echo ""
+    if [ $valid == "true" ]; then 
+        tput setaf 2; echo "All parameter checks passed."; tput sgr0
+        
+        echo "Finished checking parameters at $(date)"
+        echo ""
+    else 
+        tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+        echo ""
+
+        exit 1
+    fi
 }
 
 # define main function
@@ -127,6 +137,7 @@ createStandardUser() {
 
     duration=$(( $end - $start ))
     echo "Total execution time: $duration second(s)"
+    echo ""
 }
 
 # call main function
