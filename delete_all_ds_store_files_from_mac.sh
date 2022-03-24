@@ -4,7 +4,6 @@ set -e
 # delete all DS_Store files from Mac
 
 check_os_for_mac() {
-
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then 
@@ -36,6 +35,7 @@ delete_dsstore_files() {
 
     duration=$(( $end - $start ))
     echo "Total execution time: $duration second(s)"
+    echo ""
 }
 
 delete_dsstore_files
