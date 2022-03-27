@@ -30,7 +30,7 @@ get_printer_name() {
 
         echo ""
     else
-        echo $printerName
+        echo $printerName &>/dev/null
     fi
 }
 

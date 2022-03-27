@@ -32,7 +32,7 @@ get_source() {
 
         echo ""
     else 
-        echo $source
+        echo $source &>/dev/null
     fi
 }
 
@@ -42,7 +42,7 @@ get_destination() {
 
         echo ""
     else 
-        echo $destination
+        echo $destination &>/dev/null
     fi
 }
 

@@ -31,7 +31,7 @@ get_filename() {
 
         echo ""
     else
-        echo $filename
+        echo $filename &>/dev/null
     fi
 }
 

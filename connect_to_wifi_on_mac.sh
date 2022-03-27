@@ -36,7 +36,7 @@ get_ssid() {
 
         echo ""
     else 
-        echo $ssid
+        echo $ssid &>/dev/null
     fi 
 }
 
@@ -46,7 +46,7 @@ getPassword() {
 
         echo ""
     else 
-        echo $password
+        echo $password &>/dev/null
     fi
 }
 

@@ -33,7 +33,7 @@ get_standard_user() {
 
         echo ""
     else 
-        echo $standardUser
+        echo $standardUser &>/dev/null
     fi
 }
 
@@ -43,7 +43,7 @@ get_unique_id() {
 
         echo ""
     else 
-        echo $uniqueId
+        echo $uniqueId &>/dev/null
     fi
 }
 
@@ -53,7 +53,7 @@ get_password() {
 
         echo ""
     else 
-        echo $password
+        echo $password &>/dev/null
     fi
 }
 
