@@ -8,7 +8,6 @@ set -e
 ssid=$1 # you can set the SSID you would like to disconnect from here
 
 check_os_for_mac() {
-
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then 
@@ -21,6 +20,8 @@ check_os_for_mac() {
         
         echo "Finished checking operating system at $(date)"
         echo ""
+
+        exit 1
     fi
 }
 
@@ -30,7 +31,7 @@ get_ssid() {
 
         echo ""
     else 
-        echo $ssid
+        echo $ssid &>/dev/null
     fi
 }
 
@@ -50,13 +51,17 @@ check_parameters() {
 
     if [ $valid == "true" ]; then 
         tput setaf 2; echo "All parameter checks passed."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+        echo ""
     else 
         tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
+        
+        echo "Finished checking parameters at $(date)"
+        echo ""
+        
         exit 1
     fi
-
-    echo "Finished checking parameters at $(date)"
-    echo ""
 }
 
 # define main function
