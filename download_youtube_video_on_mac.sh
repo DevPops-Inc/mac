@@ -20,15 +20,18 @@ check_os_for_mac() {
 
         echo "Finished checking operating system at $(date)"
         echo ""
+
+        exit 1
     fi 
 }
 
 check_youtube-dl() {
     echo "Started checking youtube-dl at $(date)"
 
-    if [ -d $(which youtube-dl) ]; echo $? == 0 &>/dev/null
-    then 
+    which -s youtube-dl
+    if [[ $? == 0 ]]; then 
         tput setaf 2; echo "youtube-dl is installed."; tput sgr0
+        youtube-dl --version 
 
         echo "Finished checking youtube-dl at $(date)"
         echo ""
@@ -48,7 +51,7 @@ get_youtube_url() {
 
         echo ""
     else 
-        echo $youTubeUrl
+        echo $youTubeUrl &>/dev/null
     fi
 }
 
@@ -66,8 +69,17 @@ check_parameters() {
         valid="false"
     fi
 
-    echo "Finished checking parameters at $(date)"
-    echo ""
+    if [ $valid == "true "]; then 
+        tput setaf 2; echo "All parameter checks passed."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+        echo ""
+    else 
+        tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+        echo ""
+    fi
 }
 
 download_youtube_video() {
