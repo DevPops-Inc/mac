@@ -2,10 +2,7 @@
 
 # enable SSH on Mac
 
-# prompt user input
-
 check_os_for_mac() {
-
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then 
