@@ -7,7 +7,6 @@
 bashScript=$1 # you can set the script name here
 
 check_os_for_mac() {
-
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then
@@ -20,6 +19,8 @@ check_os_for_mac() {
 
         echo "Finished checking operating system at $(date)"
         echo ""
+
+        exit 1
     fi
 }
 
@@ -29,7 +30,7 @@ get_bash_script() {
 
         echo ""
     else 
-        echo $bashScript
+        echo $bashScript &>/dev/null
     fi
 }
 
@@ -49,20 +50,24 @@ check_parameters() {
 
     if [ $valid == "true" ]; then 
         tput setaf 2; echo "All parameter checks passed."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+        echo ""
     else 
         tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+        echo ""
+
         exit 1
     fi
-
-    echo "Finished checking parameters at $(date)"
-    echo ""
 }
 
 prompt_run_script() {
     echo "Would you like to run the script now?"
-    read -p "Please type Y or N and press \"return\" key: " answer
+    read -p "Please type \"Y\" or \"N\" and press \"return\" key: " answer
 
-    if [[ $answer = "Y" ]]; then 
+    if [[ $answer = 'Y' || 'y' ]]; then 
         echo "Started running script at $(date)"
         echo "----------------------------------"
         ./$bashScript
