@@ -9,7 +9,6 @@ month=$1 # you can set the month here
 year=$2 # you can set the year here
 
 check_os_for_mac() {
-    
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then
@@ -33,7 +32,7 @@ get_month() {
 
         echo ""
     else 
-        echo $month
+        echo $month $>/dev/null
     fi
 }
 
@@ -43,7 +42,7 @@ get_year() {
 
         echo ""
     else 
-        echo $year
+        echo $year $>/dev/null
     fi
 }
 
@@ -67,8 +66,19 @@ check_parameters() {
         valid="false"
     fi
 
-    echo "Finished checking parameters at $(date)"
-    echo ""
+    if [ $valid == "true" ]; then 
+        tput setaf 2; echo "All parameter checks passed."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+        echo ""
+    else 
+        tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
+
+        echo "Finished checking parameters at $(date)"
+        echo ""
+
+        exit 1
+    fi
 }
 
 get_calendar() {
