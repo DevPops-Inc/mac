@@ -3,7 +3,6 @@
 # get printer names on Mac
 
 check_os_for_mac() {
-
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then 
@@ -16,6 +15,8 @@ check_os_for_mac() {
 
         echo "Finished checking operating system at $(date)"
         echo ""
+
+        exit 1
     fi
 }
 
