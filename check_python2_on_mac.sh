@@ -2,7 +2,7 @@
 
 # check Python 2 on Mac
 
-terminalApp="python2"
+terminalApp="python"
 
 check_os_for_mac() {
     echo "Started checking operating system at $(date)"
