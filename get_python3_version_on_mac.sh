@@ -3,7 +3,6 @@
 # check Python 3 on Mac
 
 check_os_for_mac() {
-
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then 
@@ -24,8 +23,8 @@ check_os_for_mac() {
 check_python3() {
     echo "Started checking Python 3 at $(date)"    
 
-    if [ -d $(which python3) ]; echo $? == 0 &>/dev/null
-    then
+    which -s python3
+    if [[ $? == 0 ]]; then
         tput setaf 2; echo "Python 3 is installed."; tput sgr0
 
         echo "Finished checking Python 3 at $(date)"
