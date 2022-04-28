@@ -3,7 +3,6 @@
 # install Android Studio with Homebrew
 
 check_os_for_mac() {
-
 	echo "Started checking operating system at $(date)"
 
 	if [[ $OSTYPE == 'darwin'* ]]; then 
@@ -16,6 +15,8 @@ check_os_for_mac() {
 
 		echo "Finished checking operating system at $(date)"
 		echo ""
+
+		exit 1
 	fi
 }
 
@@ -28,7 +29,7 @@ check_android_studio() {
 		echo "Finished checking Android Studio at $(date)"
 		echo ""
 
-		exit 1
+		exit 0
 	else
 		echo "Android Studio is not installed."
 
@@ -41,15 +42,20 @@ check_homebrew() {
 	echo "Started checking Homebrew at $(date)"
 
 	which -s brew
-	if [[ $? != 0 ]]; then
-		tput setaf 1; echo "Homebrew needs to be installed."; tput sgr0
-		exit 1
-	else
+	if [[ $? == 0 ]]; then
 		tput setaf 2; echo "Homebrew is installed."; tput sgr0
-	fi
 
-	echo "Finished checking Homebrew at $(date)"
-	echo ""
+		echo "Finished checking Homebrew at $(date)"
+		echo ""
+	else
+		
+		tput setaf 1; echo "Homebrew needs to be installed."; tput sgr0
+
+		echo "Finished checking Homebrew at $(date)"
+		echo ""
+
+		exit 1
+	fi
 }
 
 install_android_studio() {
