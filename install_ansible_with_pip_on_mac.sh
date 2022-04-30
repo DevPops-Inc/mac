@@ -3,7 +3,6 @@
 # install Ansible with PIP on Mac
 
 check_os_for_mac() {
-
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then
@@ -16,15 +15,18 @@ check_os_for_mac() {
 
         echo "Finished checking operating system at $(date)"
         echo ""
+
+        exit 1
     fi
 }
 
 check_ansible() {
     echo "Started checking Ansible at $(date)"
 
-    if [ -d $(which ansible) ]; echo $? == 0 &>/dev/null
-    then 
+    which -s ansible
+    if [[ $? == 0 ]]; then 
         tput setaf 2; echo "Ansible is installed."; tput sgr0
+        ansible --version
 
         echo "Finished checking Ansible at $(date)"
         echo ""
@@ -41,9 +43,10 @@ check_ansible() {
 check_pip() {
     echo "Started checking PIP at $(date)"
 
-    if [ -d $(which pip) ]; echo $? == 0 &>/dev/null
-    then 
+    which -s pip
+    if [[ $? == 0 ]]; then 
         tput setaf 2; echo "PIP is installed."; tput sgr0
+        pip --version 
 
         echo "Finished checking PIP at $(date)"
         echo ""
