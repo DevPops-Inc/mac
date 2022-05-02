@@ -3,7 +3,6 @@
 # install AWS CLI with PIP3 on Mac
 
 check_os_for_mac() {
-
     echo "Started checking operating system at $(date)"
     
     if [[ $OSTYPE == 'darwin'* ]]; then 
@@ -24,8 +23,8 @@ check_os_for_mac() {
 check_aws() {
     echo "Started checking AWS at $(date)"
 
-    if [ -d $(which aws) ]; echo $? == 0 &>/dev/null
-    then 
+    which -s aws
+    if [[ $? == 0 ]]; then 
         tput setaf 2; echo "AWS is installed."; tput sgr0
 
         echo "Finished checking AWS at $(date)"
@@ -43,8 +42,8 @@ check_aws() {
 check_pip3() {
     echo "Started checking PIP3 at $(date)"
 
-    if [ -d $(which pip3) ]; echo $? == 0 &>/dev/null
-    then 
+    which -s pip3
+    if [[ $? == 0 ]]; then 
         tput setaf 2; echo "PIP3 is installed."; tput sgr0
 
         echo "Finished checking PIP3 at $(date)"
