@@ -3,7 +3,6 @@
 # install cmatrix with Homebrew
 
 check_os_for_mac() {
-
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then 
@@ -16,14 +15,16 @@ check_os_for_mac() {
 
         echo "Finished checking operating system at $(date)"
         echo ""
+
+        exit 1
     fi
 }
 
 check_cmatrix() {
     echo "Started checking cmatrix at $(date)"
 
-    if [ -d $(which cmatrix) ]; echo $? ==> 0 &>/dev/null
-    then 
+    which -s cmatrix
+    if [[ $? == 0 ]]; then 
         tput setaf 2; echo "cmatrix is installed."; tput sgr0
         cmatrix
         
@@ -43,13 +44,13 @@ check_homebrew() {
     echo "Started checking Homebrew at $(date)"
 
     which -s brew
-    if [[ $? != 0 ]]; then 
-        tput setaf 1; echo "Homebrew needs to be installed."; tput sgr0
+    if [[ $? == 0 ]]; then 
+        tput setaf 1; echo "Homebrew is installed."; tput sgr0
 
         echo "Finished checking Homebrew at $(date)"
         echo ""
     else 
-        tput setaf 1; echo "Homebrew is installed."; tput sgr0
+        tput setaf 1; echo "Homebrew needs to be installed."; tput sgr0
 
         echo "Finished checking Homebrew at $(date)"
         echo ""
