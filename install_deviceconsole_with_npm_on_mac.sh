@@ -3,7 +3,6 @@
 # install deviceconsole with NPM on Mac
 
 check_os_for_mac() {
-
     echo "Started checking operating system at $(date)"
 
     if [[ $OSTYPE == 'darwin'* ]]; then 
@@ -24,8 +23,8 @@ check_os_for_mac() {
 check_deviceonsole() {
     echo "Started checking deviceconsole at $(date)"
 
-    if [ -d $(which deviceconsole) ]; echo $? == 0 &>/dev/null
-    then 
+    which -s deviceconsole
+    if [[ $? == 0 ]]; then 
         tput setaf 2; echo "deviceconsole is installed."; tput sgr0
 
         echo "Finished checking deviceconsole at $(date)"
@@ -43,14 +42,15 @@ check_deviceonsole() {
 check_npm() {
     echo "Started checking NPM at $(date)"
 
-    if [ -d $(which npm) ]; echo $? == 0
-    then
-        tput setaf 2; echo "NPM is installed"; tput sgr0
+    which -s npm
+    if [[ $? == 0 ]]; then
+        tput setaf 2; echo "NPM is installed."; tput sgr0
+        npm --version
 
         echo "Finished checking NPM at $(date)"
         echo ""
     else
-        tput setaf 1; echo "NPM is not installed"; tput sgr0
+        tput setaf 1; echo "NPM is not installed."; tput sgr0
 
         echo "Finished checking NPM at $(date)"
         echo ""
