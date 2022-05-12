@@ -68,8 +68,8 @@ check_terminal_app() {
 
     which -s $terminalApp
     if [[ $? == 0 ]]; then 
-        tput setaf 2; echo "$terminalApp is installed."; tput sgr0
-        echo "Your fortune is: "; $terminalApp
+        tput setaf 2; echo "$terminalApp is installed."
+        tput setaf 4; $terminalApp
         tput setaf 2; echo "Successfully checked $terminalApp."; tput sgr0
 
         end=$(date +%s)
