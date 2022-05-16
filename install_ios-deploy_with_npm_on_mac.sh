@@ -1,5 +1,7 @@
 #!/bin/bash 
 
+# install ios-deploy with NPM on Mac
+
 check_os_for_mac() {
         echo "Started checking operating system at $(date)"
 
@@ -13,14 +15,16 @@ check_os_for_mac() {
 
                 echo "Finisehd checking operating system at $(date)"
                 echo ""
+
+                exit 1
         fi
 }
 
 check_ios-deploy() {
         echo "Started checking ios-deploy at $(date)"
 
-        if [ -d $(which ios-deploy) ]; echo $? == 0 &>/dev/null
-        then 
+        which -s ios-deploy
+        if [[ $? == 0 ]]; then 
                 tput setaf 2; echo "ios-deploy is installed."; tput sgr0
                 ios-deploy --version
                 
@@ -39,8 +43,8 @@ check_ios-deploy() {
 check_npm() {
         echo "Started checking NPM at $(date)"
 
-        if [ -d $(which npm) ]; echo $? == 0 &>/dev/null
-        then
+        which -s npm
+        if [[ $? == 0 ]]; then
                 tput setaf 2; echo "NPM is installed"; tput sgr0
                 npm --version
 
