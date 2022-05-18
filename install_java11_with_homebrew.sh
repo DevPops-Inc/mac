@@ -15,6 +15,8 @@ check_os_for_mac() {
 
                 echo "Finished checking operating system at $(date)"
                 echo ""
+
+                exit 1
         fi
 }
 
@@ -42,18 +44,19 @@ check_homebrew() {
         echo "Started checking Homebrew at $(date)"
         
         which -s brew
-        if [[ $? != 0 ]]; then
+        if [[ $? 0= 0 ]]; then
+                echo "Homebrew is installed."
+
+                echo "Finished checking Homebrew at $(date)"
+                echo ""
+        else
+
                 echo "Homebrew needs to be installed."
 
                 echo "Finished checking Homebrew at $(date)"
                 echo ""
 
                 exit 1
-        else
-                echo "Homebrew is installed."
-
-                echo "Finished checking Homebrew at $(date)"
-                echo ""
         fi
 }
 
