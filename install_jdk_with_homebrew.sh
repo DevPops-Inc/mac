@@ -44,18 +44,18 @@ check_homebrew() {
         echo "Started checking Homebrew at $(date)"
 
         which -s brew
-        if [[ $? != 0 ]]; then
+        if [[ $? == 0 ]]; then
+                tput setaf 2; echo "Homebrew is installed."; tput sgr0
+
+                echo "Finished checking Homebrew at $(date)"
+                echo ""
+        else
                 tput setaf 1; echo "Homebrew needs to be installed."; tput sgr0
 
                 echo "Finished checking Homebrew at $(date)"
                 echo ""
 
                 exit 1
-        else
-                tput setaf 2; echo "Homebrew is installed."; tput sgr0
-
-                echo "Finished checking Homebrew at $(date)"
-                echo ""
         fi
 }
 
