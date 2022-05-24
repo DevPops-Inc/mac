@@ -39,7 +39,7 @@ check_homebrew() {
 	fi
 }
 
-install_ansible() {
+install_ansible_with_homebrew() {
 	echo "Started installing Ansible at $(date)"
 
 	check_os_for_mac
@@ -49,7 +49,6 @@ install_ansible() {
 
 	brew install ansible 
 	ansible --version
-
 	tput setaf 2; echo "Successfully installed Ansible."; tput sgr0
 	
 	end=$(date +%s)
@@ -60,4 +59,4 @@ install_ansible() {
 	echo ""
 }
 
-install_ansible
+install_ansible_with_homebrew
