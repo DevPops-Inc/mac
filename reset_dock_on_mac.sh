@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-# kill dock on Mac
+# reset dock on Mac
 
 check_os_for_mac() {
     echo "Started checking operating system at $(date)"
@@ -21,23 +21,23 @@ check_os_for_mac() {
     fi
 }
 
-kill_dock() {
-    printf "\nKill dock on Mac.\n\n"
+reset_dock() {
+    printf "\nReset dock on Mac.\n\n"
     check_os_for_mac
 
     start=$(date +%s)
-    echo "Started killing dock at $(date)"
+    echo "Started resetting dock at $(date)"
 
     defaults delete com.apple.dock;
     killall Dock
-    tput setaf 2; echo "Successfully killed dock."; tput sgr0
+    tput setaf 2; echo "Successfully reset dock."; tput sgr0
 
     end=$(date +%s)
-    echo "Finished killing dock at $(date)"
+    echo "Finished resetting dock at $(date)"
 
     duration=$(( $end - $start ))
     echo "Total execution time: $duration second(s)"
     echo ""
 }
 
-kill_dock
+reset_dock
