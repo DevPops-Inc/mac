@@ -10,7 +10,7 @@ commitMessage=$2
 check_os() {
     echo "Started checking operating system at $(date)"
 
-    if [ $OSTYPE == 'darwin'* ]; then 
+    if [[ $OSTYPE == 'darwin'* ]]; then 
         tput setaf 2; echo -e "Operating system:\n$(sw_vers)"; tput sgr0
         
         echo "Finished checking operating system at $(date)"
