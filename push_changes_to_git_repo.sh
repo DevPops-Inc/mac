@@ -4,8 +4,8 @@
 
 # you can run this script with: ./push_changes_to_git_repo.sh < staged changes > < commit message > 
 
-stagedChanges="${1}"
-commitMessage="${2}"
+stagedChanges=$1
+commitMessage=$2
 
 check_os() {
     echo "Started checking operating system at $(date)"
@@ -24,7 +24,7 @@ check_os() {
 }
 
 get_staged_changes() {
-    if [[ -z "${stagedChanges}" ]]; then 
+    if [ -z "${stagedChanges}" ]; then 
         git status
         
         if [ $OSTYPE != 'msys' ]; then 
@@ -41,7 +41,7 @@ get_staged_changes() {
 }
 
 get_commit_message() {
-    if [[ -z "${commitMessage}" ]]; then 
+    if [ -z "${commitMessage}" ]; then 
         
         if [ $OSTYPE != 'msys' ]; then 
             read -p "Please type the commit message and press \"return\" key (Example: Initial commit): " commitMessage
@@ -68,12 +68,12 @@ check_parameters() {
     echo "commitMessage: ${commitMessage}"
     echo "-----------------------------"
 
-    if [[ -z "${stagedChanges}" ]]; then 
+    if [ -z "${stagedChanges}" ]; then 
         tput setaf 1; echo "stagedChanges is not set."; tput sgr0
         valid="false"
     fi
 
-    if [[ -z "${commitMessage}" ]]; then 
+    if [ -z "${commitMessage}" ]; then 
         tput setaf 1; echo "commitMessage is not set."; tput sgr0
         valid="false"
     fi
