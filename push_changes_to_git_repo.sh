@@ -107,7 +107,8 @@ push_git_changes() {
     git add "$stagedChanges"
     git commit -m "$commitMessage"
     git push
-    tput setaf 2; "Successfully pushed changes to Git repository."; tput sgr0
+    git status
+    tput setaf 2; echo "Successfully pushed changes to Git repository."; tput sgr0
 
     end=$(date +%s)
     echo "Finished pushing changes at $(date)"
