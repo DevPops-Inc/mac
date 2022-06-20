@@ -112,8 +112,10 @@ push_git_changes() {
 
     git push
     echo ""
-    
+
     git status
+    echo ""
+    
     tput setaf 2; echo "Successfully pushed changes to Git repository."; tput sgr0
 
     end=$(date +%s)
