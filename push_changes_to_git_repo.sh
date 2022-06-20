@@ -105,8 +105,14 @@ push_git_changes() {
     echo "Started pushing changes at $(date)"
 
     git add "$stagedChanges"
+    echo ""
+
     git commit -m "$commitMessage"
+    echo ""
+
     git push
+    echo ""
+    
     git status
     tput setaf 2; echo "Successfully pushed changes to Git repository."; tput sgr0
 
