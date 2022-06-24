@@ -74,7 +74,7 @@ remove_dir() {
     start=$(date +%s)
     echo "Started removing directory at $(date)"
 
-    rm -frv !/ $dirPath
+    printf "Removing: "; rm -frv !/ $dirPath
     tput setaf 2; echo "Successfully removed directory: $dirPath"; tput sgr0
 
     end=$(date +%s)
