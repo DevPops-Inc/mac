@@ -30,7 +30,7 @@ get_process_name() {
 	
 		echo ""
 	else 
-		echo "$processName"
+		echo "$processName" &>/dev/null
 	fi
 }
 
@@ -40,7 +40,7 @@ get_sleep_time() {
 		
 		echo ""
 	else 
-		echo $sleepTime
+		echo $sleepTime &>/dev/null
 	fi
 }
 
@@ -50,7 +50,7 @@ get_app_name() {
 		
 		echo ""
 	else 
-		echo "$appName"
+		echo "$appName" &>/dev/null
 	fi
 }
 
@@ -79,9 +79,20 @@ check_parameters() {
 		tput setaf 1; echo "appName is not set."; tput sgr0
 		valid="false"
 	fi
+
+	if [ $valid == "true" ]; then 
+		tput setaf 2; echo "All parameter checks passed."; tput sgr0
 	
-	echo "Finished checking parameters at $(date)"
-	echo ""
+		echo "Finished checking parameters at $(date)"
+		echo ""
+	else 
+		tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
+
+		echo "Finished checking parameters at $(date)"
+		echo ""
+
+		exit 1
+	fi
 }
 
 stop_relaunch_outlook() {
@@ -99,6 +110,7 @@ stop_relaunch_outlook() {
   	pkill $processName
   	sleep $sleepTime
 	open -a "${appName}"
+	tput setaf 2; echo "Successfully stopped and relaunched Outlook."; tput sgr0
 
 	end=$(date +%s)
 	echo "Finished stopping and relaunching Outlook at $(date)"
