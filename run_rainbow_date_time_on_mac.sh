@@ -21,7 +21,7 @@ check_os_for_mac() {
 }
 
 run_rainbow() {
-    printf "\nRun rainbow on Mac.\n\n"
+    printf "\nRun rainbow date and time on Mac.\n\n"
     check_os_for_mac
 
     start=$(date +%s)
