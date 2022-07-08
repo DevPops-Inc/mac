@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# run toilet metal on Mac
+# run TOIlet metal on Mac
 
 # you can run this script with: ./run_toilet_metal_on_mac.sh "< text string >"" 
 
@@ -18,6 +18,25 @@ check_os_for_mac() {
         tput setaf 1; echo "Sorry but this script only runs on Mac."; tput sgr0
 
         echo "Finished checking operating system at $(date)"
+        echo ""
+
+        exit 1
+    fi
+}
+
+check_toilet() {
+    echo "Started checking TOIlet at $(date)"
+
+    which -s toilet
+    if [[ $? == 0 ]]; then 
+        tput setaf 2; echo "TOIlet is installed."; tput sgr0
+
+        echo "Finished checking TOIlet at $(date)"
+        echo ""
+    else 
+        tput setaf 1; echo "TOIlet is not installed."; tput sgr0
+
+        echo "Finished checking TOIlet at $(date)"
         echo ""
 
         exit 1
@@ -62,20 +81,22 @@ check_parameters() {
 }
 
 run_toilet_metal() {
-    printf "\nRun toilet metal on Mac.\n\n"
+    printf "\nRun TOIlet metal on Mac.\n\n"
+
     check_os_for_mac
+    check_toilet
 
     get_text_string
     check_parameters
 
     start=$(date +%s)
-    echo "Started running toilet metal at $(date)"
+    echo "Started running TOIlet metal at $(date)"
 
     toilet -f mono12 -F metal "${textString}"
-    tput setaf 2; echo "Successfully ran toilet metal."; tput sgr0
+    tput setaf 2; echo "Successfully ran TOIlet metal."; tput sgr0
 
     end=$(date +%s)
-    echo "Finished running toilet metal at $(date)"
+    echo "Finished running TOIlet metal at $(date)"
 
     duration=$(( $end - $start ))
     echo "Total execution time: $duration second(s)"
