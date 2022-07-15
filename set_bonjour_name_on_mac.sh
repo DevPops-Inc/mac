@@ -27,8 +27,8 @@ check_os_for_mac() {
 
 get_bonjour_name() {
     if [ -z $bonjourName ]; then
-        echo "The current bonjour name is:"
-        scutil --get LocalHostName
+        oldBonjourName=$(scutil --get LocalHostName)
+        echo "The current bonjour name is: $oldBonjourName"
         echo ""
 
         read -p "Please type the new Bonjour name and press \"return\" key (Example: Dev-MBP): " bonjourName
@@ -79,8 +79,7 @@ set_bonjour_name() {
     echo "Started setting Bonjour name at $(date)"
 
     scutil --set LocalHostName $bonjourName
-    echo "The Bonjour name is now:"
-    scutil --get LocalHostName
+    echo "The new Bonjour name is: $bonjourName"
     tput setaf 2; echo "Successfully set Bonjour name."; tput sgr0
 
     end=$(date +%s)
