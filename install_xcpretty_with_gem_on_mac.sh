@@ -6,7 +6,7 @@ check_os_for_mac() {
 	echo "Started checking operating system at $(date)"
 
 	if [[ $OSTYPE == 'darwin'* ]]; then 
-		tput setaf 2; echo -e "Operating system:\n$(date)"; tput sgr0
+		tput setaf 2; echo -e "Operating System:\n$(date)"; tput sgr0
 
 		echo "Finished checking operating system at $(date)"
 		echo ""
