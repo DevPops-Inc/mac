@@ -20,6 +20,7 @@
 
 
 **Run Bash Script in Terminal on Mac**
+
 •	Right-click on the directory containing the Bash script you wish to run, Expand Services” menu and select “New Terminal at Folder.”  
 •	<img width="468" alt="image" src="https://user-images.githubusercontent.com/66754143/181866285-4fa46b25-5a32-4a85-b84b-3fb245d3e629.png">
 
@@ -31,6 +32,7 @@
 
 
 **Run Python Script in Terminal on Mac**
+
 •	Right-click on the directory containing the Bash script you wish to run, Expand Services” menu and select “New Terminal at Folder.”  
 •	<img width="468" alt="image" src="https://user-images.githubusercontent.com/66754143/181866321-2eeaff54-c3d8-4d58-ab35-2c737f2d5d46.png">
 
@@ -39,6 +41,7 @@
 
 
 **Run PowerShell Script in Terminal on Mac**
+
 •	Right-click on the directory containing the PowerShell script you wish to run, Expand Services” menu and select “New Terminal at Folder.”  
 •	<img width="468" alt="image" src="https://user-images.githubusercontent.com/66754143/181866339-d3e0c71b-b53a-44b3-8672-2e3ad07e9b54.png">
 
