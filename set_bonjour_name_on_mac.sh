@@ -3,9 +3,9 @@ set -e
 
 # set Bonjour name on Mac
 
-# you can run this script with: ./set_bonjour_name_on_mac.sh < Bonjour name > 
+# you can run this script with: ./set_bonjour_name_on_mac.sh < new Bonjour name > 
 
-bonjourName=$1
+newBonjourName=$1
 
 check_os_for_mac() {
     echo "Started checking operating system at $(date)"
@@ -26,16 +26,16 @@ check_os_for_mac() {
 }
 
 get_bonjour_name() {
-    if [ -z $bonjourName ]; then
+    if [ -z $newBonjourName ]; then
         oldBonjourName=$(scutil --get LocalHostName)
-        echo "The current bonjour name is: $oldBonjourName"
+        echo "The current Bonjour name is: $oldBonjourName"
         echo ""
 
-        read -p "Please type the new Bonjour name and press \"return\" key (Example: Dev-MBP): " bonjourName
+        read -p "Please type the new Bonjour name and press \"return\" key (Example: Dev-MBP): " newBonjourName
 
         echo ""
     else 
-        echo $bonjourName &>/dev/null
+        echo $newBonjourName &>/dev/null
     fi
 }
 
@@ -44,12 +44,12 @@ check_parameters() {
     valid="true"
 
     echo "Parameters:"
-    echo "-------------------------"
-    echo "bonjourName: $bonjourName"
-    echo "-------------------------"
+    echo "-------------------------------"
+    echo "newBonjourName: $newBonjourName"
+    echo "-------------------------------"
 
-    if [ -z $bonjourName ]; then 
-        tput setaf 1; echo "bonjourName is not set."; tput sgr0
+    if [ -z $newBonjourName ]; then 
+        tput setaf 1; echo "newBonjourName is not set."; tput sgr0
         valid="false"
     fi
 
@@ -78,8 +78,8 @@ set_bonjour_name() {
     start=$(date +%s)
     echo "Started setting Bonjour name at $(date)"
 
-    scutil --set LocalHostName $bonjourName
-    echo "The new Bonjour name is: $bonjourName"
+    scutil --set LocalHostName $newBonjourName
+    echo "The new Bonjour name is: $newBonjourName"
     tput setaf 2; echo "Successfully set Bonjour name."; tput sgr0
 
     end=$(date +%s)
