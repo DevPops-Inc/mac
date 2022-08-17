@@ -22,6 +22,16 @@ check_os_for_mac() {
     fi
 }
 
+get_terminal_app() { 
+    if [ -z $terminalApp ]; then 
+        read -p "Please type the terminal application you wish to check and press \"return\" key (Example: node): " terminalApp
+
+        echo ""
+    else
+        echo $terminalApp &>/dev/null
+    fi
+}
+
 check_parameters() {
     echo "Started checking parameters at $(date)"
     valid="true"
@@ -51,6 +61,9 @@ check_parameters() {
 check_terminal_app() {
     printf "\nCheck $terminalApp on Mac.\n\n"
     check_os_for_mac
+
+    get_terminal_app
+    check_parameters
 
     start=$(date +%s)
     echo "Started checking $terminalApp at $(date)"
