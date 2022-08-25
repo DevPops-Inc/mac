@@ -30,6 +30,8 @@ check_toilet() {
     which -s toilet
     if [[ $? == 0 ]]; then 
         tput setaf 2; echo "TOIlet is installed."; tput sgr0
+        toilet --version
+        tput setaf 2; echo "Successfully checked TOIlet."; tput sgr0
 
         end=$(date +%s)
         echo "Finished checking TOIlet at $(date)"
