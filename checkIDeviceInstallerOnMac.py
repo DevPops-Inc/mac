@@ -8,11 +8,11 @@ from datetime import datetime
 colorama.init()
 
 def checkOsForMac():
-    print("Started checking operating system at", datetime.now().strftime("%Y-%m-"))
+    print("Started checking operating system at", datetime.now().strftime("%Y-%m-%d %H:%M %p"))
 
     if sys.platform == "darwin": 
         print(Fore.GREEN + "Operating System: ")
-        print(os.system('sw_vers'))
+        os.system('sw_vers')
         print(Style.RESET_ALL)
         
         print("Finished checking operating system at", datetime.now().strftime("%Y-%m-%d %H:%M %p"))
@@ -25,6 +25,7 @@ def checkOsForMac():
         print("Finished checking operating system at", datetime.now().strftime("%Y-%m-%d %H:%M %p"))
 
         exit("")
+
 
 def checkIDeviceInstaller(): 
     print("\nCheck ideviceinstaller on Mac.\n")
@@ -68,5 +69,6 @@ def checkIDeviceInstaller():
         print(e)
         print(traceback.print_stack)
         exit("" + Style.RESET_ALL)
+        
 
 checkIDeviceInstaller()
