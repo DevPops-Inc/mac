@@ -9,12 +9,13 @@ from colorama import Fore, Style
 from datetime import datetime
 colorama.init()
 
+
 def checkOsForMac():
     print("Started checking operating system at ", datetime.now().strftime("%Y-%m-%d %H:%M %p"))
 
     if sys.platform == "darwin":
         print(Fore.GREEN + "Operating System:")
-        print(os.system('sw_vers'))
+        os.system('sw_vers')
         
         print(Style.RESET_ALL + "Finished checking operating system at ", datetime.now().strftime("%Y-%m-%d %H:%M %p"))
 
@@ -26,6 +27,7 @@ def checkOsForMac():
         print("Finished checking operating system at ", datetime.now().strftime("%Y-%m-%d %H:%M %p"))
 
         exit("")
+
 
 def getHardDrive():
     os.system('diskutil list')
@@ -39,6 +41,7 @@ def getHardDrive():
 
     print("")
     return hdd
+
 
 def checkParameters(hdd):
     print("Started checking parameters at ", datetime.now().strftime("%Y-%m-%d %H:%M %p"))
@@ -66,6 +69,7 @@ def checkParameters(hdd):
         print("Finished checking parameters at ", datetime.now().strftime("%Y-%m-%d %H:%M %p"))
 
         exit("")
+
     
 def runMacMaintenance():
     print("\nRun Mac maintenance.\n")
@@ -73,6 +77,7 @@ def runMacMaintenance():
 
     if len(sys.argv) > 2: 
         hdd = str(sys.argv[1])
+
     else: 
         hdd = getHardDrive()
 
@@ -115,5 +120,6 @@ def runMacMaintenance():
         print(e)
         print(traceback.print_stack)
         exit("" + Style.RESET_ALL)
+        
 
 runMacMaintenance()

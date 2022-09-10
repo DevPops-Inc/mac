@@ -7,12 +7,13 @@ from colorama import Fore, Style
 from datetime import datetime
 colorama.init()
 
+
 def checkOsForMac(): 
     print("Started checking operating system at", datetime.now().strftime("%Y-%m-%d %H:%M %p"))
 
     if sys.platform == "darwin":
         print(Fore.GREEN + "Operating System: ")
-        print(os.system('sw_vers'))
+        os.system('sw_vers')
 
         print(Style.RESET_ALL + "Finished checking operating system at", datetime.now().strftime("%Y-%m-%d %H:%M %p"))
 
@@ -23,6 +24,7 @@ def checkOsForMac():
         print(Style.RESET_ALL + "Finished checking operating system at", datetime.now().strftime("%Y-%m-%d %H:%M %p"))
         
         exit("")
+
 
 def allowAppsDownloadedFromAnywhere():
     print("\nAllow apps downloaded from anywhere on Mac.\n")
@@ -71,5 +73,6 @@ def allowAppsDownloadedFromAnywhere():
         print(traceback.print_stack())
         print(Style.RESET_ALL)
         exit("")
+
 
 allowAppsDownloadedFromAnywhere()
