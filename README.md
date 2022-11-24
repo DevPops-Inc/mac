@@ -1,3 +1,5 @@
+# Download and Run Scripts on Mac
+
 **Download Single File from GitHub on Mac**
 
 •	Select the file you wish to download.  
@@ -18,8 +20,8 @@
 •	The file will save to your desired location.  
 • <img width="167" alt="image" src="https://user-images.githubusercontent.com/66754143/181865605-58fbb191-a112-45d1-93e1-08f2280453d7.png">
 
--------------------------------------------------------------------------------------------------------------
 
+-------------------------------------------------------------------------------------------------------------
 
 **Run Bash Script in Terminal on Mac**
 
@@ -32,8 +34,8 @@
 •	Type `./< Bash script >.sh` and press “return” key to run the Bash script.  
 •	<img width="406" alt="image" src="https://user-images.githubusercontent.com/66754143/181866301-34c5ffd9-ae5b-4acb-87fa-0261e339ebe4.png">
 
--------------------------------------------------------------------------------------------------------------
 
+-------------------------------------------------------------------------------------------------------------
 
 **Run Python Script in Terminal on Mac**
 
@@ -43,8 +45,8 @@
 •	Type `python3 < Python script >.py` and press “return” key to run the Python script.  
 •	<img width="522" alt="image" src="https://user-images.githubusercontent.com/66754143/181866327-c08a349c-092b-499f-bc41-64375634f975.png">
 
--------------------------------------------------------------------------------------------------------------
 
+-------------------------------------------------------------------------------------------------------------
 
 **Run PowerShell Script in Terminal on Mac**
 
