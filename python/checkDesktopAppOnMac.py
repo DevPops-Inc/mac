@@ -18,12 +18,12 @@ def checkOsForMac():
         os.system('sw_vers')
         print(Style.RESET_ALL, end="")
 
-        print("Finished checking operating system at", datetime.now().strftime("%Y-%m-%d %H:%M %p"))
+        print("Finished checking operating system at", datetime.now().strftime("%m-%d-%Y %I:%M %p"))
         print("")
     else: 
         print(Fore.RED + "Sorry this script only runs on macOS." + Style.RESET_ALL)
 
-        print("Finished checking operating system at", datetime.now().strftime("%Y-%m-%d %H:%M %p"))
+        print("Finished checking operating system at", datetime.now().strftime("%m-%d-%Y %I:%M %p"))
         exit("")
 
         
@@ -35,7 +35,7 @@ def getDesktopApp():
         
 
 def checkParameters(desktopApp): 
-    print("Started checking parameters at", datetime.now().strftime("%Y-%m-%d %H:%M %p"))
+    print("Started checking parameters at", datetime.now().strftime("%m-%d-%Y %I:%M %p"))
     valid = "true"
 
     print("Parameters: ")
@@ -50,13 +50,13 @@ def checkParameters(desktopApp):
     if valid == "true": 
         print(Fore.GREEN + "All parameter checks passed." + Style.RESET_ALL)
 
-        print("Finished checking parameters at", datetime.now().strftime("%Y-%m-%d %H:%M %p"))
+        print("Finished checking parameters at", datetime.now().strftime("%m-%d-%Y %I:%M %p"))
         print("")
 
     else: 
         print(Fore.RED + "One or more parameters are incorrect." + Style.RESET_ALL)
 
-        print("Finished checking parameters at", datetime.now().strftime("%Y-%m-%d %H:%M %p"))
+        print("Finished checking parameters at", datetime.now().strftime("%m-%d-%Y %I:%M %p"))
         exit("")
 
 
@@ -85,7 +85,7 @@ def checkDesktopApp():
 
             finishedDateTime = datetime.now()
 
-            print("Finished checking {0} at {1}".format(desktopApp, finishedDateTime.strftime("%Y-%m-%d %H:%M %p")))
+            print("Finished checking {0} at {1}".format(desktopApp, finishedDateTime.strftime("%m-%d-%Y %I:%M %p")))
 
             duration = finishedDateTime - startDateTime
             print("Total execution time: {0} second(s)".format(duration.seconds))
@@ -95,7 +95,7 @@ def checkDesktopApp():
             print(Fore.RED + "{0} is not installed.".format(desktopApp) + Style.RESET_ALL)
 
             finishedDateTime = datetime.now()
-            print("Finished checking {0} at {1}".format(desktopApp, finishedDateTime.strftime("%Y-%m-%d %H:%M %p")))
+            print("Finished checking {0} at {1}".format(desktopApp, finishedDateTime.strftime("%m-%d-%Y %I:%M %p")))
 
             duration = finishedDateTime - startDateTime
             print("Total execution time: {0} second(s)".format(duration.seconds))
