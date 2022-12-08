@@ -80,7 +80,6 @@ check_parameters() {
     fi
 }
 
-# define main function 
 add_printer() {
     printf "\nAdd printer on Mac.\n"
     check_os_for_mac
@@ -113,5 +112,4 @@ add_printer() {
     echo ""
 }
 
-# call main function
 add_printer
