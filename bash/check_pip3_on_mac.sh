@@ -31,10 +31,10 @@ get_terminal_app() {
 }
 
 check_parameters() {
-    echo "Started checking parameters at $(date)"
+    echo "Started checking parameter(s) at $(date)"
     valid="true"
 
-    echo "Parameters:"
+    echo "Parameter(s):"
     echo "-------------------------"
     echo "terminalApp: $terminalApp"
     echo "-------------------------"
@@ -45,14 +45,14 @@ check_parameters() {
     fi
 
     if [ $valid == "true" ]; then
-        tput setaf 2; echo "All parameter checks passed."; tput sgr0 
+        tput setaf 2; echo "All parameter check(s) passed."; tput sgr0 
 
-        echo "Finished checking parameters at $(date)"
+        echo "Finished checking parameter(s) at $(date)"
         echo ""
     else 
         tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0 
 
-        echo "Finished checking parameters at $(date)"
+        echo "Finished checking parameter(s) at $(date)"
         echo ""
     fi
 }
