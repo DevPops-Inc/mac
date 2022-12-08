@@ -40,10 +40,10 @@ get_bonjour_name() {
 }
 
 check_parameters() {
-    echo "Started checking parameters at $(date)"
+    echo "Started checking parameter(s) at $(date)"
     valid="true"
 
-    echo "Parameters:"
+    echo "Parameter(s):"
     echo "-------------------------------"
     echo "newBonjourName: $newBonjourName"
     echo "-------------------------------"
@@ -54,7 +54,7 @@ check_parameters() {
     fi
 
     if [ $valid == "true" ]; then 
-        tput setaf 2; echo "All parameter checks passed."; tput sgr0
+        tput setaf 2; echo "All parameter check(s) passed."; tput sgr0
 
         echo "Finished checking operating system at $(date)"
         echo ""
