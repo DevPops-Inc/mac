@@ -9,7 +9,7 @@ colorama.init()
 
 
 def checkOsForMac():
-    print("Started checking operating system at", datetime.now().strftime("%Y-%m-%d H:%M %p"))
+    print("Started checking operating system at", datetime.now().strftime("%%m-%d-%Y I:%M %p"))
 
     if sys.platform == "darwin": 
         print(Fore.GREEN + "Operating System: ")
@@ -33,7 +33,9 @@ def launchChrome():
         startDateTime = datetime.now()
         print("Started launching Chrome at", startDateTime.strftime("%m-%d-%Y %I:%M %p"))
 
-        browser=os.system('open -a "Google Chrome"')
+        if os.system('open -a "Google Chrome"') != 0: 
+            raise Exception("Attempt threw an error!")
+
         print(Fore.GREEN + "Successfully launched Chrome." + Style.RESET_ALL)
 
         finishedDateTime = datetime.now()

@@ -27,7 +27,7 @@ def checkOsForMac():
 
 
 def checkChrome():
-    print("Started checking Chrome at", datetime.now().strftime("%Y-%m-%d %H:%m %p"))
+    print("Started checking Chrome at", datetime.now().strftime("%m-%d-%Y %I:%M %p"))
 
     chromeInApps = os.system('open -Ra "Google Chrome.app"')
 
@@ -55,7 +55,10 @@ def launchYouTubeInChrome():
         print("Started launching YouTube in Chrome at", startDateTime.strftime("%m-%d-%Y %I:%M %p"))
 
         youTubeInChrome = str(os.system('open -a "Google Chrome.app" http://youtube.com'))
-        os.system(youTubeInChrome)
+        
+        if os.system(youTubeInChrome) != 0: 
+            raise Exception("Attempt threw an error! ") # TODO: figure out why it throws "sh: 0: command not found" error but still launches YouTube anyway
+
         print(Fore.GREEN + "Successfully launched YouTube in Chrome." + Style.RESET_ALL)
 
         finishedDateTime = datetime.now()
