@@ -4,7 +4,7 @@
 
 # you can run this script with: ./check_terminal_app_on_mac.sh < terminal app >
 
-terminalApp=$1
+terminalApp=$1 # you can set the terminal app here
 
 check_os_for_mac() {
 	echo "Started checking operating system at $(date)"
@@ -26,7 +26,7 @@ check_os_for_mac() {
 
 get_terminal_app() {
 	if [ -z $terminalApp ]; then 
-		read -p "Please type the terminal application and press \"return\" key (Example: cowsay): " terminalApp
+		read -p "Please type the terminal application and press the \"return\" key (Example: cowsay): " terminalApp
 		
 		echo ""
 	else 
@@ -75,8 +75,8 @@ check_terminal_app() {
 	
 	which -s $terminalApp
 	if [[ $? == 0 ]]; then 
-		tput setaf 2; echo "$terminalApp is installed."; tput sgr0
-		tput setaf 2; echo "Successfully checked $terminalApp."; tput sgr0
+		tput setaf 2; echo "$terminalApp is installed."
+		echo "Successfully checked $terminalApp."; tput sgr0
 		
 		end=$(date +%s)
 		echo "Finished checking $terminalApp at $(date)"
@@ -85,7 +85,7 @@ check_terminal_app() {
 		echo "Total execution time: $duration second(s)"
 		echo ""
 	else 
-		tput setaf 1; echo "$terminalApp is not installed."; tput sgr0
+		tput setaf 1; echo "$terminalApp is not installed."
 		tput setaf 2; echo "Successfully checked $terminalApp."; tput sgr0
 				
 		end=$(date +%s)
