@@ -30,30 +30,21 @@ get_disk_name() {
     diskutil list | grep "MacOS"
     if [[ $? == 0 ]]; then 
         tput setaf 4; echo "Disk name is MacOS."
-        tput setaf 2; echo "Successfully got disk name."; tput sgr0
-
-        end=$(date +%s)
-        echo "Finished getting disk name at $(date)"
-
-        duration=$(( $end - $start ))
-        echo "Total execution time: $duration second(s)"
-        echo ""
-
-        exit 0
     fi
     
     diskutil list | grep "Macintosh HD"
     if [[ $? == 0 ]]; then 
         tput setaf 4; echo "Disk name is Macintosh HD."
-        tput setaf 2; echo "Successfully got disk name."; tput sgr0
-
-        end=$(date +%s)
-        echo "Finished getting disk name at $(date)"
-
-        duration=$(( $end - $start ))
-        echo "Total execution time: $duration second(s)"
-        echo ""
     fi
+
+    tput setaf 2; echo "Successfully got disk name."; tput sgr0
+
+    end=$(date +%s)
+    echo "Finished getting disk name at $(date)"
+
+    duration=$(( $end - $start ))
+    echo "Total execution time: $duration second(s)"
+    echo ""
 }
 
 get_disk_name
