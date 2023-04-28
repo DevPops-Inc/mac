@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# check desktop app on Mac
+# check and launch desktop app on Mac
 
-# you can run this script with: ./check_desktop_app_on_mac.sh "< desktop app >"
+# you can run this script with: ./check_and_launch_desktop_app_on_mac.sh "< desktop app >"
 
 desktopApp=$1
 
@@ -68,22 +68,23 @@ check_parameters() {
 	fi
 }
 
-check_desktop_app() {
-	printf "\nCheck desktop app on Mac.\n\n"
+check_and_launch_desktop_app() {
+	printf "\nCheck and launch desktop app on Mac.\n\n"
 	check_os_for_mac
 	
 	get_desktop_app
 	check_parameters
 	
 	start=$(date +%s)
-	echo "Started checking $desktopApp at $(date)"
+	echo "Started checking and launching $desktopApp at $(date)"
 	
 	if open -Ra "$desktopApp"; then  
-		tput setaf 2; echo "$desktopApp is installed."
-		echo "Successfully checked $desktopApp."; tput sgr0
+		tput setaf 2; echo "$desktopApp is installed."; tput sgr0
+		open -a "$desktopApp.app"
+		tput setaf 2; echo "Successfully checked and launched $desktopApp."; tput sgr0
 
 		end=$(date +%s)
-		echo "Finished checking $desktopApp at $(date)"
+		echo "Finished checking and launching $desktopApp at $(date)"
 		
 		duration=$(( $end - $start ))
 		echo "Total execution time: $duration second(s)"
@@ -103,4 +104,4 @@ check_desktop_app() {
 	fi
 }
 
-check_desktop_app
+check_and_launch_desktop_app
