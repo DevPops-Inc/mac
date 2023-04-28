@@ -33,7 +33,7 @@ get_desktop_app() {
 		for $desktopApp in `ls /Applications | grep $desktopApp`; do 
 			echo $desktopApp &>/dev/null
 		done 
-		
+
 	else 
 		echo $desktopApp &>/dev/null
 	fi
@@ -79,9 +79,8 @@ check_desktop_app() {
 	echo "Started checking $desktopApp at $(date)"
 	
 	if open -Ra "$desktopApp"; then  
-		tput setaf 2; echo "$desktopApp is installed."; tput sgr0
-		open -a "$desktopApp.app"
-		tput setaf 2; echo "Successfully checked $desktopApp."; tput sgr0
+		tput setaf 2; echo "$desktopApp is installed."
+		echo "Successfully checked $desktopApp."; tput sgr0
 
 		end=$(date +%s)
 		echo "Finished checking $desktopApp at $(date)"
