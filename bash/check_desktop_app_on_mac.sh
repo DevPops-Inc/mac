@@ -2,7 +2,7 @@
 
 # check desktop app on Mac
 
-# you can run this script with: ./check_desktop_app_on_mac.sh < desktop app >
+# you can run this script with: ./check_desktop_app_on_mac.sh "< desktop app >"
 
 desktopApp=$1
 
