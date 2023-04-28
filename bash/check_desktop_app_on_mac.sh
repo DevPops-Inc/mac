@@ -26,7 +26,7 @@ check_os_for_mac() {
 
 get_desktop_app() {
 	if [ -z "$desktopApp" ]; then 
-		read -p "Please type the name of the desktop app you want to check and press \"return\" key (Example: cowsay): " desktopApp
+		read -p "Please type the name of the desktop app you want to check and press \"return\" key (Example: Docker): " desktopApp
 		
 		echo ""
 
