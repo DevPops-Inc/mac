@@ -69,7 +69,7 @@ check_parameters() {
 }
 
 check_desktop_app() {
-	printf "\nCheck $desktopApp on Mac.\n\n"
+	printf "\nCheck desktop app on Mac.\n\n"
 	check_os_for_mac
 	
 	get_desktop_app
