@@ -29,6 +29,11 @@ get_desktop_app() {
 		read -p "Please type the name of the desktop app you want to check and press \"return\" key (Example: cowsay): " desktopApp
 		
 		echo ""
+
+		for $desktopApp in `ls /Applications | grep $desktopApp`; do 
+			echo $desktopApp &>/dev/null
+		done 
+		
 	else 
 		echo $desktopApp &>/dev/null
 	fi
