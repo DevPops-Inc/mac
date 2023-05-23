@@ -14,7 +14,7 @@ def checkOs():
     print("Started checking operating system at", datetime.now().strftime("%m-%d-%Y %I:%M %p"))
 
     if sys.platform == "win32": 
-        print(Fore.GREEN + "Operating System:", end=""); sys.stdout.flush()
+        print(Fore.GREEN + "Operating System:", end="")
         os.system('ver')
         print(Style.RESET_ALL, end="")
         operatingSystem = "Windows"
@@ -80,15 +80,15 @@ def checkParameters(beginNumRange, endNumRange, numRandomNum):
     print("numRandomNum : {0}".format(numRandomNum))
     print("----------------------------------------")
 
-    if beginNumRange == None: 
+    if beginNumRange == None or beginNumRange == "": 
         print(Fore.RED + "beginNumRange is not set." + Style.RESET_ALL)
         valid = False
 
-    if endNumRange == None: 
+    if endNumRange == None or endNumRange == "": 
         print(Fore.RED + "endNumRange is not set." + Style.RESET_ALL)
         valid = False
 
-    if numRandomNum == None: 
+    if numRandomNum == None or numRandomNum == "": 
         print(Fore.RED + "numRandomNum is not set." + Style.RESET_ALL)
         valid = False
 
@@ -105,7 +105,7 @@ def checkParameters(beginNumRange, endNumRange, numRandomNum):
         exit("")
 
 
-def getRandomNumInRange(): 
+def getRandomNumsInRange(): 
     print("\nGet random numbers in range in Python.\n")
     operatingSystem = checkOs()
 
@@ -144,9 +144,8 @@ def getRandomNumInRange():
 
     except Exception: 
         print(Fore.RED + "Failed to get random numbers in range.")
-        
         traceback.print_exc()
         exit("" + Style.RESET_ALL)
 
 
-getRandomNumInRange()
+getRandomNumsInRange()
