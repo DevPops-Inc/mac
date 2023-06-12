@@ -9,7 +9,7 @@ colorama.init()
 
 
 def checkOsForMac():
-    print("Started checking operating system at", datetime.now().strftime("%Y-%m-%d H:%M %p"))
+    print("Started checking operating system at", datetime.now().strftime("%%m-%d-%Y I:%M %p"))
 
     if sys.platform == "darwin": 
         print(Fore.GREEN + "Operating System: ")
@@ -17,11 +17,13 @@ def checkOsForMac():
         print(Style.RESET_ALL, end="")
 
         print("Finished checking operating system at", datetime.now().strftime("%m-%d-%Y %I:%M %p"))
+
         print("")
     else: 
         print(Fore.RED + "Sorry this script only runs on macOS." + Style.RESET_ALL)
 
         print("Finished checking operating system at", datetime.now().strftime("%m-%d-%Y %I:%M %p"))
+
         exit("")
 
         
@@ -31,7 +33,7 @@ def checkChrome():
 
     try: 
         startDateTime = datetime.now()
-        print("Started checking Chrome at", startDateTime.strftime("%Y-%m-%d %H:%m %p"))
+        print("Started checking Chrome at", startDateTime.strftime("%m-%d-%Y %I:%M %p"))
 
         chromeInApps = os.system('open -Ra "Google Chrome.app"')
 
@@ -57,7 +59,6 @@ def checkChrome():
             
     except Exception: 
         print(Fore.RED + "Failed to check Chrome.")
-        
         traceback.print_exc()
         exit("" + Style.RESET_ALL)
 
