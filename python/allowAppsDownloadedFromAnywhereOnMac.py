@@ -20,11 +20,7 @@ def checkOsForMac():
 
         print("")
     else:
-        print(Fore.RED + "Sorry but this script only runs on Mac." + Style.RESET_ALL)
-
-        print("Finished checking operating system at", datetime.now().strftime("%m-%d-%Y %I:%M %p"))
-        
-        exit("")
+        raise Exception("Sorry but this script only runs on Mac.")
 
 
 def allowAppsDownloadedFromAnywhere():
@@ -37,6 +33,8 @@ def allowAppsDownloadedFromAnywhere():
         print("Started allowing apps downloaded from anywhere at", startDateTime.strftime("%m-%d-%Y %I:%M %p")) 
         
         os.system('sudo spctl --master-disable')
+        
+        # TODO: test if this command replaces the manual steps below: os.system('sudo defaults write /Library/Preferences/com.apple.security GKAutoRearm -bool NO')
 
         print("\nExpand Apple menu and select \"System Preferences...\"")
         input("Press any key to continue: ")
