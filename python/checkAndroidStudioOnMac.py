@@ -25,6 +25,7 @@ def checkOsForMac():
 
 
 def getDesktopApp(): 
+    
     desktopApp = str(input("Please type the desktop application and press the \"return\" key (Example: Android Studio): "))
 
     print("")
