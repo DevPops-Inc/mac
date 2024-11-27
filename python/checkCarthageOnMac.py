@@ -21,11 +21,7 @@ def checkOsForMac():
         print("")
 
     else: 
-        print(Fore.RED + "Sorry but this script only runs on Mac." + Style.RESET_ALL)
-        
-        print("Finished checking operating system at", datetime.now().strftime("%m-%d-%Y %I:%M %p"))
-
-        exit("")
+        raise Exception("Sorry but this script only runs on Mac.")
 
 
 def checkCarthage(): 
@@ -53,15 +49,7 @@ def checkCarthage():
             print("")
 
         else: 
-            print(Fore.RED + "carthage is not installed." + Style.RESET_ALL)
-            
-            finishedDateTime = datetime.now()
-
-            print("Finished checking carthage at", finishedDateTime.strftime("%m-%d-%Y %I:%M %p"))
-
-            duration = finishedDateTime - startDateTime
-            print("Total execution time: {0} second(s)".format(duration.seconds))
-            exit("")
+            raise Exception("carthage is not installed.")
         
     except Exception: 
         print(Fore.RED + "Failed to check carthage.")
