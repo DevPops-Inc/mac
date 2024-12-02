@@ -26,6 +26,9 @@ def checkOsForMac():
 
         
 def getDesktopApp(): 
+    os.system('ls /Applications')
+    print("")
+    
     desktopApp = str(input("Please type the desktop application and press the \"return\" key (Example: Google Chrome.app): "))
 
     print("")
