@@ -33,6 +33,7 @@ def getDesktopApp():
         
 
 def checkParameters(desktopApp): 
+    
     print("Started checking parameter(s) at", datetime.now().strftime("%m-%d-%Y %I:%M %p"))
     valid = True
 
