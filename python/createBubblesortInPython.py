@@ -43,7 +43,7 @@ def bubbleSort(dataset):
                 dataset[j] = dataset[j+1]
                 dataset[j+1] = temp
         time.sleep(.25)
-        print(dataset)
+    print(dataset)
 
 
 def createBubblesort():
