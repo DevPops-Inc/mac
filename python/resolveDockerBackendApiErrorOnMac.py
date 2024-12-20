@@ -95,18 +95,17 @@ def stopAndRestartDocker(processId):
 def resolveDockerBackendApiError(): 
     print("\nResolve Docker failed to ping backend API error on Mac.\n")
 
-    checkOsForMac()
-    checkDocker()
-
-    if len(sys.argv) >= 2: 
-        processId = str(sys.argv[1])
-
-    else: 
-        processId = getDockerProcessId()
-
-    checkParameters(processId)
-
     try: 
+        checkOsForMac()
+        checkDocker()
+
+        if len(sys.argv) >= 2: 
+            processId = str(sys.argv[1])
+
+        else: 
+            processId = getDockerProcessId()
+
+        checkParameters(processId)
         startDateTime = datetime.now()
         
         print("Started resolving Docker backend API error at", startDateTime.strftime("%m-%d-%Y %I:%M %p"))
