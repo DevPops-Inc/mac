@@ -11,6 +11,7 @@ colorama.init()
 
 
 def checkOs():
+
     print("Started checking operating system at ", datetime.now().strftime("%m-%d-%Y %I:%M %p"))
 
     if sys.platform == "win32": 
@@ -26,12 +27,10 @@ def checkOs():
         operatingSystem = "macOS"
 
     else: 
-        print(Fore.RED + "Sorry but this script only runs on Windows or macOS." + Style.RESET_ALL)
-
-        print("Finished checking operating system at ", datetime.now().strftime("%m-%d-%Y %I:%M %p"))
-        exit("")
+        raise Exception("Sorry but this script only runs on Windows or macOS.")
 
     print("Finished checking operating system at ", datetime.now().strftime("%m-%d-%Y %I:%M %p"))
+
     print("")
     return operatingSystem
     
@@ -92,7 +91,7 @@ def runMacMaintenance():
     else: 
         raise Exception("Disk name isn't MacOS or Macintosh HD.")
     
-    verifyVolume = 'distutil verifyVolume "{0}"'.format(hdd)
+    verifyVolume = 'diskutil verifyVolume "{0}"'.format(hdd)
     
     maintenance = ['sudo mdutil -i on /', 'softwareupdate --install --all', verifyVolume ]
 
@@ -119,25 +118,33 @@ def runMacMaintenance():
 
 def computerMaintenance():
     print("\nRun computer maintenance.\n")
-    operatingSystem = checkOs()
 
-    if operatingSystem == "Windows": 
-        try: 
-            runWindowsMaintenance()
-        except Exception: 
-            print(Fore.RED + "Failed to run Windows maintenance.")
-            
-            traceback.print_exc()
-            exit("" + Style.RESET_ALL)
-            
-    elif operatingSystem == "macOS":
-        try: 
+    try: 
+        operatingSystem = checkOs()
+
+        startDateTime = datetime.now()
+
+        print("Started mainteance at {0}".format(startDateTime.strftime("%m-%d-%Y %I:%M %p")))
+
+        if operatingSystem == "Windows": 
+            runWindowsMaintenance()           
+        elif operatingSystem == "macOS":
             runMacMaintenance()
-        except Exception: 
-            print(Fore.RED + "Failed to run Mac maintenance.")
-            
-            traceback.print_exc()
-            exit("" + Style.RESET_ALL)
+
+        print(Fore.GREEN + "Successfully performed maintenance." + Style.RESET_ALL)
+
+        finishedDateTime = datetime.now()
+
+        print("Finished maintenance at {0}".format(finishedDateTime.strftime("%m-%d-%Y %I:%M %p")))
+
+        duration = finishedDateTime - startDateTime
+        print("Total execution time: {0} second(s)".format(duration.seconds))
+        print("")
+
+    except Exception: 
+        print(Fore.RED + "Failed to run maintenance.")            
+        traceback.print_exc()
+        exit("" + Style.RESET_ALL)
 
 
 computerMaintenance()
