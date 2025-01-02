@@ -91,7 +91,7 @@ def runMacMaintenance():
     else: 
         raise Exception("Disk name isn't MacOS or Macintosh HD.")
     
-    verifyVolume = 'distutil verifyVolume "{0}"'.format(hdd)
+    verifyVolume = 'diskutil verifyVolume "{0}"'.format(hdd)
     
     maintenance = ['sudo mdutil -i on /', 'softwareupdate --install --all', verifyVolume ]
 
