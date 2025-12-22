@@ -1,4 +1,4 @@
-# get running processes
+# list drives
 
 $ErrorActionPreference = "Stop"
 
@@ -15,27 +15,25 @@ function CheckOs()
     {
         Write-Host "Operating System:" $hostOs -ForegroundColor Green
     }
-
     Write-Host "Finished checking operating system at" (Get-Date).DateTime
     Write-Host ""
 }
 
-function GetRunningProcesses()
+function GetListOfDrives()
 {
-    Write-Host "`nGet running processes.`n"
+    Write-Host "`nList drives.`n"
     CheckOs
 
     try 
     {
         $startDateTime = (Get-Date)
-        Write-Host "Started getting running processes at" $startDateTime.DateTime
+        Write-Host "Started listing drives at" $startDateTime.DateTime
 
-        Write-Host "The Processes running on this computer are: "
-        Get-Process
-        Write-Host "Successfully got processes on this computer." -ForegroundColor Green
+        Get-PSDrive | Out-String
+        Write-Host "Successfully listed drives." -ForegroundColor Green
 
         $finishedDateTime = (Get-Date)
-        Write-Host "Finished getting running processes at" $finishedDateTime.DateTime
+        Write-Host "Finished listing drives at" $finishedDateTime.DateTime
 
         $duration = New-TimeSpan $startDateTime $finishedDateTime
 
@@ -43,13 +41,13 @@ function GetRunningProcesses()
 
         Write-Host ""
     }
-    catch
+    catch 
     {
-        Write-Host "Failed to get processes on this computer." -ForegroundColor Red
+        Write-Host "Failed to list drives." -Foreground Red
         Write-Host $_ -ForegroundColor Red
         Write-Host $_.ScriptStackTrace -ForegroundColor Red
         Write-Host ""
     }
 }
 
-GetRunningProcesses
+GetListOfDrives

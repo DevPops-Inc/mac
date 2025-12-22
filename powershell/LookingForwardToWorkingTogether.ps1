@@ -4,8 +4,10 @@
 
 [CmdletBinding()]
 param(
-    [string] [Parameter(Mandatory = $False)] $buddy = ""
+    [string] [Parameter(Mandatory = $False)] $buddy = "" # you can set your buddy's name here 
 )
+
+$ErrorActionPreference = "Stop"
 
 function CheckOs()
 {
@@ -31,6 +33,7 @@ function GetBuddy([string]$buddy)
     {
         Read-Host -Prompt "Please type your buddy's name and press `"Enter`" key on Windows or `"return`" key on Mac or Linux (Example: James)" 
 
+        Write-Host ""
         return $buddy
     }
     else
@@ -41,10 +44,10 @@ function GetBuddy([string]$buddy)
 
 function CheckParameters([string]$buddy)
 {
-    Write-Host "Started checking parameters at" (Get-Date).DateTime
+    Write-Host "Started checking parameter(s) at" (Get-Date).DateTime
     $valid = $True
 
-    Write-Host "`nParameters:"
+    Write-Host "Parameter(s):"
     Write-Host "-----------------------"
     Write-Host ("buddy: {0}" -F $buddy)
     Write-Host "-----------------------"
@@ -57,17 +60,15 @@ function CheckParameters([string]$buddy)
 
     if ($valid -eq $True)
     {
-        Write-Host "All parameter checks passed." -ForegroundColor Green
+        Write-Host "All parameter check(s) passed." -ForegroundColor Green
+
+        Write-Host "Finished checking parameter(s) at" (Get-Date).DateTime
+        Write-Host ""
     }
     else 
     {
-        Write-Host "One or more parameter checks are incorret, exiting script." -ForegroundColor Red
-
-        exit -1
+        throw "One or more parameter checks are incorrect." 
     }
-
-    Write-Host "Finished checking parameters at" (Get-Date).DateTime
-    Write-Host ""
 }
 
 function LookingForward()
@@ -81,7 +82,7 @@ function LookingForward()
     try 
     {
         $startDateTime = (Get-Date)
-        Write-Host "Started looking forward to you at" $startDateTime
+        Write-Host "Started looking forward to you at" $startDateTime.DateTime
         
         $colors = 'White', 'DarkRed', 'Red', 'Yellow', 'DarkYellow', 'Green', 'DarkGreen', 'DarkBlue', 'Blue', 'DarkCyan', 'Cyan', 'Magenta', 'DarkMagenta', 'Black'
 
@@ -89,14 +90,20 @@ function LookingForward()
         {
             Write-Host ("Looking forward to working together, {0}!" -F $buddy) -Foregroundcolor $color 
 
-            Start-Sleep -s 1 
+            Start-Sleep -s .25
         }
 
+        Write-Host "Successfully finished looking forward to working together." -ForegroundColor Green 
+
         $finishedDateTime = (Get-Date)
-        Write-Host "Finished looking forward to working together at" $finishedDateTime
+        
+        Write-Host "Finished looking forward to working together at" $finishedDateTime.DateTime
+        
         $duration = New-TimeSpan $startDateTime $finishedDateTime
 
         Write-Host ("Total execution time: {0} hours {1} minutes {2} seconds" -F $duration.Hours, $duration.Minutes, $duration.Seconds)
+
+        Write-Host ""
     }
     catch
     {
@@ -104,6 +111,7 @@ function LookingForward()
 
         Write-Host $_ -ForegroundColor Red
         Write-Host $_.ScriptStackTrace -ForegroundColor Red
+        Write-Host ""
     }
 }
 
