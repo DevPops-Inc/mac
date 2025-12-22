@@ -8,6 +8,8 @@ param(
     [string] [Parameter(Mandatory = $False)] $filename = "" # you can set the filename here
 )
 
+$ErrorActionPreference = "Stop"
+
 function CheckOs()
 {
     Write-Host "Started checking operating system at" (Get-Date).DateTime
@@ -107,7 +109,13 @@ function FileFinder([string]$drive, [string]$filename)
         Write-Host ("Started finding file `"{0}`" in {1} drive at {2}." -F $filename, $drive, $startDateTime)
 
         Write-Host "Please wait since this may this a while . . . " -ForegroundColor Blue   
-        Get-ChildItem -Path $drive -Name *$filename* -Recurse -Force
+        
+        $targetFile = Get-ChildItem -Path $drive -Filter *$filename* -Recurse -Force -ErrorAction SilentlyContinue
+
+        if (-not $targetFile)
+        {
+            throw "File matching '*$filename*' was not found on drive '$drive'."
+        }
 
         Write-Host ("Successfully searched for file `"{0}`" on {1}" -F $filename, $drive) -ForegroundColor Green
 
