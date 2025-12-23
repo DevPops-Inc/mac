@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # allow apps downloaded from anywhere on Mac
 

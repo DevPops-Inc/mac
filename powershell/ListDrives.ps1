@@ -1,6 +1,4 @@
-# list drives
-
-$ErrorActionPreference = "Stop"
+# get list of drives
 
 function CheckOs()
 {
@@ -21,32 +19,31 @@ function CheckOs()
 
 function GetListOfDrives()
 {
-    Write-Host "`nList drives.`n"
+    Write-Host "`nGet list of drives.`n"
     CheckOs
 
     try 
     {
         $startDateTime = (Get-Date)
-        Write-Host "Started listing drives at" $startDateTime.DateTime
+        Write-Host "Started getting list of drives at" $startDateTime
 
-        Get-PSDrive | Out-String
-        Write-Host "Successfully listed drives." -ForegroundColor Green
+        Get-PSDrive
+
+        Write-Host "`nSuccessfully got list of drives on this computer" -ForegroundColor Green
 
         $finishedDateTime = (Get-Date)
-        Write-Host "Finished listing drives at" $finishedDateTime.DateTime
+        Write-Host "Finished getting list of drives at" $finishedDateTime
 
         $duration = New-TimeSpan $startDateTime $finishedDateTime
 
         Write-Host ("Total execution time: {0} hours {1} minutes {2} seconds" -F $duration.Hours, $duration.Minutes, $duration.Seconds)
-
-        Write-Host ""
     }
     catch 
     {
-        Write-Host "Failed to list drives." -Foreground Red
+        Write-Host "`nFailed to get list of drives on this computer.`n" -Foreground Red
+
         Write-Host $_ -ForegroundColor Red
         Write-Host $_.ScriptStackTrace -ForegroundColor Red
-        Write-Host ""
     }
 }
 
