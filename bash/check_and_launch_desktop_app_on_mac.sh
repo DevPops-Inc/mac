@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # check and launch desktop app on Mac
 
@@ -30,8 +31,8 @@ get_desktop_app() {
 		
 		echo ""
 
-		for $desktopApp in `ls /Applications | grep $desktopApp`; do 
-			echo $desktopApp &>/dev/null
+		for app in $(ls /Applications | grep -i -- "$desktopApp"); do 
+			echo "$app" &>/dev/null
 		done 
 
 	else 
