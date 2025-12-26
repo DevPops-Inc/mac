@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # check Android Studio on Mac
 
