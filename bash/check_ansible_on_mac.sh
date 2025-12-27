@@ -24,7 +24,7 @@ check_os_for_mac() {
 }
 
 get_terminal_app() {
-    if [ -z $terminalApp ]; then 
+    if [ -z "$terminalApp" ]; then 
         read -p "Please type the name of the terminal app you want to check and press \"return\" key (Example: ansible): " terminalApp
 
         echo ""
