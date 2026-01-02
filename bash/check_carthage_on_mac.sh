@@ -74,7 +74,7 @@ check_terminal_app() {
 
 	if which -s $terminalApp; then 
 		tput setaf 2; echo "$terminalApp is installed."; tput sgr0
-		$terminalApp --version
+		$terminalApp version
 		tput setaf 2; echo "Successfully checked $terminalApp."; tput sgr0
 
         end=$(date +%s)
