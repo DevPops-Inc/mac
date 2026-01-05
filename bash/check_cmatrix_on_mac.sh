@@ -24,7 +24,7 @@ check_os_for_mac() {
 }
 
 get_terminal_app() {
-    if [ -z $terminalApp ]; then 
+    if [ -z "$terminalApp" ]; then 
         read -p "Please type the terminal application you would like to check and press \"return\" key (Example: cmatrix): " terminalApp
 
         echo ""
@@ -67,7 +67,7 @@ check_terminal_app() {
     start=$(date +%s)
     echo "Started checking $terminalApp at $(date)"
 
-    if which -s $terminalApp; then 
+    if which -s "$terminalApp"; then 
         tput setaf 2; echo "$terminalApp is installed."; tput sgr0
         
         echo "Do you want to run $terminalApp now?"
