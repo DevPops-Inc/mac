@@ -73,7 +73,7 @@ check_terminal_app() {
         echo "Do you want to run $terminalApp now?"
         read -p "Please type \"Y\" or \"N\" and press \"return\" key: " answer
 
-        if [[ $answer == 'Y' || 'y' ]]; then 
+        if [[ $answer == 'Y' || $answer == 'y' ]]; then 
             $terminalApp -s
         fi
         
