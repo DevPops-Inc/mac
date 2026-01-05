@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # check cmatrix on Mac
 
@@ -66,8 +67,7 @@ check_terminal_app() {
     start=$(date +%s)
     echo "Started checking $terminalApp at $(date)"
 
-    which -s $terminalApp
-    if [[ $? == 0 ]]; then 
+    if which -s $terminalApp; then 
         tput setaf 2; echo "$terminalApp is installed."; tput sgr0
         
         echo "Do you want to run $terminalApp now?"
