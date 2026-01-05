@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # check cmatrix on Mac
 
@@ -23,7 +24,7 @@ check_os_for_mac() {
 }
 
 get_terminal_app() {
-    if [ -z $terminalApp ]; then 
+    if [ -z "$terminalApp" ]; then 
         read -p "Please type the terminal application you would like to check and press \"return\" key (Example: cmatrix): " terminalApp
 
         echo ""
@@ -63,17 +64,19 @@ check_terminal_app() {
     printf "\nCheck $terminalApp on Mac.\n\n"
     check_os_for_mac
 
+    get_terminal_app
+    check_parameters
+
     start=$(date +%s)
     echo "Started checking $terminalApp at $(date)"
 
-    which -s $terminalApp
-    if [[ $? == 0 ]]; then 
+    if which -s "$terminalApp"; then 
         tput setaf 2; echo "$terminalApp is installed."; tput sgr0
         
         echo "Do you want to run $terminalApp now?"
         read -p "Please type \"Y\" or \"N\" and press \"return\" key: " answer
 
-        if [[ $answer == 'Y' || 'y' ]]; then 
+        if [[ $answer == 'Y' || $answer == 'y' ]]; then 
             $terminalApp -s
         fi
         
