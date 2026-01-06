@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # check colorama module on Mac
 
@@ -23,7 +24,7 @@ check_os_for_mac() {
 }
 
 get_module() {
-    if [ -z $module ]; then 
+    if [ -z "$module" ]; then 
         read -p "Please type the module and press \"return\" key (Example: colorama): " module
         echo ""
     else 
@@ -40,7 +41,7 @@ check_parameters() {
     echo "module: $module"
     echo "---------------"
 
-    if [ -z $module ]; then 
+    if [ -z "$module" ]; then 
         tput setaf 1; echo "module is not set."; tput sgr0
         valid="false"
     fi
@@ -68,8 +69,7 @@ check_colorama() {
     start=$(date +%s)
     echo "Started checking $module at $(date)"
 
-    pip list | grep $module
-    if [[ $? == 0 ]]; then 
+    if pip list 2>/dev/null | grep -q "$module"; then 
         tput setaf 2; echo "$module is installed"; tput sgr0
 
         end=$(date +%s)
@@ -84,7 +84,7 @@ check_colorama() {
         end=$(date +%s)
         echo "Finished checking $module at $(date)"
         
-        duration=$(( $end = $start ))
+        duration=$(( $end - $start ))
         echo "Total execution time: $duration second(s)"
         echo ""
     fi
