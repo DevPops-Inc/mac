@@ -84,7 +84,7 @@ check_colorama() {
         end=$(date +%s)
         echo "Finished checking $module at $(date)"
         
-        duration=$(( $end = $start ))
+        duration=$(( $end - $start ))
         echo "Total execution time: $duration second(s)"
         echo ""
     fi
