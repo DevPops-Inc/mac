@@ -24,7 +24,7 @@ check_os_for_mac() {
 }
 
 get_module() {
-    if [ -z $module ]; then 
+    if [ -z "$module" ]; then 
         read -p "Please type the module and press \"return\" key (Example: colorama): " module
         echo ""
     else 
@@ -41,7 +41,7 @@ check_parameters() {
     echo "module: $module"
     echo "---------------"
 
-    if [ -z $module ]; then 
+    if [ -z "$module" ]; then 
         tput setaf 1; echo "module is not set."; tput sgr0
         valid="false"
     fi
