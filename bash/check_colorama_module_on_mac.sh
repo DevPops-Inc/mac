@@ -69,7 +69,7 @@ check_colorama() {
     start=$(date +%s)
     echo "Started checking $module at $(date)"
 
-    if pip list | grep -q "$module"; then 
+    if pip list 2>/dev/null | grep -q "$module"; then 
         tput setaf 2; echo "$module is installed"; tput sgr0
 
         end=$(date +%s)
