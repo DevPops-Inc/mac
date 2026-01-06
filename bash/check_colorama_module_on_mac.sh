@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # check colorama module on Mac
 
@@ -68,8 +69,7 @@ check_colorama() {
     start=$(date +%s)
     echo "Started checking $module at $(date)"
 
-    pip list | grep $module
-    if [[ $? == 0 ]]; then 
+    if pip list | grep -q "$module"; then 
         tput setaf 2; echo "$module is installed"; tput sgr0
 
         end=$(date +%s)
