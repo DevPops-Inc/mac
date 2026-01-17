@@ -64,6 +64,9 @@ check_terminal_app() {
     printf "\nCheck $terminalApp on Mac.\n\n"
     check_os_for_mac
 
+    get_terminal_app
+    check_parameters
+
     start=$(date +%s)
     echo "Started checking $terminalApp at $(date)"
 
