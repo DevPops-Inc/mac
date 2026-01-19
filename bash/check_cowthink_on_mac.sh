@@ -24,7 +24,7 @@ check_os_for_mac() {
 }
 
 get_terminal_app() {
-    if [ -z $terminalApp ]; then 
+    if [ -z "$terminalApp" ]; then 
         read -p "Please type the terminal application you would like to check and press \"return\" key (Example: cowthink): " terminalApp
 
         echo ""
@@ -42,7 +42,7 @@ check_parameters() {
     echo "terminalApp: $terminalApp"
     echo "-------------------------"
 
-    if [ -z $terminalApp ]; then 
+    if [ -z "$terminalApp" ]; then 
         tput setaf 1; echo "terminalApp is not set."; tput sgr0
     fi
 
@@ -66,7 +66,7 @@ check_terminal_app() {
     start=$(date +%s)
     echo "Started checking $terminalApp at $(date)"
 
-    if which -s $terminalApp; then 
+    if which -s "$terminalApp"; then 
         tput setaf 2; echo "$terminalApp is installed."; tput sgr0
         $terminalApp "cowthink is installed."        
         tput setaf 2; echo "Successfully checked $terminalApp."; tput sgr0
