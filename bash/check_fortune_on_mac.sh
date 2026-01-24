@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # check fortune on Mac
 
@@ -66,8 +67,7 @@ check_terminal_app() {
     start=$(date +%s)
     echo "Started checking $terminalApp at $(date)"
 
-    which -s $terminalApp
-    if [[ $? == 0 ]]; then 
+    if which -s $terminalApp; then 
         tput setaf 2; echo "$terminalApp is installed."
         tput setaf 4; $terminalApp
         tput setaf 2; echo "Successfully checked $terminalApp."; tput sgr0
