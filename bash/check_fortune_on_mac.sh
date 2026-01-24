@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # check fortune on Mac
 
@@ -23,7 +24,7 @@ check_os_for_mac() {
 }
 
 get_terminal_app() {
-    if [ -z $terminalApp ]; then 
+    if [ -z "$terminalApp" ]; then 
         read -p "Please type the terminal application you would like to check and press \"return\" (Example: fortune): " terminalApp
 
         echo ""
@@ -41,7 +42,7 @@ check_parameters() {
     echo "terminalApp: $terminalApp"
     echo "-------------------------"
 
-    if [ -z $terminalApp ]; then 
+    if [ -z "$terminalApp" ]; then 
         tput setaf 1; echo "terminalApp is not set."; tput sgr0
         valid="false"
     fi
@@ -63,11 +64,13 @@ check_terminal_app() {
     printf "\nCheck $terminalApp on Mac.\n\n"
     check_os_for_mac
 
+    get_terminal_app
+    check_parameters
+
     start=$(date +%s)
     echo "Started checking $terminalApp at $(date)"
 
-    which -s $terminalApp
-    if [[ $? == 0 ]]; then 
+    if which -s $terminalApp; then 
         tput setaf 2; echo "$terminalApp is installed."
         tput setaf 4; $terminalApp
         tput setaf 2; echo "Successfully checked $terminalApp."; tput sgr0
