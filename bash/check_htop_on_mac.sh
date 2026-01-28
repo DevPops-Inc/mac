@@ -3,6 +3,8 @@ set -e
 
 # check htop on Mac
 
+terminalApp="htop"
+
 check_os_for_mac() {
     echo "Started checking operating system at $(date)"
 
@@ -21,27 +23,71 @@ check_os_for_mac() {
     fi
 }
 
+get_terminal_app() {
+	if [ -z "$terminalApp" ]; then 
+		read -p "Please type the terminal application you would like to check and press \"return\" key (Example: htop): " terminalApp
+
+		echo ""
+	else 
+		echo $terminalApp &>/dev/null
+	fi
+}
+
+check_parameters() {
+	echo "Started checking parameter(s) at $(date)"
+	valid="true"
+
+	echo "Parameter(s):"
+	echo "-------------------------"
+	echo "terminalApp: $terminalApp"
+	echo "-------------------------"
+
+	if [ -z "$terminalApp" ]; then 
+		tput setaf 1; echo "terminalApp is not set."; tput sgr0
+		valid="false"
+	fi
+
+	if [ $valid == "true" ]; then 
+		tput setaf 2; echo "All parameter check(s) passed."; tput sgr0
+
+		echo "Finished checking parameter(s) at $(date)"
+		echo ""
+	else
+		tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
+
+		echo "Finished checking parameter(s) at $(date)"
+		echo ""
+
+		exit 1
+	fi
+}
+
 check_htop() {
     printf "\nCheck htop on Mac.\n\n"
     check_os_for_mac
 
+    get_terminal_app
+    check_parameters
+
     start=$(date +%s)
     echo "Started checking htop at $(date)"
 
-    if which -s htop; then 
-        tput setaf 2; echo "htop is installed."; tput sgr0
+    if which -s "$terminalApp"; then 
+        tput setaf 2; echo "$terminalApp is installed."; tput sgr0
+        $terminalApp --version
+		tput setaf 2; echo "Successfully checked $terminalApp."; tput sgr0
 
         end=$(date +%s)
-        echo "Finished checking htop at $(date)"
+        echo "Finished checking $terminalApp at $(date)"
 
         duration=$(( $end - $start ))
         echo "Total execution time: $duration second(s)"
         echo ""
     else 
-        tput setaf 1; echo "htop is not installed."; tput sgr0
+        tput setaf 1; echo "$terminalApp is not installed."; tput sgr0
 
         end=$(date +%s)
-        echo "Finished checking htop at $(date)"
+        echo "Finished checking $terminalApp at $(date)"
 
         duration=$(( $end - $start ))
         echo "Total execution time: $duration second(s)"
