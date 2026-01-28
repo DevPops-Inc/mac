@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # check htop on Mac
 
@@ -27,8 +28,7 @@ check_htop() {
     start=$(date +%s)
     echo "Started checking htop at $(date)"
 
-    which -s htop
-    if [[ $? == 0 ]]; then 
+    if which -s htop; then 
         tput setaf 2; echo "htop is installed."; tput sgr0
 
         end=$(date +%s)
