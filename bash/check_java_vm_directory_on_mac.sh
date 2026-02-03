@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # check Java Virtual Machines directory on Mac
 
@@ -23,7 +24,7 @@ check_os_for_mac() {
 }
 
 get_java_vm_directory() {
-	if [ -z $javaVmDirectory ]; then 
+	if [ -z "$javaVmDirectory" ]; then 
 		read -p "Please type the Java virtual machines directory and press \"return\" key (Example: /Library/Java/JavaVirtualMachines): " javaVmDirectory
 
 		echo ""
@@ -41,7 +42,7 @@ check_parameters() {
 	echo "javaVmDirectory: $javaVmDirectory"
 	echo "---------------------------------"
 
-	if [ -z $javaVmDirectory ]; then 
+	if [ -z "$javaVmDirectory" ]; then 
 		tput setaf 1; echo "javaVmDirectory is not set."; tput sgr0
 		valid="false"
 	fi
@@ -69,7 +70,7 @@ check_java_vm_directory() {
 	start=$(date +%s)
 	echo "Started checking $javaVmDirectory at $(date)"
 
-	if [ -d $javaVmDirectory ]; then 
+	if [ -d "$javaVmDirectory" ]; then 
 		tput setaf 2; echo "$javaVmDirectory directory exists"; tput sgr0
 		
 		echo "-------------"
