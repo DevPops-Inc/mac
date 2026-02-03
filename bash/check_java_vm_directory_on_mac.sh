@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # check Java Virtual Machines directory on Mac
 
