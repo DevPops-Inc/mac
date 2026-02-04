@@ -3,7 +3,7 @@ set -e
 
 # check Java Virtual Machines directory on Mac
 
-javaVmDirectory="/Library/Java/JavaVirtualMachines"
+javaVmDir="/Library/Java/JavaVirtualMachines"
 
 check_os_for_mac() {
 	echo "Started checking operating system at $(date)"
@@ -23,13 +23,13 @@ check_os_for_mac() {
 	fi
 }
 
-get_java_vm_directory() {
-	if [ -z "$javaVmDirectory" ]; then 
-		read -p "Please type the Java virtual machines directory and press \"return\" key (Example: /Library/Java/JavaVirtualMachines): " javaVmDirectory
+get_java_vm_dir() {
+	if [ -z "$javaVmDir" ]; then 
+		read -p "Please type the Java virtual machines directory and press \"return\" key (Example: /Library/Java/JavaVirtualMachines): " javaVmDir
 
 		echo ""
 	else 
-		echo $javaVmDirectory &>/dev/null
+		echo $javaVmDir &>/dev/null
 	fi
 }
 
@@ -38,12 +38,12 @@ check_parameters() {
 	valid="true"
 
 	echo "Parameter(s):"
-	echo "---------------------------------"
-	echo "javaVmDirectory: $javaVmDirectory"
-	echo "---------------------------------"
+	echo "---------------------"
+	echo "javaVmDir: $javaVmDir"
+	echo "---------------------"
 
-	if [ -z "$javaVmDirectory" ]; then 
-		tput setaf 1; echo "javaVmDirectory is not set."; tput sgr0
+	if [ -z "$javaVmDir" ]; then 
+		tput setaf 1; echo "javaVmDir is not set."; tput sgr0
 		valid="false"
 	fi
 
@@ -61,41 +61,41 @@ check_parameters() {
 }
 
 check_java_vm_directory() {
-	printf "\nCheck $javaVmDirectory on Mac.\n\n"
+	printf "\nCheck $javaVmDir on Mac.\n\n"
 	check_os_for_mac
 
-	get_java_vm_directory
+	get_java_vm_dir
 	check_parameters
 
 	start=$(date +%s)
-	echo "Started checking $javaVmDirectory at $(date)"
+	echo "Started checking $javaVmDir at $(date)"
 
-	if [ -d "$javaVmDirectory" ]; then 
-		tput setaf 2; echo "$javaVmDirectory directory exists"; tput sgr0
+	if [ -d "$javaVmDir" ]; then 
+		tput setaf 2; echo "$javaVmDir directory exists"; tput sgr0
 		
 		echo "-------------"
-		ls $javaVmDirectory
+		ls $javaVmDir
 		echo "-------------"
-		tput setaf 2; echo "Successfully checked $javaVmDirectory."; tput sgr0
+		tput setaf 2; echo "Successfully checked $javaVmDir."; tput sgr0
 
 		end=$(date +%s)
-		echo "Finished checking $javaVmDirectory at $(date)"
+		echo "Finished checking $javaVmDir at $(date)"
 
 		duration=$(( $end - $start ))
 		echo "Total execution time: $duration second(s)"
 		echo ""
 	else 
-		echo "$javaVmDirectory directory doesn't exist so creating it now"
-		sudo mkdir -p $javaVmDirectory;
+		echo "$javaVmDir directory doesn't exist so creating it now"
+		sudo mkdir -p $javaVmDir;
 		
 		echo "-------------"
-		ls $javaVmDirectory
+		ls $javaVmDir
 		echo "-------------"
 		
-		tput setaf 2; echo "Successfully created $javaVmDirectory."; tput sgr0
+		tput setaf 2; echo "Successfully created $javaVmDir."; tput sgr0
 
 		end=$(date +%s)
-		echo "Finished checking $javaVmDirectory at $(date)"
+		echo "Finished checking $javaVmDir at $(date)"
 
 		duration=$(( $end - $start ))
 		echo "Total execution time: $duration second(s)"
