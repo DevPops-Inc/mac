@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # check node on Mac
 
@@ -68,8 +69,7 @@ check_terminal_app() {
     start=$(date +%s)
     echo "Started checking $terminalApp at $(date)"
 
-    which -s $terminalApp
-    if [[ $? == 0 ]]; then
+    if which -s $terminalApp; then
         tput setaf 2; echo "$terminalApp is installed."; tput sgr0
         $terminalApp --version
         tput setaf 2; echo "Successfully checked $terminalApp."; tput sgr0
