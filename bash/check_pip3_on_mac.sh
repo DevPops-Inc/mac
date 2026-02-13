@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 terminalApp="pip3"
 
@@ -21,7 +22,7 @@ check_os_for_mac() {
 }
 
 get_terminal_app() {
-    if [ -z $terminalApp ]; then 
+    if [ -z "$terminalApp" ]; then 
         read -p "Please type the terminal application you wish to check and press \"return\" key (Example: pip3): " terminalApp
 
         echo ""
@@ -39,7 +40,7 @@ check_parameters() {
     echo "terminalApp: $terminalApp"
     echo "-------------------------"
 
-    if [ -z $terminalApp ]; then 
+    if [ -z "$terminalApp" ]; then 
         tput setaf 1; echo "terminalApp is not set."; tput sgr0
         valid="false"
     fi
@@ -67,8 +68,7 @@ check_terminal_app() {
     start=$(date +%s)
     echo "Started checking $terminalApp at $(date)"
 
-    which -s $terminalApp
-    if [[ $? == 0 ]]; then 
+    if which -s "$terminalApp"; then 
         tput setaf 2; echo "$terminalApp is installed."; tput sgr0
         $terminalApp --version
         tput setaf 2; echo "Successfully checked $terminalApp."; tput sgr0
