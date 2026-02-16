@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # check rev on Mac
 
@@ -27,8 +28,7 @@ check_rev() {
     start=$(date +%s)
     echo "Started checking rev at $(date)"
 
-    which -s rev
-    if [[ $? == 0 ]]; then 
+    if which -s rev; then 
         tput setaf 2; echo "rev is installed."; tput sgr0
 
         end=$(date +%s)
