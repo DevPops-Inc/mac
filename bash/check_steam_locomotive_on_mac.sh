@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # check steam locomotive 
 
@@ -27,8 +28,7 @@ check_steam_locomotive() {
     start=$(date +%s)
     echo "Started checking steam locomotive at $(date)"
 
-    which -s sl
-    if [[ $? == 0 ]]; then 
+    if which -s sl; then 
         tput setaf 2; echo "Steam locomotive is installed."; tput sgr0
         sl
     else 
