@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # check telnet on Mac
 
@@ -27,8 +28,7 @@ check_telnet() {
     start=$(date +%s) 
     echo "Started checking Telnet at $(date)"
 
-    which -s telnet
-    if [[ $? == 0 ]]; then 
+    if which -s telnet; then 
         tput setaf 2; echo "Telnet is installed."; tput sgr0
         
         end=$(date +%s)
