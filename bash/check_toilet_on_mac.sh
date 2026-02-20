@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # check TOIlet on Mac
 
@@ -27,8 +28,7 @@ check_toilet() {
     start=$(date +%s)
     echo "Started checking TOIlet at $(date)"
 
-    which -s toilet
-    if [[ $? == 0 ]]; then 
+    if which -s toilet; then 
         tput setaf 2; echo "TOIlet is installed."; tput sgr0
         toilet --version
         tput setaf 2; echo "Successfully checked TOIlet."; tput sgr0
