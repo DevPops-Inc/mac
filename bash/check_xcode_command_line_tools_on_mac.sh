@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # check XCode command line tools on Mac
 
@@ -27,8 +28,7 @@ check_xcode_command_line_tools() {
     start=$(date +%s)
     echo "Started checking XCode command line tools at $(date)"
 
-    which -s xcode-select
-    if [[ $? == 0 ]]; then 
+    if which -s xcode-select; then 
         tput setaf 2; echo "XCode command line tools are installed."; tput sgr0
         xcode-select --version
 
