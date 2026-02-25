@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# install YouTube Downloader with PIP on Mac
+# check YouTube Downloader on Mac
+
+$terminalApp="yt-dlp"
 
 check_os_for_mac() {
     echo "Started checking operating system at $(date)"
@@ -27,7 +29,7 @@ check_youtube-dl() {
     start=$(date +%s)
     echo "Started checking youtube-dl at $(date)"
     
-    if [[ $? == 0 ]]; then 
+    if which -s "$terminalApp"; then 
         tput setaf 2; echo "youtube-dl is installed."; tput sgr0
         youtube-dl --version
 
