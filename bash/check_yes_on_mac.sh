@@ -66,7 +66,7 @@ check_yes() {
     start=$(date +%s)
     echo "Started checking yes at $(date)"
 
-    if which -s yes; then 
+    if which -s "$terminalApp"; then 
         tput setaf 2; echo "yes is installed."; tput sgr0
 
         end=$(date +%s)
