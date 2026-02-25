@@ -3,7 +3,7 @@ set -e
 
 # check YouTube Downloader on Mac
 
-$terminalApp="yt-dlp"
+terminalApp="yt-dlp"
 
 check_os_for_mac() {
     echo "Started checking operating system at $(date)"
