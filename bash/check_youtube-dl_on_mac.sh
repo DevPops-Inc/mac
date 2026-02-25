@@ -1,6 +1,9 @@
 #!/bin/bash
+set -e 
 
-# install YouTube Downloader with PIP on Mac
+# check YouTube Downloader on Mac
+
+terminalApp="yt-dlp"
 
 check_os_for_mac() {
     echo "Started checking operating system at $(date)"
@@ -20,6 +23,42 @@ check_os_for_mac() {
     fi
 }
 
+get_terminal_app() {
+    if [ -z $terminalApp ]; then 
+        read -p "Please type the terminal application you would like to check and press \"return\" key (Example: yt-dlp): " terminalApp
+
+        echo ""
+    else 
+        echo $terminalApp &>/dev/null
+    fi
+}
+
+check_parameters() {
+    echo "Started checking parameter(s) at $(date)"
+    valid="true"
+
+    echo "Parameter(s):"
+    echo "-------------------------"
+    echo "terminalApp: $terminalApp"
+    echo "-------------------------"
+
+    if [ -z $terminalApp ]; then 
+        tput setaf 1; echo "terminalApp is not set."; tput sgr0
+        valid="false"
+    fi
+
+    if [ $valid == "true" ]; then 
+        tput setaf 2; echo "All parameter check(s) passed."; tput sgr0
+
+        echo "Finished checking parameter(s) at $(date)"
+    else 
+        tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
+
+        echo "Finished checking parameteres at $(date)"
+        echo ""
+    fi
+}
+
 check_youtube-dl() {
     printf "\nCheck youtube-dl on Mac.\n\n"
     check_os_for_mac
@@ -27,7 +66,7 @@ check_youtube-dl() {
     start=$(date +%s)
     echo "Started checking youtube-dl at $(date)"
     
-    if [[ $? == 0 ]]; then 
+    if which -s "$terminalApp"; then 
         tput setaf 2; echo "youtube-dl is installed."; tput sgr0
         youtube-dl --version
 
