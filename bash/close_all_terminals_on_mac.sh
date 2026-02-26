@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # close all Terminals on Mac
 
