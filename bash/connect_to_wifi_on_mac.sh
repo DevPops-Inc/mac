@@ -85,7 +85,6 @@ check_parameters() {
     fi
 }
 
-# define main function 
 connect_to_wifi() { 
     printf "\nConnect to Wi-Fi on Mac.\n\n"
     check_os_for_mac
@@ -111,5 +110,4 @@ connect_to_wifi() {
     echo ""
 }
 
-# call main function 
 connect_to_wifi
