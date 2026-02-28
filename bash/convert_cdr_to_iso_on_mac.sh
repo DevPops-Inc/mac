@@ -44,11 +44,11 @@ check_parameters() {
     echo "filename: $filename"
     echo "-------------------"
 
-    if [ -z "$filename" ]; then 
+    if [[ -z "$filename" ]]; then 
         tput setaf 1; echo "filename is not set."; tput sgr0
         valid="false"
 
-    if [ "$valid" == "true" ]; then 
+    if [[ "$valid" == "true" ]]; then 
         tput setaf 2; echo "All parameter check(s) passed."; tput sgr0
 
         echo "Finished checking parameter(s) at $(date)"
