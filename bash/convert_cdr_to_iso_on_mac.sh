@@ -26,7 +26,7 @@ check_os_for_mac() {
 }
 
 get_filename() {
-    if [ -z $filename ]; then 
+    if [ -z "$filename" ]; then 
         read -p "Please type the filename of the .cdr file you wish to convert to .iso and press \"return\" key (Example: test): " filename
 
         echo ""
@@ -44,11 +44,11 @@ check_parameters() {
     echo "filename: $filename"
     echo "-------------------"
 
-    if [ -z $filename ]; then 
+    if [[ -z "$filename" ]]; then 
         tput setaf 1; echo "filename is not set."; tput sgr0
         valid="false"
 
-    if [ $valid == "true" ]; then 
+    if [[ "$valid" == "true" ]]; then 
         tput setaf 2; echo "All parameter check(s) passed."; tput sgr0
 
         echo "Finished checking parameter(s) at $(date)"
@@ -63,7 +63,6 @@ check_parameters() {
     fi 
 }
 
-# define main function 
 convert_cdr_to_iso() {
     printf "\nConvert .cdr to .iso on Mac.\n"
     check_os_for_mac
@@ -87,5 +86,4 @@ convert_cdr_to_iso() {
     echo ""
 }
 
-# call main function 
 convert_cdr_to_iso
