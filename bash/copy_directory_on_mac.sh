@@ -71,7 +71,6 @@ check_parameters() {
     fi 
 }
 
-# define main function 
 copy_directory() {
     printf "\nCopy Directory on Mac.\n\n"
     check_os_for_mac
@@ -96,5 +95,4 @@ copy_directory() {
     echo ""
 }
 
-# call main function
 copy_directory
