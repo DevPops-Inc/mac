@@ -27,7 +27,7 @@ check_os_for_mac() {
 }
 
 get_source() { 
-    if [ -z $source ]; then 
+    if [ -z "$source" ]; then 
         read -p "Please type the source directory you wish to copy and press \"return\" key (Example: /Documents): " source
 
         echo ""
@@ -37,7 +37,7 @@ get_source() {
 }
 
 get_destination() {
-    if [ -z $destination ]; then 
+    if [ -z "$destination" ]; then 
         read -p "Please type the destination directory you wish to copy to and press \"return\" key (Example: /Desktop): " destination
 
         echo ""
@@ -56,7 +56,7 @@ check_parameters() {
     echo "destination: $destination"
     echo "-------------------------"
 
-    if [ $valid == "true" ]; then 
+    if [ "$valid" == "true" ]; then 
         tput setaf 2; echo "All parameter check(s) passed."; tput sgr0
 
         echo "Finished checking parameter(s) at $(date)"
@@ -82,8 +82,8 @@ copy_directory() {
     start=$(date +%s)
     echo "Started copying directory at $(date)"
 
-    cp -R $source /$destination
-    ls $destination
+    cp -R "$source" "$destination"
+    ls "$destination"
 
     tput setaf 2; echo "Successfully copied directory."; tput sgr0
 
