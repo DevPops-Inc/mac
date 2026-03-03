@@ -57,7 +57,6 @@ check_cowsay() {
     fi
 }
 
-# define main function
 cowsay_fortune() {
     printf "\nHave the cow tell your fortune.\n\n"
     
@@ -80,5 +79,4 @@ cowsay_fortune() {
     echo ""
 }
 
-# call main function 
 cowsay_fortune
