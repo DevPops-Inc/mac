@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # cowsay fourtune on Mac
 
@@ -23,8 +24,7 @@ check_os_for_mac() {
 check_fortune() {
     echo "Started checking fortune at $(date)"
 
-    which -s fortune
-    if [[ $? == 0 ]]; then 
+    if which -s fortune; then 
         tput setaf 2; echo "fortune is installed."; tput sgr0
 
         echo "Finished checking fortune at $(date)"
@@ -42,8 +42,7 @@ check_fortune() {
 check_cowsay() {
     echo "Started checking cowsay at $(date)"
 
-    which -s cowsay
-    if [[ $? == 0 ]]; then 
+    if which -s cowsay; then 
         tput setaf 2; echo "cowsay is installed."; tput sgr0
 
         echo "Finished checking cowsay at $(date)"
@@ -58,7 +57,6 @@ check_cowsay() {
     fi
 }
 
-# define main function
 cowsay_fortune() {
     printf "\nHave the cow tell your fortune.\n\n"
     
@@ -81,5 +79,4 @@ cowsay_fortune() {
     echo ""
 }
 
-# call main function 
 cowsay_fortune
