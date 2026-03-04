@@ -57,7 +57,6 @@ check_cowthink() {
     fi
 }
 
-# define main function
 cowthink_fortune() {
     printf "\nHave the cow think your fortune.\n\n"
     
@@ -80,5 +79,4 @@ cowthink_fortune() {
     echo ""
 }
 
-# call main function 
 cowthink_fortune
