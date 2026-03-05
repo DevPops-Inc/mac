@@ -44,7 +44,7 @@ check_cowthink() {
 }
 
 get_thought() {
-    if [ -z "$thought" ]; then
+    if [[ -z "$thought" ]]; then
         read -p "Please type what you would like for the cow to think and press \"return\" (Example: Grass is delicious): " thought
 
         echo ""
@@ -62,12 +62,12 @@ check_parameters() {
     echo "thought: $thought"
     echo "-----------------"
 
-    if [ -z "$thought" ]; then 
+    if [[ -z "$thought" ]]; then 
         tput setaf 2; echo "thought is not set."; tput sgr0
         valid="false"
     fi
 
-    if [ $valid == "true" ]; then
+    if [[ $valid == "true" ]]; then
         tput setaf 2; echo "All parameter check(s) passed."; tput sgr0
 
         echo "Finished checking parameter(s) at $(date)"
