@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # cowthink on Mac
 
@@ -25,10 +26,9 @@ check_os_for_mac() {
 }
 
 check_cowthink() {
-which -s cowthink
     echo "Started checking cowthink at $(date)"
 
-    if [[ $? == 0 ]]; then 
+    if which -s cowthink; then 
         tput setaf 2; echo "cowthink is installed."; tput sgr0
 
         echo "Finished checking cowthink at $(date)"
