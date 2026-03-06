@@ -28,7 +28,7 @@ check_os_for_mac() {
 }
 
 get_local_admin() {
-    if [ -z $localAdmin ]; then 
+    if [[ -z $localAdmin ]]; then 
         read -p "Please type the local admin name and press \"return\" key (Example: Admin): " localAdmin
 
         echo ""
@@ -38,7 +38,7 @@ get_local_admin() {
 }
 
 get_unique_id() {
-    if [ -z $uniqueId ]; then 
+    if [[ -z $uniqueId ]]; then 
         read -p "Please type the unique ID and press \"return\" key (Example: 1001): " uniqueId
 
         echo ""
@@ -48,7 +48,7 @@ get_unique_id() {
 }
 
 get_password() {
-    if [ -z $password ]; then 
+    if [[ -z $password ]]; then 
         read -s "Please type the password and press \"return\" key (Example: password123): "
 
         echo ""
@@ -68,22 +68,22 @@ check_parameters() {
     echo "password  : ***"
     echo "-----------------------"
 
-    if [ -z $localAdmin ]; then
+    if [[ -z $localAdmin ]]; then
         tput setaf 1; echo "localAdmin is not set."; tput sgr0
         valid="false"
     fi
 
-    if [ -z $uniqueId ]; then 
+    if [[ -z $uniqueId ]]; then 
         tput setaf 1; echo "uniqueId is not set."; tput sgr0
         valid="false"
     fi
 
-    if [ -z $password ]; then 
+    if [[ -z $password ]]; then 
         tput setaf 1; echo "password is not set."; tput sgr0
         valid="false"
     fi
 
-    if [ $valid == "true" ]; then 
+    if [[ $valid == "true" ]]; then 
         tput setaf 2; echo "All parameter check(s) passed."; tput sgr0
 
         echo "Finished checking parameter(s) at $(date)"
@@ -98,7 +98,6 @@ check_parameters() {
     fi
 }
 
-# define main function 
 create_local_admin() {
     printf "\nCreate local admin on Mac.\n\n"
     check_os_for_mac
@@ -143,5 +142,4 @@ create_local_admin() {
     echo ""
 }
 
-# call main function
 create_local_admin
