@@ -98,7 +98,6 @@ check_parameters() {
     fi
 }
 
-# define main function
 createLocalTestAdmin() {
     printf "\nCreate test admin on Mac.\n\n"
     check_os_for_mac
@@ -143,5 +142,4 @@ createLocalTestAdmin() {
     echo ""
 }
 
-# call main function
 createLocalTestAdmin
