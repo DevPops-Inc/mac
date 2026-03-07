@@ -28,7 +28,7 @@ check_os_for_mac() {
 }
 
 get_local_admin() {
-    if [ -z $localAdmin ]; then 
+    if [[ -z $localAdmin ]]; then 
         read -p "Please type the local admin name and press \"return\" key (Example: TEST): " localAdmin
     
         echo ""
@@ -38,7 +38,7 @@ get_local_admin() {
 }
 
 get_unique_id() {
-    if [ -z $uniqueId ]; then 
+    if [[ -z $uniqueId ]]; then 
         read -p "Please type the unique ID and press \"return\" key (Example: 1001): " uniqueId
 
         echo ""
@@ -48,7 +48,7 @@ get_unique_id() {
 }
 
 get_password() {
-    if [ -z $password ]; then 
+    if [[ -z $password ]]; then 
         read -s "Please type the password and press \"return\" key (Example: TEST): "
 
         echo ""
@@ -98,7 +98,6 @@ check_parameters() {
     fi
 }
 
-# define main function
 createLocalTestAdmin() {
     printf "\nCreate test admin on Mac.\n\n"
     check_os_for_mac
@@ -143,5 +142,4 @@ createLocalTestAdmin() {
     echo ""
 }
 
-# call main function
 createLocalTestAdmin
