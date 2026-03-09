@@ -28,7 +28,7 @@ check_os_for_mac() {
 }
 
 get_standard_user() {
-    if [ -z $standardUser ]; then 
+    if [[ -z $standardUser ]]; then 
         read -p "Please type the name of the user and press \"return\" (Example: Student): " standardUser
 
         echo ""
@@ -38,7 +38,7 @@ get_standard_user() {
 }
 
 get_unique_id() {
-    if [ -z $uniqueId ]; then 
+    if [[ -z $uniqueId ]]; then 
         read -p "Please type the unique ID and press \"return\" key (Example: 1002): " uniqueId
 
         echo ""
@@ -48,7 +48,7 @@ get_unique_id() {
 }
 
 get_password() {
-    if [ -z $password ]; then 
+    if [[ -z $password ]]; then 
         read -s "Please type the password and press \"return\" key (Example: student)" $password
 
         echo ""
@@ -68,22 +68,22 @@ check_parameters() {
     echo "password    : ***"
     echo "---------------------------"
 
-    if [ -z $standardUser ]; then 
+    if [[ -z $standardUser ]]; then 
         tput setaf 1; echo "standardUser is not set."; tput sgr0
         valid="false"
     fi
 
-    if [ -z $uniqueId ]; then 
+    if [[ -z $uniqueId ]]; then 
         tput setaf 1; echo "uniqueId is not set."; tput sgr0
         valid="false"
     fi
 
-    if [ -z $password ]; then 
+    if [[ -z $password ]]; then 
         tput setaf 1; echo "password is not set."; tput sgr0
         valid="false"
     fi
 
-    if [ $valid == "true" ]; then 
+    if [[ $valid == "true" ]]; then 
         tput setaf 2; echo "All parameter check(s) passed."; tput sgr0
         
         echo "Finished checking parameter(s) at $(date)"
