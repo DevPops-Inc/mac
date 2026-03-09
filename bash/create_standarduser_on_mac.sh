@@ -98,7 +98,6 @@ check_parameters() {
     fi
 }
 
-# define main function
 createStandardUser() {
     printf "\nCreate standard user on Mac.\n\n"
     check_os_for_mac
@@ -140,5 +139,4 @@ createStandardUser() {
     echo ""
 }
 
-# call main function
 createStandardUser
