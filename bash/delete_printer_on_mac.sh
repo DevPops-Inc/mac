@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # delete printer on Mac
 
@@ -25,7 +26,7 @@ check_os_for_mac() {
 }
 
 get_printer_name() {
-    if [ -z $printerName ]; then 
+    if [[ -z "$printerName" ]]; then 
         read -p "Please type the printer name and press \"return\" key (Example: IT): " printerName
 
         echo ""
@@ -43,12 +44,12 @@ check_parameters() {
     echo "printerName: $printerName"
     echo "-------------------------"
 
-    if [ -z $printerName ]; then 
+    if [[ -z "$printerName" ]]; then 
         tput setaf 1; echo "printerName is not set."; tput sgr0
         valid="false"
     fi
 
-    if [ $valid == "true" ]; then 
+    if [[ "$valid" == "true" ]]; then 
         tput setaf 2; echo "All parameter check(s) passed."; tput sgr0
     else 
         tput setaf 1; echo "One or more parameters are incorrect."; tput sgr0
@@ -66,7 +67,6 @@ list_printers() {
     echo "------------------------------"
 }
 
-# define main function
 delete_printer() {
     printf "\nDelete printer on Mac.\n\n"
     check_os_for_mac
@@ -90,5 +90,4 @@ delete_printer() {
     echo ""
 }
 
-# call main function
 delete_printer
