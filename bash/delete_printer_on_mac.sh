@@ -67,7 +67,6 @@ list_printers() {
     echo "------------------------------"
 }
 
-# define main function
 delete_printer() {
     printf "\nDelete printer on Mac.\n\n"
     check_os_for_mac
@@ -91,5 +90,4 @@ delete_printer() {
     echo ""
 }
 
-# call main function
 delete_printer
