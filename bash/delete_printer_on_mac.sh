@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # delete printer on Mac
 
