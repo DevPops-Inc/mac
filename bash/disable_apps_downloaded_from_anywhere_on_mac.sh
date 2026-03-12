@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # disable apps downloaded from anywhere on Mac
 
@@ -29,6 +30,7 @@ disable_apps_downloaded_from_anywhere() {
 
     sudo spctl --master-enable 
 
+    # TODO: fully automate these steps
     echo "------------------------------------------------------------------"
     echo "Expand Apple menu and select \"System Preferences...\""
     read -p "Press any key to continue:"
