@@ -26,7 +26,7 @@ check_os_for_mac() {
 }
 
 get_filename() {
-    if [ -z $fileName ]; then 
+    if [[ -z $fileName ]]; then 
         read -p "Please type the filename you are looking for and press \"return\" key (Example: config.sh): " fileName
 
         echo ""
@@ -44,12 +44,12 @@ check_parameters() {
     echo "fileName: $fileName"
     echo "-------------------"
 
-    if [ -z $fileName ]; then 
+    if [[ -z $fileName ]]; then 
         tput setaf 1; echo "fileName is not set."; tput sgr0
         valid="false"
     fi 
 
-    if [ $valid == "true" ]; then 
+    if [[ $valid == "true" ]]; then 
         tput setaf 2; echo "All parameter check(s) passed."; tput sgr0
 
         echo "Finished checking parameter(s) at $(date)"
