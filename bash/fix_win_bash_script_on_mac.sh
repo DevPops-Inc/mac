@@ -26,7 +26,7 @@ check_os_for_mac() {
 }
 
 get_bash_script() {
-    if [ -z $bashScript ]; then
+    if [ -z "$bashScript" ]; then
         read -p "Please type the script name and press \"return\" key (Example: test.sh):" bashScript
 
         echo ""
@@ -44,12 +44,12 @@ check_parameters() {
     echo "bashScript: $bashScript"
     echo "-----------------------"
 
-    if [ -z $bashScript ]; then
+    if [ -z "$bashScript" ]; then
         tput setaf 1; echo "bashScript is not set."; tput sgr0
         valid="false"
     fi
 
-    if [ $valid == "true" ]; then 
+    if [ "$valid" == "true" ]; then 
         tput setaf 2; echo "All parameter check(s) passed."; tput sgr0
 
         echo "Finished checking parameter(s) at $(date)"
@@ -68,7 +68,7 @@ prompt_run_script() {
     echo "Would you like to run the script now?"
     read -p "Please type \"Y\" or \"N\" and press \"return\" key: " answer
 
-    if [[ $answer = 'Y' || 'y' ]]; then 
+    if [[ "$answer" = 'Y' || 'y' ]]; then 
         echo "Started running script at $(date)"
         echo "----------------------------------"
         ./$bashScript
