@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # fix Windows Bash script on Mac
 
