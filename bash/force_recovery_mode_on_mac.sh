@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # force recovery mode on mac
 
