@@ -27,7 +27,7 @@ check_os_for_mac() {
 }
 
 get_month() {
-    if [ -z $month ]; then 
+    if [[ -z "$month" ]]; then 
         read -p "Please type the month you would like and press \"return\" key (Example: November): " month
 
         echo ""
@@ -37,7 +37,7 @@ get_month() {
 }
 
 get_year() {
-    if [ -z $year ]; then 
+    if [[ -z "$year" ]]; then 
         read -p "Please type the year you would like and press \"return\" key (Example: 1981): " year
 
         echo ""
@@ -56,17 +56,17 @@ check_parameters() {
     echo "year : $year"
     echo "-------------"
 
-    if [ -z $month ]; then 
+    if [[ -z "$month" ]]; then 
         tput setaf 1; echo "month is not set."; tput sgr0
         valid="false"
     fi 
 
-    if [ -z $year ]; then 
+    if [[ -z "$year" ]]; then 
         tput setaf 1; echo "year is not set."; tput sgr0
         valid="false"
     fi
 
-    if [ $valid == "true" ]; then 
+    if [[ "$valid" == "true" ]]; then 
         tput setaf 2; echo "All parameter check(s) passed."; tput sgr0
 
         echo "Finished checking parameter(s) at $(date)"
