@@ -1,4 +1,5 @@
 #!/bin/bash 
+set -e 
 
 # get disk name on Mac
 
@@ -27,13 +28,11 @@ get_disk_name() {
     start=$(date +%s)
     echo "Started getting disk name at $(date)"
 
-    diskutil list | grep "MacOS"
-    if [[ $? == 0 ]]; then 
+    if diskutil list | grep "MacOS"; then 
         tput setaf 4; echo "Disk name is MacOS."
     fi
     
-    diskutil list | grep "Macintosh HD"
-    if [[ $? == 0 ]]; then 
+    if diskutil list | grep "Macintosh HD"; then 
         tput setaf 4; echo "Disk name is Macintosh HD."
     fi
 
