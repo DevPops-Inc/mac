@@ -28,7 +28,7 @@ get_hdd() {
     start=$(date +%s)
     echo "Started getting HDD at $(date)"
 
-	hdd=$(ls /Volumes)
+	hdd=$(diskutil info / | awk -F':*' '/Volume Name/ {print $2}')
     tput setaf 4; echo "The HDD is: $hdd"; tput sgr0
     tput setaf 2; echo "Successfully got HDD."; tput sgr0
 
