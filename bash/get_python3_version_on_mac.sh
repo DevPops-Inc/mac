@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # check Python 3 on Mac
 
@@ -23,8 +24,7 @@ check_os_for_mac() {
 check_python3() {
     echo "Started checking Python 3 at $(date)"    
 
-    which -s python3
-    if [[ $? == 0 ]]; then
+    if which -s python3; then
         tput setaf 2; echo "Python 3 is installed."; tput sgr0
 
         echo "Finished checking Python 3 at $(date)"
