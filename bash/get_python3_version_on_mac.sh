@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e 
 
-# check Python 3 on Mac
+# get Python 3 on Mac
 
 check_os_for_mac() {
     echo "Started checking operating system at $(date)"
