@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # get running processes by resource on Mac
 
@@ -23,8 +24,7 @@ check_os_for_mac() {
 check_htop() {
     echo "Started checking htop at $(date)"
 
-    which -s htop
-    if [[ $? == 0 ]]; then 
+    if which -s htop; then 
         tput setaf 2; echo "htop is installed."; tput sgr0
 
         echo "Finished checking htop at $(date)"
