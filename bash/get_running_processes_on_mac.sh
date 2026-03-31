@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # get running processes on Mac
 
