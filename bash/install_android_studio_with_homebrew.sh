@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # install Android Studio with Homebrew
 
@@ -41,8 +42,7 @@ check_android_studio() {
 check_homebrew() {
 	echo "Started checking Homebrew at $(date)"
 
-	which -s brew
-	if [[ $? == 0 ]]; then
+	if which -s brew; then
 		tput setaf 2; echo "Homebrew is installed."; tput sgr0
 
 		echo "Finished checking Homebrew at $(date)"
