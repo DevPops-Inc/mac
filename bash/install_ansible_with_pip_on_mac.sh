@@ -1,4 +1,5 @@
 #!/bin/bash 
+set -e 
 
 # install Ansible with PIP on Mac
 
@@ -23,8 +24,7 @@ check_os_for_mac() {
 check_ansible() {
     echo "Started checking Ansible at $(date)"
 
-    which -s ansible
-    if [[ $? == 0 ]]; then 
+    if which -s ansible; then 
         tput setaf 2; echo "Ansible is installed."; tput sgr0
         ansible --version 
 
@@ -43,8 +43,7 @@ check_ansible() {
 check_python3() {
     echo "Started checking Python 3 at $(date)"
 
-    which -s python3
-    if [[ $? == 0 ]]; then
+    if which -s python3; then
         tput setaf 2; echo "Python 3 is installed."; tput sgr0
         python3 --version 
 
@@ -63,7 +62,7 @@ check_python3() {
 check_pip() {
     echo "Started checking PIP at $(date)"
 
-    if [[ $? == 0 ]]; then
+    if which -s pip; then
         tput setaf 2; echo "PIP is installed."; tput sgr0
         pip --version
 
