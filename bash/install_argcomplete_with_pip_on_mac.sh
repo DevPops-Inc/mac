@@ -23,7 +23,7 @@ check_os_for_mac() {
 check_argcomplete() {
     echo "Started checking argcomplete at $(date)"
 
-    if which -s argcomplete; then
+    if python3 -c "import argcomplete" >/dev/null 2>&1; then
         tput setaf 2; echo "argcomplete is installed."; tput sgr0
 
         echo "Finished checking argcomplete at $(date)"
@@ -86,8 +86,10 @@ install_argcomplete() {
     echo "Started installing argcomplete at $(date)"
 
     python3 -m pip install argcomplete
+    activate-global-python-argcomplete --user
+    exec zsh 
 
-    tput setaf 2; "Successfully installed argcomplete."; tput sgr0
+    tput setaf 2; echo "Successfully installed argcomplete."; tput sgr0
 
     end=$(date +%s)
     echo "Finished installing argcomplete at $(date)"
