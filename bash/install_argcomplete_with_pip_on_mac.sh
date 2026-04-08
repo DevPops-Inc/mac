@@ -1,4 +1,5 @@
 #!/bin/bash 
+set -e 
 
 # install argcomplete with PIP on Mac
 
@@ -22,8 +23,7 @@ check_os_for_mac() {
 check_argcomplete() {
     echo "Started checking argcomplete at $(date)"
 
-    if [ -d $(which argcomplete) ]; echo $? == 0 &>/dev/null
-    then
+    if python3 -c "import argcomplete" >/dev/null 2>&1; then
         tput setaf 2; echo "argcomplete is installed."; tput sgr0
 
         echo "Finished checking argcomplete at $(date)"
@@ -41,8 +41,7 @@ check_argcomplete() {
 check_python3() {
     echo "Started checking Python3 at $(date)"
 
-    if [ -d $(which python3) ]; echo $? == 0 &>/dev/null
-    then
+    if which -s python3; then
         tput setaf 2; echo "Python 3 is installed."; tput sgr0
         
         echo "Finished checking Python 3 at $(date)"
@@ -60,8 +59,7 @@ check_python3() {
 check_pip() {
     echo "Started checking PIP at $(date)"
 
-    if [ -d $(which pip) ]; echo $? == 0 &>/dev/null
-    then
+    if which -s pip; then
         tput setaf 2; echo "PIP is installed."; tput sgr0
 
         echo "Finished checking PIP at $(date)"
@@ -88,8 +86,10 @@ install_argcomplete() {
     echo "Started installing argcomplete at $(date)"
 
     python3 -m pip install argcomplete
+    activate-global-python-argcomplete --user
+    exec zsh 
 
-    tput setaf 2; "Successfully installed argcomplete."; tput sgr0
+    tput setaf 2; echo "Successfully installed argcomplete."; tput sgr0
 
     end=$(date +%s)
     echo "Finished installing argcomplete at $(date)"
