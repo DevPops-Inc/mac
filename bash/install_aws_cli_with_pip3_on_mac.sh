@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # install AWS CLI with PIP3 on Mac
 
@@ -23,9 +24,9 @@ check_os_for_mac() {
 check_aws() {
     echo "Started checking AWS at $(date)"
 
-    which -s aws
-    if [[ $? == 0 ]]; then 
+    if which -s aws; then 
         tput setaf 2; echo "AWS is installed."; tput sgr0
+        aws --version
 
         echo "Finished checking AWS at $(date)"
         echo ""
@@ -42,9 +43,9 @@ check_aws() {
 check_pip3() {
     echo "Started checking PIP3 at $(date)"
 
-    which -s pip3
-    if [[ $? == 0 ]]; then 
+    if which -s pip3; then 
         tput setaf 2; echo "PIP3 is installed."; tput sgr0
+        pip3 --version
 
         echo "Finished checking PIP3 at $(date)"
         echo ""
