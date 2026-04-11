@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # install azure-cli with Homebrew
 
@@ -20,11 +21,23 @@ check_os_for_mac() {
 	fi
 }
 
+check_azure() {
+	echo "Started checking Azure CLI at $(date)"
+
+	if which -s az; then 
+		tput setaf 2; echo "Azure CLI is installed"; tput sgr0
+		az --version 
+		exit 0
+	else 
+		tput setaf 1; echo "Azure CLI is not installed"; tput sgr0
+		echo ""
+	fi
+}
+
 check_homebrew() {
 	echo "Started checking Homebrew at $(date)"
 
-	which -s brew
-	if [[ $? == 0 ]]; then
+	if which -s brew; then
 		tput setaf 2; echo "Homebrew is installed"; tput sgr0
 		brew --version 
 		
