@@ -21,6 +21,23 @@ check_os_for_mac() {
 	fi 
 }
 
+check_chrome() {
+	echo "Started checking Chrome at $(date)" 
+
+	if open -Ra "Google Chrome.app"; then
+		tput setaf 2; echo "Chrome is installed."; tput sgr0
+
+		echo "Finished checking Chrome at $(date)" 
+		echo ""
+		exit 0
+	else 
+		tput setaf 1; echo "Chrome is not installed."; tput sgr0
+
+		echo "Finished checking Chrome at $(date)"
+		echo ""
+	fi
+}
+
 check_homebrew() {
 	echo "Started checking Homebrew at $(date)"
 
@@ -43,6 +60,7 @@ install_chrome() {
 	printf "\nInstall Chrome with Homebrew.\n\n"
 
 	check_os_for_mac
+	check_chrome
 	check_homebrew
 
 	start=$(date +%s)
