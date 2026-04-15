@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # install cmatrix with Homebrew
 
@@ -23,14 +24,13 @@ check_os_for_mac() {
 check_cmatrix() {
     echo "Started checking cmatrix at $(date)"
 
-    which -s cmatrix
-    if [[ $? == 0 ]]; then 
+    if which -s cmatrix; then 
         tput setaf 2; echo "cmatrix is installed."; tput sgr0
         cmatrix
         
         echo "Finished checking cmatrix at $(date)"
         echo ""
-
+        
         exit 0
     else 
         tput setaf 1; echo "cmatrix is not installed."; echo tput sgr0
@@ -43,8 +43,7 @@ check_cmatrix() {
 check_homebrew() {
     echo "Started checking Homebrew at $(date)"
 
-    which -s brew
-    if [[ $? == 0 ]]; then 
+    if which -s brew; then 
         tput setaf 1; echo "Homebrew is installed."; tput sgr0
 
         echo "Finished checking Homebrew at $(date)"
