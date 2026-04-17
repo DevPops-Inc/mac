@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # install colorama with PIP on Mac
 
@@ -22,8 +23,7 @@ check_os_for_mac() {
 check_colorama() {
     echo "Started checking colorama at $(date)"
 
-    if [ -d $(which colorama) ]; echo $? == 0 &>/dev/null
-    then
+    if python3 -c "import colorama" >/dev/null 2>&1; then
         tput setaf 2; echo "colorama is installed."; tput sgr0
 
         echo "Finished checking colorama at $(date)"
@@ -41,8 +41,7 @@ check_colorama() {
 check_pip() {
     echo "Started checking PIP at $(date)"
 
-    if [ -d $(which pip) ]; echo $? == 0 &>/dev/null
-    then 
+    if command -v pip >/dev/null 2>&1; then 
         tput setaf 2; echo "PIP is installed."; tput sgr0
 
         echo "Finished checking PIP at $(date)"
