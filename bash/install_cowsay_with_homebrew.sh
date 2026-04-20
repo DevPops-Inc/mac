@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # install Cowsay with Homebrew
 
@@ -20,11 +21,29 @@ check_os_for_mac() {
     fi
 }
 
+check_cowsay() {
+    echo "Started checking cowsay at $(date)"
+
+    if which -s cowsay; then 
+        tput setaf 2; echo "cowsay is installed."; tput sgr0
+        cowsay --version
+
+        echo "Finished checking cowsay at $(date)"
+        echo ""
+
+        exit 0
+    else
+        tput setaf 1; echo "cowsay needs to be installed." tput sgr0
+
+        echo "Finished checking cowsday at $(date)"
+        echo ""
+    fi
+}   
+
 check_homebrew() {
     echo "Started checking Homebrew at $(date)"
 
-    which -s brew
-    if [[ $? == 0 ]]; then 
+    if which -s brew; then 
         tput setaf 2; echo "Homebrew is installed."; tput sgr0
         brew --version 
 
