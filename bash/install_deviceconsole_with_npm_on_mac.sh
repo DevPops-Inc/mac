@@ -1,4 +1,5 @@
 #!/bin/bash 
+set -e 
 
 # install deviceconsole with NPM on Mac
 
@@ -23,8 +24,7 @@ check_os_for_mac() {
 check_deviceonsole() {
     echo "Started checking deviceconsole at $(date)"
 
-    which -s deviceconsole
-    if [[ $? == 0 ]]; then 
+    if which -s deviceconsole; then 
         tput setaf 2; echo "deviceconsole is installed."; tput sgr0
 
         echo "Finished checking deviceconsole at $(date)"
@@ -42,8 +42,7 @@ check_deviceonsole() {
 check_npm() {
     echo "Started checking NPM at $(date)"
 
-    which -s npm
-    if [[ $? == 0 ]]; then
+    if which -s npm; then
         tput setaf 2; echo "NPM is installed."; tput sgr0
         npm --version
 
