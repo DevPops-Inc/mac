@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # install Homebrew on Mac
 
@@ -23,8 +24,7 @@ check_os_for_mac() {
 check_homebrew() {
         echo "Started checking Homebrew at $(date)"
 
-        which -s brew
-        if [[ $? == 0 ]]; then
+        if which -s brew; then
                 tput setaf 2; echo "Homebrew is installed."; tput sgr0
                 brew --version
 
