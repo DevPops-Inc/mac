@@ -1,4 +1,5 @@
 #!/bin/bash 
+set -e 
 
 # install ideviceinstaller with Homebrew
 
@@ -20,11 +21,28 @@ check_os_for_mac() {
 	fi
 }
 
+check_ideviceinstaller() {
+	echo "Started checking ideviceinstaller at $(date)"
+
+	if which -s ideviceinstaller; then 
+		tput setaf 2; echo "ideviceinstaller is installed."; tput sgr0
+
+		echo "Finished checking ideviceinstaller at $(date)"
+		echo ""
+
+		exit 0
+	else
+		tput setaf 1; echo "ideviceinstaller is not installed."; tput sgr0
+		
+		echo "Finished checking ideviceinstaller at $(date)"
+		echo ""
+	fi
+}
+
 check_homebrew() {
 	echo "Started checking Homebrew at $(date)"
 
-	which -s brew
-	if [[ $? == 0 ]]; then
+	if which -s brew; then
 		tput setaf 2; echo "Homebrew is installed."; tput sgr0
 		brew --version
 
