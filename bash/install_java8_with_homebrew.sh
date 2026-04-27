@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # install Java 8 with Homebrew
 
@@ -23,8 +24,7 @@ check_os_for_mac() {
 check_java8() {
 	echo "Started checking Java 8 at $(date)"
 
-	if [ -d "/Library/Java/JavaVirtualMachines/*8*jdk" ]; echo $? == 0 &>/dev/null
-	then
+	if ls "/Library/Java/JavaVirtualMachines/*8*jdk" &>/dev/null 2>&1; then
 		tput setaf 2; echo "Java 8 is installed."; tput sgr0
 		java -version
 
@@ -43,8 +43,7 @@ check_java8() {
 check_homebrew() {
 	echo "Start checking Homebrew at $(date)"
 
-	which -s brew
-	if [[ $? == 0 ]]; then
+	if which -s brew; then
 		tput setaf 2; echo "Homebrew is installed."; tput sgr0
 		brew --version
 
