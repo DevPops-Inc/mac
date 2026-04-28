@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # install Java 11 with Homebrew
 
@@ -23,8 +24,7 @@ check_os_for_mac() {
 check_java11() {
     echo "Started checking Java 11 at $(date)"
 
-    if [ -d "/Library/Java/JavaVirtualMachines/*jdk-11*" ]; echo $? == 0 &>/dev/null
-    then
+    if ls "/Library/Java/JavaVirtualMachines/*jdk-11*" &>/dev/null 2>&1; then
         tput setaf 2; echo "Java 11 is installed."; tput sgr0
         java -version
 
@@ -43,8 +43,7 @@ check_java11() {
 check_homebrew() {
         echo "Started checking Homebrew at $(date)"
         
-        which -s brew
-        if [[ $? 0= 0 ]]; then
+        if which -s brew; then
                 echo "Homebrew is installed."
 
                 echo "Finished checking Homebrew at $(date)"
