@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # install JDK with homebrew
 
@@ -23,8 +24,7 @@ check_os_for_mac() {
 check_jdk() {
         echo "Started checking JDK at $(date)"
 
-        if [ -d "/Library/Java/JavaVirtualMachines/*jdk*" ]; echo $? == 0 &>/dev/null
-        then
+        if ls "/Library/Java/JavaVirtualMachines/*jdk*" &>/dev/null 2>&1; then
                 tput setaf 2; echo "JDK is installed."; tput sgr0
                 java -version
 
@@ -43,8 +43,7 @@ check_jdk() {
 check_homebrew() {
         echo "Started checking Homebrew at $(date)"
 
-        which -s brew
-        if [[ $? == 0 ]]; then
+        if which -s brew; then
                 tput setaf 2; echo "Homebrew is installed."; tput sgr0
 
                 echo "Finished checking Homebrew at $(date)"
