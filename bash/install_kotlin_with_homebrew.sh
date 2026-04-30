@@ -1,4 +1,5 @@
 #!/bin/bash 
+set -e 
 
 # install Kotlin with Homebrew
 
@@ -23,8 +24,7 @@ check_os_for_mac() {
 check_kotlin() {
     echo "Started checking Kotlin at $(date)"
 
-    if [ -d $(which kotlin) ]; echo $? == 0 &>/dev/null
-    then 
+    if command -v kotlin &>/dev/null; then 
         tput setaf 2; echo "Kotlin is installed."; tput sgr0
         kotlin -version
 
@@ -43,8 +43,7 @@ check_kotlin() {
 check_homebrew() {
     echo "Started checking Homebrew at $(date)"
 
-    which -s brew
-    if [[ $? != 0 ]]; then 
+    if which -s brew; then 
         tput setaf 1; echo "Homebrew is not installed."; tput sgr0
 
         echo "Finished checking Homebrew at $(date)"
