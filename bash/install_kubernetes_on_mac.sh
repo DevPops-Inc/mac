@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # install Kubernetes on Mac
 
@@ -23,8 +24,7 @@ check_os_for_mac() {
 check_minikube() {
     echo "Started checking minikube at $(date)"
 
-    which -s minikube
-    if [[ $? == 0 ]]; then 
+    if which -s minikube; then 
         tput setaf 2; echo "minikube is installed."; tput sgr0
         minikube update-check
 
@@ -43,8 +43,7 @@ check_minikube() {
 check_kubectl() {
     echo "Started checking kubectl at $(date)"
 
-    which -s kubectl
-    if [[ $? == 0 ]]; then 
+    if which -s kubectl; then 
         tput setaf 2; echo "kubectl is installed."; tput sgr0
         kubectl version --client 
 
@@ -86,7 +85,7 @@ install_kubectl() {
 }
 
 install_kubernetes() {
-    printf"\nInstall Kubernetes on Mac.\n\n"
+    printf "\nInstall Kubernetes on Mac.\n\n"
     check_os_for_mac
 
     check_minikube
