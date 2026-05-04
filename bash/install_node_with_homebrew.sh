@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # install Node with Homebrew
 
@@ -20,11 +21,27 @@ check_os_for_mac() {
     fi
 }
 
+check_node() {
+    echo "Started checking Node at $(date)"
+
+    if which -s node; then
+        tput setaf 2; echo "Node is installed."; tput sgr0
+        node --version 
+
+        echo "Finished checking Node at $(date)"
+        echo ""
+        
+        exit 1
+    else
+        tput setaf 1; echo "Node needs to be installed."; tput sgr0
+        echo ""
+    fi
+}
+
 check_homebrew() {
     echo "Started checking Homebrew at $(date)"
 
-    which -s brew
-    if [[ $? == 0 ]]; then
+    if which -s brew; then
         tput setaf 2; echo "Homebrew is installed."; tput sgr0
         brew --version
 
@@ -43,6 +60,7 @@ check_homebrew() {
 install_node() {
     printf "\nInstall Node on Mac.\n\n"
     check_os_for_mac
+    check_node
     check_homebrew
 
     echo "Started installing Node at $(date)"
