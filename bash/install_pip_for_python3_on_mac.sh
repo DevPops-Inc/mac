@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # install PIP for Python 3 on Mac
 
@@ -21,8 +22,7 @@ check_os_for_mac() {
 check_pip() {
     echo "Started checking PIP at $(date)"
 
-    which -s pip
-    if [[ $? == 0 ]]; then 
+    if which -s pip; then 
         tput setaf 2; echo "PIP is installed."; tput sgr0
         pip --version
 
@@ -41,8 +41,7 @@ check_pip() {
 check_python3() {
     echo "Started checking Python 3 at $(date)"
 
-    which -s python3
-    if [[ $? == 0 ]]; then 
+    if which -s python3; then 
         tput setaf 2; echo "Python 3 is installed."; tput sgr0
         python3 --version
 
