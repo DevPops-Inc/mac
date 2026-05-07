@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # install PowerShell with Homebrew
 
@@ -20,11 +21,28 @@ check_os_for_mac() {
 	fi
 }
 
+check_powershell() {
+	echo "Started checking PowerShell at $(date)"
+
+	if which -s pwsh; then 
+		tput setaf 2; echo "PowerShell is installed."; tput sgr0
+
+		echo "Finished checking PowerShell at $(date)"
+		echo ""
+
+		exit 0
+	else 
+		tput setaf 1; echo "PowerShell needs to be installed."; tput sgr0
+
+		echo "Finished checking PowerShell at $(date)"
+		echo ""
+	fi
+}
+
 check_homebrew() {
 	echo "Started checking Homebrew at $(date)"
 
-	which -s brew
-	if [[ $? == 0 ]]; then
+	if which -s brew; then
 		tput setaf 2; echo "Homebrew is installed."; tput sgr0
 
 		echo "Finished checking Homebrew at $(date)"
@@ -41,7 +59,9 @@ check_homebrew() {
 
 install_powershell() {
 	printf "\nInstall PowerShell with Homebrew.\n\n"
+	
 	check_os_for_mac
+	check_powershell
 	check_homebrew
 
 	start=$(date +%s)
