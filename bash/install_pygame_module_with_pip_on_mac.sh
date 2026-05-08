@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # install Pygame Module with PIP on Mac
 
@@ -20,11 +21,28 @@ check_os_for_mac() {
     fi
 }
 
+check_pygame_module() {
+    echo "Started checking pygame module at $(date)"
+
+    if pip show pygame > /dev/null 2>&1; then 
+        tput setaf 2; echo "pygame is installed."; tput sgr0
+
+        echo "Finished checking pygame at $(date)"
+        echo ""
+
+        exit 0
+    else 
+        tput setaf 1; echo "pygame is not installed."; tput sgr0
+
+        echo "Finished checking pygame at $(date)"
+        echo ""
+    fi
+}
+
 check_pip() {
     echo "Started checking PIP at $(date)"
 
-    which -s pip
-    if [[ $? == 0 ]]; then 
+    if which -s pip; then 
         tput setaf 2; echo "PIP is installed."; tput sgr0
         pip --version 
 
@@ -40,31 +58,12 @@ check_pip() {
     fi
 }
 
-check_pygame_module() {
-    echo "Started checking pygame module at $(date)"
-
-    pip list | grep pygame
-    if [[ $? == 0 ]]; then 
-        tput setaf 2; echo "pygame is installed."; tput sgr0
-
-        echo "Finished checking pygame at $(date)"
-        echo ""
-
-        exit 0
-    else 
-        tput setaf 1; echo "pygame is not installed."; tput sgr0
-
-        echo "Finished checking pygame at $(date)"
-        echo ""
-    fi
-}
-
 install_pygame_module_with_pip() {
     printf "\nInstall pygame module with PIP on Mac.\n\n"
 
     check_os_for_mac
-    check_pip
     check_pygame_module
+    check_pip
 
     start=$(date +%s)
     echo "Started installing pygame module at $(date)"
