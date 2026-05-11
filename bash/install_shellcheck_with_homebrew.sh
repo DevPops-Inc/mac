@@ -1,4 +1,5 @@
 #!/bin/bash 
+set -e
 
 # install Shellcheck with Homebrew
 
@@ -20,11 +21,29 @@ check_os_for_mac() {
 	fi
 }
 
+check_shellcheck() {
+	echo "Started checking shellcheck at $(date)"
+
+	if which -s shellcheck; then 
+		tput setaf 2; echo "shellcheck is installed."; tput sgr0
+		shellcheck --version 
+
+		echo "Finished checking shellcheck at $(date)"
+		echo ""
+
+		exit 0
+	else 
+		tput setaf 1; echo "shellcheck needs to be installed."; tput sgr0
+
+		echo "Finished chekcing shellcheck at $(date)"
+		echo ""
+	fi
+}
+
 check_homebrew() {
 	echo "Started checking Homebrew at $(date)"
 
-	which -s brew
-	if [[ $? == 0 ]]; then
+	if which -s brew; then
 		tput setaf 2; echo "Homebrew is installed."; tput sgr0
 		brew --version
 
@@ -44,6 +63,7 @@ install_shellcheck() {
 	printf "\nInstall Shellcheck with Homebrew.\n\n"
 
 	check_os_for_mac
+	check_shellcheck
 	check_homebrew
 
 	start=$(date +%s)
