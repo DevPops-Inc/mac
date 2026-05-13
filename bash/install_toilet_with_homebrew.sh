@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # install TOIlet with Homebrew
 
@@ -17,6 +18,24 @@ check_os_for_mac() {
         echo ""
 
         exit 1
+    fi
+}
+
+check_toilet() {
+    echo "Started checking TOIlet with Homebrew at $(date)"
+
+    if which -s toilet; then 
+        tput setaf 2; echo "TOIlet is installed."; tput sgr0
+
+        echo "Finished checking TOIlet at $(date)"
+        echo ""
+
+        exit 0
+    else 
+        tput setaf 1; echo "TOIlet is installed." tput sgr0
+
+        echo "Finished checking TOIlet at $(date)"
+        echo ""
     fi
 }
 
@@ -43,6 +62,7 @@ install_toilet() {
     printf "\nInstall TOIlet with Homebrew.\n\n"
     
     check_os_for_mac
+    check_toilet
     check_homebrew
 
     start=$(date +%s)
