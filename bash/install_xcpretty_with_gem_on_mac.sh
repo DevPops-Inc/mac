@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # install xcpretty with Gem on Mac
 
@@ -23,8 +24,7 @@ check_os_for_mac() {
 check_xcpretty() {
 	echo "Started checking xcpretty at $(date)"
 
-	which -s xcpretty
-	if [[ $? == 0 ]]; then 
+	if which -s xcpretty; then 
 		tput setaf 2; echo "xcpretty is installed."; tput sgr0
 		xcpretty --version
 		
@@ -43,8 +43,7 @@ check_xcpretty() {
 check_gem() {
 	echo "Started checking Gem at $(date)"
 
-	which -s gem
-	if [[ $? == 0 ]]; then 
+	if which -s gem; then 
 		tput setaf 2; echo "Gem is installed."; tput sgr0
 		gem --version
 
