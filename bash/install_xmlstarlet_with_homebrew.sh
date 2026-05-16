@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # install XMLStartlet with Homebrew
 
@@ -20,11 +21,29 @@ check_os_for_mac() {
 	fi
 }
 
+check_xmlstarlet() {
+	echo "Started checking startlet at $(date)"
+
+	if which -s xmlstarlet; then
+		tput setaf 2; echo "startlet is installed."; tput sgr0
+		xmlstarlet --version
+
+		echo "Finished checking xmlstarlet at $(date)"
+		echo ""
+
+		exit 0
+	else 
+		tput setaf 1; echo "xmlstarlet is not installed."; tput sgr0
+
+		echo "Finished checking xmlstarlet at $(date)"
+		echo ""
+	fi
+}
+
 check_homebrew() {
 	echo "Started checking Homebrew at $(date)"
 
-	which -s brew
-	if [[ $? == 0 ]]; then
+	if which -s brew; then
 		tput setaf 2; echo "Homebrew is installed."; tput sgr0
 		brew --version
 
@@ -44,6 +63,7 @@ install_xmlstarlet() {
 	printf "\nInstall XMLStarlet with Homebrew.\n\n"
 	
 	check_os_for_mac
+	check_xmlstarlet
 	check_homebrew
 
 	start=$(date +%s)
