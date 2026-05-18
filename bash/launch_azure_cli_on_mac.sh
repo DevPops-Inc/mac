@@ -24,8 +24,7 @@ check_os_for_mac() {
 check_azure_cli() {
     echo "Started checking Azure CLI at $(date)"
 
-    which -s az 
-    if [[ $? == 0 ]]; then 
+    if which -s az; then 
         tput setaf 2; echo "Azure CLI is installed."; tput sgr0
         az --version 
 
