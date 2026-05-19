@@ -1,4 +1,5 @@
 #!/bin/bash 
+set -e 
 
 # launch desktop application on Mac
 
