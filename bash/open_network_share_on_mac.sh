@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # open network share on mac
 
