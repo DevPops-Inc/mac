@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # repair Homebrew after macOS Update
 
@@ -23,8 +24,7 @@ check_os_for_mac() {
 check_homebrew() {
     echo "Started checking Homebrew at $(date)"
 
-    which -s brew
-    if [[ $? == 0 ]]; then 
+    if which -s brew; then 
         tput setaf 2; echo "Homebrew is installed."; tput sgr0
         brew --version 
 
@@ -48,8 +48,9 @@ repair_homebrew() {
     echo "Started repairing Homebrew at $(date)"
 
     brew update
-    brew doctor
+    brew doctor || true
     brew upgrade
+    brew cleanup
     tput setaf 2; echo "Successfully repaired Homebrew."; tput sgr0
 
     end=$(date +%s)
