@@ -50,6 +50,7 @@ repair_homebrew() {
     brew update
     brew doctor
     brew upgrade
+    brew cleanup
     tput setaf 2; echo "Successfully repaired Homebrew."; tput sgr0
 
     end=$(date +%s)
