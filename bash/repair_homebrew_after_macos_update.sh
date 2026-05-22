@@ -48,7 +48,7 @@ repair_homebrew() {
     echo "Started repairing Homebrew at $(date)"
 
     brew update
-    brew doctor
+    brew doctor || true
     brew upgrade
     brew cleanup
     tput setaf 2; echo "Successfully repaired Homebrew."; tput sgr0
