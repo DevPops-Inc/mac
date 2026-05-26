@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # resolve Docker failed to ping backend API error on Mac
 
