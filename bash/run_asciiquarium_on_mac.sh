@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # run asciiquarium on Mac
 
@@ -23,8 +24,7 @@ check_os_for_mac() {
 check_asciiquarium() {
     echo "Started checking asciiquarium at $(date)"
 
-    which -s asciiquarium
-    if [[ $? == 0 ]]; then 
+    if which -s asciiquarium; then 
         tput setaf 2; echo "asciiquarium is installed."; tput sgr0
 
         echo "Finished checking asciiquarium at $(date)"
