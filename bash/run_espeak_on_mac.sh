@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # run eSpeak on Mac
 
@@ -27,8 +28,7 @@ check_os_for_mac() {
 check_espeak() {
     echo "Started checking eSpeak at $(date)"
 
-    which -s espeak
-    if [[ $? == 0 ]]; then 
+    if which -s espeak; then 
         tput setaf 2; echo "eSpeak is installed."; tput sgr0
         espeak --version
 
