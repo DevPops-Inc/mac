@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # run rainbow date and time on Mac
 
