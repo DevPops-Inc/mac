@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # run stationary rainbow date and time on Mac
 
