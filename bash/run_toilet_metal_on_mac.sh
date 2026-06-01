@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # run TOIlet metal on Mac
 
@@ -27,8 +28,7 @@ check_os_for_mac() {
 check_toilet() {
     echo "Started checking TOIlet at $(date)"
 
-    which -s toilet
-    if [[ $? == 0 ]]; then 
+    if which -s toilet; then 
         tput setaf 2; echo "TOIlet is installed."; tput sgr0
 
         echo "Finished checking TOIlet at $(date)"
