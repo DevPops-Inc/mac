@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # run yes on Mac
 
@@ -27,8 +28,7 @@ check_os_for_mac() {
 check_yes() {
     echo "Started checking yes at $(date)"
 
-    which -s yes
-    if [[ $? == 0 ]]; then 
+    if which -s yes; then 
         tput setaf 2; echo "yes is installed."; tput sgr0
 
         echo "Finished checking yes at $(date)"
