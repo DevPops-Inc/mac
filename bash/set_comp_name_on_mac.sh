@@ -1,10 +1,11 @@
 #!/bin/bash
+set -e 
 
 # set computer name on Mac
 
-# you can run this script with: sudo ./set_computer_name_on_mac.sh < computer name > 
+# you can run this script with: sudo ./set_comp_name_on_mac.sh < computer name > 
 
-computerName=$1
+compName=$1
 
 check_os_for_mac() {
     echo "Started checking operating system at $(date)"
@@ -24,17 +25,17 @@ check_os_for_mac() {
     fi
 }
 
-get_computer_name() {
-    if [ -z $computerName ]; then 
-        oldComputerName=$(scutil --get ComputerName)
-        echo "The computer name is: $oldComputerName"
+get_comp_name() {
+    if [ -z $compName ]; then 
+        oldCompName=$(scutil --get ComputerName)
+        echo "The computer name is: $oldCompName"
         echo ""
 
         read -p "Please type the new computer name and press \"return\" key (Example: Dev-MBP): " computerName
 
         echo ""
     else 
-        echo $computerName &>/dev/null
+        echo $compName &>/dev/null
     fi
 }
 
@@ -43,11 +44,11 @@ check_parameters() {
     valid="true"
 
     echo "Parameter(s):"
-    echo "---------------------------"
-    echo "computerName: $computerName"
-    echo "---------------------------"
+    echo "-------------------"
+    echo "compName: $compName"
+    echo "-------------------"
 
-    if [ -z $computerName ]; then 
+    if [ -z $compName ]; then 
         tput setaf 1; echo "computerName is not set."; tput sgr0
         valid="false"
     fi
@@ -67,18 +68,18 @@ check_parameters() {
     fi
 }
 
-set_computer_name() {
+set_comp_name() {
     printf "\nSet computer name on Mac.\n\n"
     check_os_for_mac
 
-    get_computer_name
+    get_comp_name
     check_parameters
 
     start=$(date +%s)
     echo "Started setting computer name at $(date)"
 
-    scutil --set ComputerName $computerName
-    echo "The new computer name is: $computerName"
+    scutil --set ComputerName $compName
+    echo "The new computer name is: $compName"
     tput setaf 2; echo "Successfully set computer name."; tput sgr0
 
     end=$(date +%s)
@@ -89,4 +90,4 @@ set_computer_name() {
     echo ""
 }
 
-set_computer_name
+set_comp_name
