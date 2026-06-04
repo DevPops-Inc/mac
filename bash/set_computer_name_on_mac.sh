@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # set computer name on Mac
 
