@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # sleep before command on Mac
 
