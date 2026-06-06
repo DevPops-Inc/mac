@@ -1,4 +1,5 @@
 #!/bin/bash 
+set -e 
 
 # stop and restart Outlook on Mac
 
