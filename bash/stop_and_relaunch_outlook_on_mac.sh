@@ -25,6 +25,24 @@ check_os_for_mac() {
 	fi
 }
 
+check_outlook_app() {
+	echo "Started checking $appName at $(date)"
+
+	if open -Ra "$appName"; then 
+		tput setaf 2; echo "$appName is installed"; tput sgr0
+
+		echo "Finished checking $appName at $(date)"
+		echo ""
+	else
+		tput setaf 1; echo "$appName is not installed"; tput sgr0
+
+		echo "Finished checking $appName at $(date)"
+		echo ""
+		
+		exit 1
+	fi
+}
+
 get_process_name() {
 	if [ -z "$processName" ]; then 
 		read -p "Please type the name of the process you would like to kill and press \"return\" (Example: Microsoft Outlook): " processName
@@ -100,6 +118,7 @@ stop_relaunch_outlook() {
 	printf "\nStop and relaunch Outlook on Mac.\n\n"
 	check_os_for_mac
 	
+	check_outlook_app
 	get_process_name
 	get_sleep_time
 	get_app_name
