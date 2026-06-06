@@ -1,4 +1,5 @@
 #!/bin/bash 
+set -e 
 
 # stop and restart Outlook on Mac
 
@@ -18,6 +19,24 @@ check_os_for_mac() {
 		tput setaf 1; echo "Sorry but this script only only runs on Mac."; tput sgr0
 		
 		echo "Finished checking operating at $(date)"
+		echo ""
+		
+		exit 1
+	fi
+}
+
+check_outlook_app() {
+	echo "Started checking $appName at $(date)"
+
+	if open -Ra "$appName"; then 
+		tput setaf 2; echo "$appName is installed"; tput sgr0
+
+		echo "Finished checking $appName at $(date)"
+		echo ""
+	else
+		tput setaf 1; echo "$appName is not installed"; tput sgr0
+
+		echo "Finished checking $appName at $(date)"
 		echo ""
 		
 		exit 1
@@ -95,10 +114,22 @@ check_parameters() {
 	fi
 }
 
+kill_outlook_process() {
+	echo "Started killing $processName process at $(date)"
+
+	if pgrep -x "$processName" >/dev/null; then 
+		pkill -x "$processName"
+	fi
+
+	echo "Finished killing $processName process at $(date)"
+	echo ""
+}
+
 stop_relaunch_outlook() {
 	printf "\nStop and relaunch Outlook on Mac.\n\n"
 	check_os_for_mac
 	
+	check_outlook_app
 	get_process_name
 	get_sleep_time
 	get_app_name
@@ -107,7 +138,7 @@ stop_relaunch_outlook() {
 	start=$(date +%s)
 	echo "Started stopping and relaunching Outlook at $(date)"
 	
-  	pkill $processName
+	kill_outlook_process
   	sleep $sleepTime
 	open -a "${appName}"
 	tput setaf 2; echo "Successfully stopped and relaunched Outlook."; tput sgr0
