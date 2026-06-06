@@ -114,6 +114,17 @@ check_parameters() {
 	fi
 }
 
+kill_outlook_process() {
+	echo "Started killing $processName process at $(date)"
+
+	if pgrep -x "$processName" >/dev/null; then 
+		pkill -x "$processName"
+	fi
+
+	echo "Finished killing $processName process at $(date)"
+	echo ""
+}
+
 stop_relaunch_outlook() {
 	printf "\nStop and relaunch Outlook on Mac.\n\n"
 	check_os_for_mac
@@ -127,7 +138,7 @@ stop_relaunch_outlook() {
 	start=$(date +%s)
 	echo "Started stopping and relaunching Outlook at $(date)"
 	
-  	pkill $processName
+	kill_outlook_process
   	sleep $sleepTime
 	open -a "${appName}"
 	tput setaf 2; echo "Successfully stopped and relaunched Outlook."; tput sgr0
