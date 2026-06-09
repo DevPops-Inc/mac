@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # uninstall Ansible with PIP on Mac
 
@@ -19,8 +20,7 @@ check_os_for_mac() {
 check_ansible() {
         echo "Started checking Ansible at $(date)"
 
-        which -s ansible
-        if [[ $? == 0 ]]; then 
+        if which -s ansible; then 
                 tput setaf 2; echo "Ansible is installed."; tput sgr0
 
                 echo "Finished checking Ansible at $(date)"
@@ -38,8 +38,7 @@ check_ansible() {
 check_pip() {
         echo "Started checking PIP at $(date)"
 
-        which -s pip
-        if [[ $? == 0 ]]; then
+        if which -s pip; then
                 tput setaf 2; echo "PIP is installed."; tput sgr0
 
                 echo "Finished checking PIP at $(date)"
