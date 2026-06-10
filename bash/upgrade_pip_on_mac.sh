@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # upgrade PIP on Mac
 
@@ -23,8 +24,7 @@ check_os_for_mac() {
 check_pip() {
     echo "Started checking PIP at $(date)"
 
-    which -s pip
-    if [[ $? == 0 ]]; then 
+    if which -s pip; then 
         tput setaf 2; echo "PIP is installed."; tput sgr0
 
         echo "Finished checking PIP at $(date)"
@@ -42,8 +42,7 @@ check_pip() {
 check_python3() {
     echo "Started checking Python 3 at $(date)"
 
-    which -s python3
-    if [[ $? == 0 ]]; then 
+    if which -s python3; then 
         tput setaf 2; echo "Python 3 is installed."; tput sgr0
 
         echo "Finished checking Python 3 at $(date)"
