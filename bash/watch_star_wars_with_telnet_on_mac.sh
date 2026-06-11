@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e 
 
 # watch Star Wars with telnet on Mac
 
@@ -23,8 +24,7 @@ check_os_for_mac() {
 check_telnet() {
     echo "Started checking Telnet at $(date)"
 
-    which -s telnet
-    if [[ $? == 0 ]]; then 
+    if which -s telnet; then 
         tput setaf 2; echo "Telnet is installed."; tput sgr0
         
         echo "Finished checking Telnet at $(date)"
