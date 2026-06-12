@@ -27,7 +27,7 @@ check_os_for_mac() {
 }
 
 get_printer_name() {
-    if [ -z $printerName ]; then 
+    if [ -z "$printerName" ]; then 
         read -p "Please type the printer name and press \"return\" key (Example: IT): " printerName
         
         echo ""
@@ -37,7 +37,7 @@ get_printer_name() {
 }
 
 get_printer_ip() {
-    if  [ -z $printerIp]; then 
+    if  [ -z "$printerIp" ]; then 
         read -p "Please type the IP address of the printer and press \"return\" key (Example: 10.10.6.144): " printerIp
         
         echo ""
@@ -56,17 +56,17 @@ check_parameters() {
     echo "printerIp  : $printerIp"
     echo "--------------------------"
 
-    if [ -z $printerName ]; then 
+    if [ -z "$printerName" ]; then 
         tput setaf 1; echo "printerName is not set."; tput sgr0
         valid="false"
     fi
 
-    if [ -z $printerIp ]; then 
+    if [ -z "$printerIp" ]; then 
         tput setaf 1; echo "printerIp is not set."; tput sgr0
         valid="false"
     fi
 
-    if [ $valid == "true" ]; then
+    if [ "$valid" == "true" ]; then
         tput setaf 2; echo "All parameter check(s) passed."; tput sgr0
 
 	    echo "Finished checking parameter(s) at $(date)"
