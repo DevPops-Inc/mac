@@ -26,7 +26,7 @@ check_os_for_mac() {
 }
 
 get_hours() { 
-    if [ -z $hours ]; then 
+    if [ -z "$hours" ]; then 
         read -p "Please type how many hours intervals you would like between deleting .DS_Store files and press \"return\" key (Example: 24): " hours
 
         echo ""
@@ -44,12 +44,12 @@ check_parameters() {
     echo "hours: $hours" 
     echo "-------------"
 
-    if [ -z $hours ]; then 
+    if [ -z "$hours" ]; then 
         tput setaf 1; echo "hours is not set."; tput sgr0
         valid="false"
     fi
 
-    if [ $valid == "true" ]; then 
+    if [ "$valid" == "true" ]; then 
         tput setaf 2; echo "All parameter check(s) passed."; tput sgr0
 
         echo "Finished checking parameter(s) at $(date)"
