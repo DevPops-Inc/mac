@@ -64,7 +64,6 @@ check_parameters() {
     fi
 }
 
-# define main fucntion
 delete_ds_store_files() {
     printf "\nAutomatically delete DS_Store files on Mac.\n\n"
     check_os_for_mac
@@ -75,7 +74,6 @@ delete_ds_store_files() {
     echo "Started automatically deleting DS_Stores files at $(date)"
     start=$(date +%s)
 
-    # configure cron job interval for automatic deletion of .DS_Store files
     crontab -e
     * $hours * * * root find / -name ".DS_Store" -depth -exec rm {} \;
 
@@ -89,5 +87,4 @@ delete_ds_store_files() {
     echo ""
 }
 
-# call main function 
 delete_ds_store_files
