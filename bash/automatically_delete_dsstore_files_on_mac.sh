@@ -74,9 +74,8 @@ delete_ds_store_files() {
     echo "Started automatically deleting DS_Stores files at $(date)"
     start=$(date +%s)
 
-    crontab -e
-    * $hours * * * root find / -name ".DS_Store" -depth -exec rm {} \;
-
+    (crontab -l 2>/dev/null; echo "0 */$hours * * * find \$HOME -name '.DS_Store' -type f -delete") | crontab -
+    
     tput setaf 2; echo "Successfully set automatica deletion of DS_Store files."; tput sgr0
 
     end=$(date +%s)
