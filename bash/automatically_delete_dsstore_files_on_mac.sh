@@ -26,7 +26,7 @@ check_os_for_mac() {
 }
 
 get_hours() { 
-    if [ -z $hours ]; then 
+    if [ -z "$hours" ]; then 
         read -p "Please type how many hours intervals you would like between deleting .DS_Store files and press \"return\" key (Example: 24): " hours
 
         echo ""
@@ -44,12 +44,12 @@ check_parameters() {
     echo "hours: $hours" 
     echo "-------------"
 
-    if [ -z $hours ]; then 
+    if [ -z "$hours" ]; then 
         tput setaf 1; echo "hours is not set."; tput sgr0
         valid="false"
     fi
 
-    if [ $valid == "true" ]; then 
+    if [ "$valid" == "true" ]; then 
         tput setaf 2; echo "All parameter check(s) passed."; tput sgr0
 
         echo "Finished checking parameter(s) at $(date)"
@@ -64,7 +64,6 @@ check_parameters() {
     fi
 }
 
-# define main fucntion
 delete_ds_store_files() {
     printf "\nAutomatically delete DS_Store files on Mac.\n\n"
     check_os_for_mac
@@ -75,10 +74,8 @@ delete_ds_store_files() {
     echo "Started automatically deleting DS_Stores files at $(date)"
     start=$(date +%s)
 
-    # configure cron job interval for automatic deletion of .DS_Store files
-    crontab -e
-    * $hours * * * root find / -name ".DS_Store" -depth -exec rm {} \;
-
+    (crontab -l 2>/dev/null; echo "0 */$hours * * * find \$HOME -name '.DS_Store' -type f -delete") | crontab -
+    
     tput setaf 2; echo "Successfully set automatica deletion of DS_Store files."; tput sgr0
 
     end=$(date +%s)
@@ -89,5 +86,4 @@ delete_ds_store_files() {
     echo ""
 }
 
-# call main function 
 delete_ds_store_files
