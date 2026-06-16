@@ -42,12 +42,12 @@ check_parameters() {
     echo "terminalApp: $terminalApp"
     echo "-------------------------"
 
-    if [ -z $terminalApp ]; then 
+    if [ -z "$terminalApp" ]; then 
         tput setaf 1; echo "terminalApp is not set."; tput sgr0
         valid="false"
     fi
 
-    if [ $valid == "true" ]; then 
+    if [ "$valid" == "true" ]; then 
         tput setaf 2; echo "All parameter check(s) passed."; tput sgr0
 
         echo "Finished checking parameter(s) at $(date)"
