@@ -27,7 +27,7 @@ check_os_for_mac() {
 }
 
 get_ssid() { 
-    if [ -z $ssid ]; then 
+    if [ -z "$ssid" ]; then 
         echo "Available Wi-Fi networks: "
         
         /System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport scan
@@ -41,7 +41,7 @@ get_ssid() {
 }
 
 getPassword() { 
-    if [ -z $password ]; then 
+    if [ -z "$password" ]; then 
         read -s "Please type password for the SSID and press \"return\" key (Example: YourPassword): " password
 
         echo ""
@@ -60,17 +60,17 @@ check_parameters() {
     echo "password: ***"
     echo "---------------"
 
-    if [ -z $ssid ]; then 
+    if [ -z "$ssid" ]; then 
         tput setaf 1; echo "ssid is not set."; tput sgr0
         valid="false"
     fi
 
-    if [ -z $password ]; then 
+    if [ -z "$password" ]; then 
         tput setaf 1; echo "password is not set."; tput sgr0
         valid="false"
     fi
     
-    if [ $valid == "true" ]; then 
+    if [ "$valid" == "true" ]; then 
         tput setaf 2; echo "All parameter check(s) passed."; tput sgr0
 
         echo "Finished checking parameter(s) at $(date)"
