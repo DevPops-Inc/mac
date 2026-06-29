@@ -10,7 +10,7 @@ ssid=$1 # you can set the SSID you would like to disconnect from here
 check_os_for_mac() {
     echo "Started checking operating system at $(date)"
 
-    if [[ $OSTYPE == 'darwin'* ]]; then 
+    if [[ "$OSTYPE" == 'darwin'* ]]; then 
         tput setaf 2; echo -e "Operating System: \n$(sw_vers)"; tput sgr0
 
         echo "Finished checking operating system at $(date)"
@@ -26,7 +26,7 @@ check_os_for_mac() {
 }
 
 get_ssid() {
-    if [ -z $ssid ]; then 
+    if [ -z "$ssid" ]; then 
         read -p "Please type ssid you wish to disconnect from (Example: IT-Network): " ssid
 
         echo ""
@@ -44,12 +44,12 @@ check_parameters() {
     echo "ssid: $ssid"
     echo "-----------"
 
-    if [ -z $ssid ]; then 
+    if [ -z "$ssid" ]; then 
         tput setaf 1; echo "ssid is not set."; tput sgr0
         valid="false"
     fi
 
-    if [ $valid == "true" ]; then 
+    if [ "$valid" == "true" ]; then 
         tput setaf 2; echo "All parameter check(s) passed."; tput sgr0
 
         echo "Finished checking parameter(s) at $(date)"
@@ -64,7 +64,6 @@ check_parameters() {
     fi
 }
 
-# define main function
 disconnect_wifi() {
     printf "\nDisconnect from Wi-Fi on Mac.\n\n"
     check_os_for_mac
@@ -86,5 +85,4 @@ disconnect_wifi() {
     echo ""
 }
 
-# call main function 
 disconnect_wifi
