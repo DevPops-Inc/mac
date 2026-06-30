@@ -30,13 +30,13 @@ check_homebrew() {
 
         echo "Finished checking Homebrew at $(date)"
         echo ""
+
+        exit 0
     else 
         tput setaf 1; echo "Hombrew needs to be installed."; tput sgr0
 
         echo "Finished checking Homebrew at $(date)"
         echo ""
-
-        exit 1
     fi
 }
 
