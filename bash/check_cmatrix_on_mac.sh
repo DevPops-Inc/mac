@@ -8,7 +8,7 @@ terminalApp="cmatrix"
 check_os_for_mac() {
     echo "Started checking operating system at $(date)"
 
-    if [[ $OSTYPE == 'darwin'* ]]; then 
+    if [[ "$OSTYPE" == 'darwin'* ]]; then 
         tput setaf 2; echo -e "Operating System: \n$(sw_vers)"; tput sgr0
 
         echo "Finished checking operating system at $(date)"
@@ -42,12 +42,12 @@ check_parameters() {
     echo "terminalApp: $terminalApp"
     echo "-------------------------"
 
-    if [ -z $terminalApp ]; then 
+    if [ -z "$terminalApp" ]; then 
         tput setaf 1; echo "terminalApp is not set."; tput sgr0
         valid="false"
     fi
 
-    if [ $valid == "true" ]; then 
+    if [ "$valid" == "true" ]; then 
         tput setaf 2; echo "All parameters checks passed."; tput sgr0
 
         echo "Finished checking parameter(s) at $(date)"
