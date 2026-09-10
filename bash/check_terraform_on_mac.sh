@@ -8,7 +8,7 @@ terminalApp="terraform"
 check_os_for_mac() {
     echo "Started checking operating system at $(date)"
     
-    if [[ $OSTYPE == 'darwin'* ]]; then 
+    if [[ "$OSTYPE" == 'darwin'* ]]; then 
         tput setaf 2; echo -e "Operating System: \n$(sw_vers)"; tput sgr0
 
         echo "Finished checking operating system at $(date)"
@@ -24,7 +24,7 @@ check_os_for_mac() {
 }
 
 get_terminal_app() {
-    if [ -z $terminalApp ]; then 
+    if [ -z "$terminalApp" ]; then 
         read -p "Please type the terminal application you would like to check and press \"return\" key (Example: terraform): " terminalApp
 
         echo ""
