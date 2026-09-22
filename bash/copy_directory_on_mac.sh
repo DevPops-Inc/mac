@@ -11,7 +11,7 @@ destination=$2 # you can set the destination here
 check_os_for_mac() {
     echo "Started checking operating system at $(date)"
 
-    if [[ $OSTYPE == 'darwin'* ]]; then 
+    if [[ "$OSTYPE" == 'darwin'* ]]; then 
         tput setaf 2; echo -e "Operating System: \n$(sw_vers)"; tput sgr0
         
         echo "Finished checking operating system at $(date)"
