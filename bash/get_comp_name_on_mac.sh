@@ -6,7 +6,7 @@ set -e
 check_os_for_mac() {
     echo "Started checking operating system at $(date)"
 
-    if [[ $OSTYPE == 'darwin'* ]]; then 
+    if [[ "$OSTYPE" == 'darwin'* ]]; then 
         tput setaf 2; echo -e "Operating System: \n$(sw_vers)"; tput sgr0
 
         echo "Finished checking operating system at $(date)"
@@ -21,7 +21,7 @@ check_os_for_mac() {
     fi
 }
 
-get_computer_name() {
+get_comp_name() {
     printf "\nGet computer name on Mac.\n\n"
     check_os_for_mac
 
@@ -41,4 +41,4 @@ get_computer_name() {
     echo ""
 }
 
-get_computer_name
+get_comp_name
