@@ -21,7 +21,7 @@ check_os_for_mac() {
     fi
 }
 
-get_computer_name() {
+get_comp_name() {
     printf "\nGet computer name on Mac.\n\n"
     check_os_for_mac
 
@@ -41,4 +41,4 @@ get_computer_name() {
     echo ""
 }
 
-get_computer_name
+get_comp_name
