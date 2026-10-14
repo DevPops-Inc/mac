@@ -29,7 +29,7 @@ get_hostname() {
     echo "Started getting hostname at $(date)"
 
     hostName=$(scutil --get HostName)
-    echo "The hostname is: $hostName"
+    tput setaf 4; echo "The hostname is: $hostName"; tput sgr0
     tput setaf 2; echo "Successfully got hostname."; tput sgr0
 
     end=$(date +%s)
