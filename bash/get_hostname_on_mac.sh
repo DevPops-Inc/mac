@@ -6,7 +6,7 @@ set -e
 check_os_for_mac() {
     echo "Started checking operating system at $(date)"
 
-    if [[ $OSTYPE == 'darwin'* ]]; then 
+    if [[ "$OSTYPE" == 'darwin'* ]]; then 
         tput setaf 2; echo -e "Operating System:\n$(sw_vers)"; tput sgr0
 
         echo "Finished checking operating system at $(date)"
@@ -29,7 +29,7 @@ get_hostname() {
     echo "Started getting hostname at $(date)"
 
     hostName=$(scutil --get HostName)
-    echo "The hostname is: $hostName"
+    tput setaf 4; echo "The hostname is: $hostName"; tput sgr0
     tput setaf 2; echo "Successfully got hostname."; tput sgr0
 
     end=$(date +%s)
