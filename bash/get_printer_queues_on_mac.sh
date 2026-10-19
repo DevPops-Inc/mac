@@ -6,7 +6,7 @@ set -e
 check_os_for_mac() {
     echo "Started checking operating system at $(date)"
 
-    if [[ $OSTYPE == 'darwin'* ]]; then 
+    if [[ "$OSTYPE" == 'darwin'* ]]; then 
         tput setaf 2; echo -e "Operating System: \n$(sw_vers)"; tput sgr0
 
         echo "Finished checking operating system at $(date)"
@@ -29,8 +29,7 @@ get_printer_queues() {
     echo "Started getting printer queues at $(date)"
 
     printerQueues=$(lpstat -p | awk '{print $2}'| xargs -n1 lpq -P)
-    echo "The printer queues are: $printerQueues"
-
+    tput setaf 4; echo "The printer queues are: $printerQueues"; tput sgr0
     tput setaf 2; echo "Successfully got printer queues."; tput sgr0
 
     end=$(date +%s)
