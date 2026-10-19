@@ -29,8 +29,7 @@ get_printer_queues() {
     echo "Started getting printer queues at $(date)"
 
     printerQueues=$(lpstat -p | awk '{print $2}'| xargs -n1 lpq -P)
-    echo "The printer queues are: $printerQueues"
-
+    tput setaf 4; echo "The printer queues are: $printerQueues"; tput sgr0
     tput setaf 2; echo "Successfully got printer queues."; tput sgr0
 
     end=$(date +%s)
