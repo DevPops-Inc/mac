@@ -29,7 +29,7 @@ get_printers() {
     echo "Started getting printers at $(date)"
 
     printers=$(lpstat -p)
-    tput setaf 4; echo "The printers are: $printers"; tput sgr0
+    tput setaf 4; printf 'The printers are:\n%s\n' "$printers"; tput sgr0
     tput setaf 2; echo "Successfully got printers."; tput sgr0
 
     end=$(date +%s)
