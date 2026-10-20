@@ -29,7 +29,7 @@ get_printer_names() {
     echo "Started getting printer names at $(date)"   
 
     printerNames=$(lpstat -p | awk '{print $2}')
-    tput setaf 4; echo "The printer names are: $printerNames"; tput sgr0
+    tput setaf 4; printf 'The printer names are:\n%s\n' "$printerNames"; tput sgr0
     tput setaf 2; echo "Successfully got printer names."; tput sgr0
 
     end=$(date +%s)
