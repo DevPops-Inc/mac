@@ -6,7 +6,7 @@ set -e
 check_os_for_mac() {
     echo "Started checking operating system at $(date)"
 
-    if [[ $OSTYPE == 'darwin'* ]]; then 
+    if [[ "$OSTYPE" == 'darwin'* ]]; then 
         tput setaf 2; echo -e "Operating System: \n$(sw_vers)"; tput sgr0
 
         echo "Finished checking operating system at $(date)"
@@ -40,7 +40,7 @@ check_python3() {
 }
 
 get_python3_version() {
-printf "\nGet Python 3 version on Mac.\n\n"
+    printf "\nGet Python 3 version on Mac.\n\n"
     check_os_for_mac
     check_python3
 
