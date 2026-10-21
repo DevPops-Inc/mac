@@ -40,7 +40,7 @@ check_python3() {
 }
 
 get_python3_version() {
-printf "\nGet Python 3 version on Mac.\n\n"
+    printf "\nGet Python 3 version on Mac.\n\n"
     check_os_for_mac
     check_python3
 
