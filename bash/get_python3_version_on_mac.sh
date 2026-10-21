@@ -47,8 +47,9 @@ get_python3_version() {
     start=$(date +%s)
     echo "Started getting Python 3 version at $(date)"
 
-    printf "Python 3 version is: " 
+    tput setaf 4; printf "Python 3 version is: " 
     python3 --version
+    tput sgr0
 
     tput setaf 2; echo "Successfully got Python 3 version."; tput sgr0
 
