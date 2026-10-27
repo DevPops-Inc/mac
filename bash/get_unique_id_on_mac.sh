@@ -29,9 +29,8 @@ get_unique_id() {
     start=$(date +%s)
     echo "Started getting unqiue ID at $(date)"
 
-    echo "The unique ID is: "
+    tput setaf 4; echo "The unique ID is: "
     id
-
     tput setaf 2; echo "Successfully got unique ID."; tput sgr0
 
     end=$(date +%s)
