@@ -7,7 +7,7 @@ check_os_for_mac() {
 
     echo "Started checking operating system at $(date)"
 
-    if [[ $OSTYPE == 'darwin'* ]]; then
+    if [[ "$OSTYPE" == 'darwin'* ]]; then
         tput setaf 2; echo -e "Operating System: \n$(sw_vers)"; tput sgr0
 
         echo "Finished checking operating system at $(date)"
@@ -29,9 +29,8 @@ get_unique_id() {
     start=$(date +%s)
     echo "Started getting unqiue ID at $(date)"
 
-    echo "The unique ID is: "
+    tput setaf 4; echo "The unique ID is: "
     id
-
     tput setaf 2; echo "Successfully got unique ID."; tput sgr0
 
     end=$(date +%s)
