@@ -28,9 +28,8 @@ get_users() {
     start=$(date +%s)
     echo "Started getting users at $(date)"
     
-    echo "The users are: "
+    tput setaf 4; printf "The users are: \n"
     dscl . list /Users | grep -v '_' 
-
     tput setaf 2; echo "Successfully got users."; tput sgr0
 
     end=$(date +%s)
