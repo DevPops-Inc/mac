@@ -6,7 +6,7 @@ set -e
 check_os_for_mac() {
     echo "Started checking operating system at $(date)"
 
-    if [[ $OSTYPE == 'darwin'* ]]; then 
+    if [[ "$OSTYPE" == 'darwin'* ]]; then 
         tput setaf 2; echo -e "Operating System: \n$(sw_vers)"; tput sgr0
 
         echo "Finished checking operating system at $(date)"
@@ -28,9 +28,8 @@ get_users() {
     start=$(date +%s)
     echo "Started getting users at $(date)"
     
-    echo "The users are: "
+    tput setaf 4; printf "The users are: \n"
     dscl . list /Users | grep -v '_' 
-
     tput setaf 2; echo "Successfully got users."; tput sgr0
 
     end=$(date +%s)
